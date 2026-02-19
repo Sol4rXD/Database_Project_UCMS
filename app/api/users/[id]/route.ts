@@ -9,3 +9,21 @@ export async function GET(
     where: { id: Number(id) }
   }))
 }
+
+export async function PUT(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  try {
+    const { id } = await params
+    const {password} = await req.json()
+    return Response.json(await prisma.users.update({
+      where: { id: Number(id)},
+      data: { password }
+    }))
+  } catch (error) {
+        return new Response(error as BodyInit, {
+        status: 500,
+      })
+    }
+}
