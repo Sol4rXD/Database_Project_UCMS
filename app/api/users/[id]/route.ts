@@ -27,3 +27,22 @@ export async function PUT(
       })
     }
 }
+
+export async function DELETE(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  try {
+    const { id } = await params
+    await prisma.users.delete({
+      where: { id: Number(id)}
+    })
+    return Response.json({ message: `delete id ${id}`})
+  } catch (error) {
+        return new Response(error as BodyInit, {
+        status: 500,
+      })
+  }
+}
+
+
