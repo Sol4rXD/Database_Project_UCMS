@@ -31,8 +31,8 @@ export default function FieldDemo() {
         <form>
           <FieldGroup>
             <FieldSet>
-              <FieldLegend className="text-primary font-extrabold text-3xl">Register</FieldLegend>
-              <div className="flex items-baseline gap-1.5 mb-2"> 
+              <div className="text-primary font-extrabold text-2xl mt-10">Register</div>
+              <div className="flex items-baseline gap-1.5 mb-2 -mt-4"> 
                 <span className="text-sm text-[#7A7979]">
                   New User ?
                 </span>
@@ -43,127 +43,108 @@ export default function FieldDemo() {
                   Register now
                 </Link>
               </div>
-              <FieldDescription>
-                All transactions are secure and encrypted
-              </FieldDescription>
               <FieldGroup>
-                <Field>
-                  <FieldLabel htmlFor="checkout-7j9-card-name-43j">
-                    Name on Card
-                  </FieldLabel>
-                  <Input
-                    id="checkout-7j9-card-name-43j"
-                    placeholder="Evil Rabbit"
-                    required
-                  />
-                </Field>
-                <Field>
-                  <FieldLabel htmlFor="checkout-7j9-card-number-uw1">
-                    Card Number
-                  </FieldLabel>
-                  <Input
-                    id="checkout-7j9-card-number-uw1"
-                    placeholder="1234 5678 9012 3456"
-                    required
-                  />
-                  <FieldDescription>
-                    Enter your 16-digit card number
-                  </FieldDescription>
-                </Field>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="flex justify-between gap-10">
                   <Field>
-                    <FieldLabel htmlFor="checkout-exp-month-ts6">
-                      Month
+                    <FieldLabel htmlFor="Fullname" className="text-primary">
+                      Fullname
+                    </FieldLabel>
+                    <Input
+                      id="Fullname"
+                      placeholder="Fullname"
+                      required
+                    />
+                  </Field>
+                  <Field>
+                    <FieldLabel htmlFor="Surname" className="text-primary">
+                      Surname
+                    </FieldLabel>
+                    <Input
+                      id="Surname"
+                      placeholder="Surname"
+                      required
+                    />
+                  </Field>
+                </div>
+                <div className="flex justify-between gap-10">
+                  <Field>
+                    <FieldLabel htmlFor="Faculty" className="text-primary">
+                      Faculty
                     </FieldLabel>
                     <Select defaultValue="">
-                      <SelectTrigger id="checkout-exp-month-ts6">
-                        <SelectValue placeholder="MM" />
+                      <SelectTrigger id="Faculty">
+                        <SelectValue placeholder="Faculty" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="01">01</SelectItem>
-                          <SelectItem value="02">02</SelectItem>
-                          <SelectItem value="03">03</SelectItem>
-                          <SelectItem value="04">04</SelectItem>
-                          <SelectItem value="05">05</SelectItem>
-                          <SelectItem value="06">06</SelectItem>
-                          <SelectItem value="07">07</SelectItem>
-                          <SelectItem value="08">08</SelectItem>
-                          <SelectItem value="09">09</SelectItem>
-                          <SelectItem value="10">10</SelectItem>
-                          <SelectItem value="11">11</SelectItem>
-                          <SelectItem value="12">12</SelectItem>
+                          <SelectItem value="01">วิศวกรรมศาสตร์</SelectItem>
+                          <SelectItem value="02">บัญชี</SelectItem>
+                          <SelectItem value="03">อุตสาหกรรมเกษตร</SelectItem>
+                          <SelectItem value="04">เศรษฐศาสตร์</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
                   </Field>
                   <Field>
-                    <FieldLabel htmlFor="checkout-7j9-exp-year-f59">
-                      Year
+                    <FieldLabel htmlFor="Department" className="text-primary">
+                      Department
                     </FieldLabel>
                     <Select defaultValue="">
-                      <SelectTrigger id="checkout-7j9-exp-year-f59">
-                        <SelectValue placeholder="YYYY" />
+                      <SelectTrigger id="Department">
+                        <SelectValue placeholder="Department" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="2024">2024</SelectItem>
-                          <SelectItem value="2025">2025</SelectItem>
-                          <SelectItem value="2026">2026</SelectItem>
-                          <SelectItem value="2027">2027</SelectItem>
-                          <SelectItem value="2028">2028</SelectItem>
-                          <SelectItem value="2029">2029</SelectItem>
+                          <SelectItem value="01">คอมพิวเตอร์</SelectItem>
+                          <SelectItem value="02">เครื่องกล</SelectItem>
+                          <SelectItem value="03">อุตสาหกรรมเกษตร</SelectItem>
+                          <SelectItem value="04">เศรษฐศาสตร์</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
                   </Field>
+                </div>
+                <div>
                   <Field>
-                    <FieldLabel htmlFor="checkout-7j9-cvv">CVV</FieldLabel>
-                    <Input id="checkout-7j9-cvv" placeholder="123" required />
+                    <FieldLabel htmlFor="StudentID" className="text-primary">
+                      StudentID
+                    </FieldLabel>
+                    <Input
+                      id="StudentID"
+                      placeholder="StudentID"
+                      type="Number"
+                      required
+                    />
+                  </Field>
+                </div>
+                <div className="flex justify-between gap-10">
+                  <Field>
+                    <FieldLabel htmlFor="Username" className="text-primary">
+                      Username
+                    </FieldLabel>
+                    <Input
+                      id="Username"
+                      placeholder="Username"
+                      required
+                    />
+                  </Field>
+                  <Field>
+                    <FieldLabel htmlFor="Password" className="text-primary">
+                      Password
+                    </FieldLabel>
+                    <Input
+                      id="Password"
+                      placeholder="Password"
+                      type="password"
+                      required
+                    />
                   </Field>
                 </div>
               </FieldGroup>
             </FieldSet>
             <FieldSeparator />
-            <FieldSet>
-              <FieldLegend>Billing Address</FieldLegend>
-              <FieldDescription>
-                The billing address associated with your payment method
-              </FieldDescription>
-              <FieldGroup>
-                <Field orientation="horizontal">
-                  <Checkbox
-                    id="checkout-7j9-same-as-shipping-wgm"
-                    defaultChecked
-                  />
-                  <FieldLabel
-                    htmlFor="checkout-7j9-same-as-shipping-wgm"
-                    className="font-normal"
-                  >
-                    Same as shipping address
-                  </FieldLabel>
-                </Field>
-              </FieldGroup>
-            </FieldSet>
-            <FieldSet>
-              <FieldGroup>
-                <Field>
-                  <FieldLabel htmlFor="checkout-7j9-optional-comments">
-                    Comments
-                  </FieldLabel>
-                  <Textarea
-                    id="checkout-7j9-optional-comments"
-                    placeholder="Add any additional comments"
-                    className="resize-none"
-                  />
-                </Field>
-              </FieldGroup>
-            </FieldSet>
             <Field orientation="horizontal">
-              <Button type="submit">Submit</Button>
-              <Button variant="outline" type="button">
-                Cancel
-              </Button>
+              <Button type="submit" className="w-full cursor-pointer -mt-3">Register</Button>
             </Field>
           </FieldGroup>
         </form>
