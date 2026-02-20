@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button"
-import { LoginModal } from "./LoginModal";
+import { LoginModal } from "./login/LoginModal";
 
 export default function Navbar() {
   return (

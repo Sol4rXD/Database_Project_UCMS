@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react"
+import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
@@ -22,7 +23,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
+
+import {
+  ArrowLeftIcon
+} from "lucide-react"
 
 export default function FieldDemo() {
   return (
@@ -31,7 +35,14 @@ export default function FieldDemo() {
         <form>
           <FieldGroup>
             <FieldSet>
-              <div className="text-primary font-extrabold text-2xl mt-10">Register</div>
+              <div className="flex justify-between items-center">
+                <div className="text-primary font-extrabold text-2xl mt-10">Register</div>
+                <Link href="/" className="-mb-17">
+                  <Button variant="outline" size="icon" aria-label="Go Back" className="cursor-pointer">
+                    <ArrowLeftIcon/>
+                  </Button>
+                </Link>
+              </div>
               <div className="flex items-baseline gap-1.5 mb-2 -mt-4"> 
                 <span className="text-sm text-[#7A7979]">
                   New User ?

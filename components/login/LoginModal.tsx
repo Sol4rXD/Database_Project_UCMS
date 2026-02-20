@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
+import axios from "axios"
+
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import {
@@ -18,13 +21,37 @@ import { Label } from "@/components/ui/label"
 
 export function LoginModal() {
   const [open, setOpen] = useState(false);
+
+  const [username , setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const router = useRouter()
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("/api/auth/login", {
+        username,
+        password
+      });
+
+      if (res.status === 200) {
+        alert("Login Success");
+        setOpen(false);
+        router.refresh()
+      }
+    } catch (error) {
+      console.log("Error: ", error);
+      alert("Something wrong try again");
+    }
+  }
+  
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <form>
         <DialogTrigger asChild>
           <Button className="bg-[#070974] hover:bg-blue-500 text-white px-6 py-2 h-10 font-bold cursor-pointer transition duration-300">Sign In</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-sm">
+          <form onSubmit={handleLogin}>
           <DialogHeader>
             <DialogTitle className="text-primary font-extrabold text-2xl">Log in</DialogTitle>
             <div className="flex">
@@ -37,18 +64,18 @@ export function LoginModal() {
           <FieldGroup className="mt-3">
             <Field>
               <Label htmlFor="username" className="text-primary">Username</Label>
-              <Input id="name-1" name="name" placeholder="Username"/>
+              <Input id="name-1" name="name" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
             </Field>
             <Field>
               <Label htmlFor="password" className="text-primary">Password</Label>
-              <Input id="username-1" name="username"  placeholder="Password"/>
+              <Input id="username-1" name="username"  placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
             </Field>
           </FieldGroup>
           <DialogFooter>
-            <Button type="submit" className="w-full mt-2 cursor-pointer">Sign In</Button>
+            <Button type="submit" className="w-full mt-7 cursor-pointer">Sign In</Button>
           </DialogFooter>
+          </form>
         </DialogContent>
-      </form>
     </Dialog>
   )
 }
