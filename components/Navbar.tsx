@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button"
+import { LoginModal } from "./LoginModal";
 
 export default function Navbar() {
   return (
-    <nav className="flex justify-between items-center bg-white p-4 drop-shadow-md">
+    <nav className="flex justify-between items-center bg-white p-4 drop-shadow-md fixed top-0 left-0 w-full z-50">
       <ul className="text-2xl font-bold text-[#070974] ml-4 cursor-pointer">
         <li>
           <Link href="/">
@@ -26,7 +27,7 @@ export default function Navbar() {
             <Link href="/" className="hover:text-blue-500 transition-colors font-bold transition duration-200">ค้นหาชมรมที่ใช่</Link>
           </li>
         </ul>
-        <Button className="bg-[#070974] hover:bg-blue-500 text-white px-6 py-2 h-10 font-bold cursor-pointer transition duration-300">Sign In</Button>
+        <LoginModal/>
       </div>
     </nav>
   )
