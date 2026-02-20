@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -35,21 +34,18 @@ export function LoginModal() {
               <Link href="/register" className="text-sm text-[#308DD5] hover:underline" onClick={() => setOpen(false)}>Register now</Link>
             </div>
           </DialogHeader>
-          <FieldGroup>
+          <FieldGroup className="mt-3">
             <Field>
-              <Label htmlFor="name-1">Name</Label>
-              <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
+              <Label htmlFor="username" className="text-primary">Username</Label>
+              <Input id="name-1" name="name" placeholder="Username"/>
             </Field>
             <Field>
-              <Label htmlFor="username-1">Username</Label>
-              <Input id="username-1" name="username" defaultValue="@peduarte" />
+              <Label htmlFor="password" className="text-primary">Password</Label>
+              <Input id="username-1" name="username"  placeholder="Password"/>
             </Field>
           </FieldGroup>
           <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DialogClose>
-            <Button type="submit">Save changes</Button>
+            <Button type="submit" className="w-full mt-2 cursor-pointer">Sign In</Button>
           </DialogFooter>
         </DialogContent>
       </form>
