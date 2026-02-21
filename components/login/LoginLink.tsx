@@ -19,7 +19,7 @@ import { Field, FieldGroup } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-export function LoginModal() {
+export function LoginLink() {
   const [open, setOpen] = useState(false);
 
   const [username , setUsername] = useState("")
@@ -49,7 +49,11 @@ export function LoginModal() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className="bg-[#070974] hover:bg-blue-500 text-white px-6 py-2 h-10 font-bold cursor-pointer transition duration-300">Sign In</Button>
+                <div 
+                  className="text-sm text-[#308DD5] hover:underline font-medium cursor-pointer"
+                >
+                  Login now
+                </div>
         </DialogTrigger>
         <DialogContent className="sm:max-w-sm">
           <form onSubmit={handleLogin}>

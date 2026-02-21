@@ -5,6 +5,7 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
+import { LoginLink } from "@/components/login/LoginLink"
 import {
   Field,
   FieldDescription,
@@ -47,12 +48,7 @@ export default function FieldDemo() {
                 <span className="text-sm text-[#7A7979]">
                   New User ?
                 </span>
-                <Link 
-                  href="/register" 
-                  className="text-sm text-[#308DD5] hover:underline font-medium"
-                >
-                  Register now
-                </Link>
+                <LoginLink/>
               </div>
               <FieldGroup>
                 <div className="flex justify-between gap-10">
