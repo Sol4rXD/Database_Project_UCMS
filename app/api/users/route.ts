@@ -12,6 +12,11 @@ export async function POST(req: Request) {
       department
     } = await req.json()
 
+    const existingUser = await prisma.users.findUnique({ where: { username } });
+    if (existingUser) {
+      return Response.json({ message: "Username already exists" }, { status: 400 });
+    }
+
     const user = await prisma.users.create({
       data: {
         username,    
@@ -23,7 +28,7 @@ export async function POST(req: Request) {
         department
       }
     })
-    return Response.json(user)
+    return Response.json(user, { status: 201});
   } catch (error) {
     return new Response(error as BodyInit, {
       status: 500

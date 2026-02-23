@@ -1,17 +1,15 @@
 'use client'
 
 import { useState } from "react"
-import * as React from "react"
+import { useRouter } from "next/navigation"
+import axios from "axios"
 import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
 import { LoginLink } from "@/components/login/LoginLink"
 import {
   Field,
-  FieldDescription,
   FieldGroup,
   FieldLabel,
-  FieldLegend,
   FieldSeparator,
   FieldSet,
 } from "@/components/ui/field"
@@ -30,10 +28,43 @@ import {
 } from "lucide-react"
 
 export default function FieldDemo() {
+  const [fullname, setFullname] = useState("");
+  const [surname, setSurname] = useState("");
+  const [faculty, setFaculty] = useState("");
+  const [department, setDepartment] = useState("");
+  const [student_id, setStudentID] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("/api/users", {
+        username,
+        password,
+        fullname,
+        surname,
+        student_id,
+        faculty,
+        department
+      });
+
+      if (res.status === 201) {
+        alert("Register Success");
+        router.push("/");
+        router.refresh()
+      }
+    } catch (error) {
+      console.log("Error: ", error);
+      alert("Register fail");
+    }
+  }
+
   return (
     <main className="flex justify-center">
       <div className="w-full max-w-md">
-        <form>
+        <form onSubmit={handleRegister}>
           <FieldGroup>
             <FieldSet>
               <div className="flex justify-between items-center">
@@ -59,6 +90,8 @@ export default function FieldDemo() {
                     <Input
                       id="Fullname"
                       placeholder="Fullname"
+                      value={fullname}
+                      onChange={(e) => setFullname(e.target.value)}
                       required
                     />
                   </Field>
@@ -69,6 +102,8 @@ export default function FieldDemo() {
                     <Input
                       id="Surname"
                       placeholder="Surname"
+                      value={surname}
+                      onChange={(e) => setSurname(e.target.value)}
                       required
                     />
                   </Field>
@@ -78,7 +113,7 @@ export default function FieldDemo() {
                     <FieldLabel htmlFor="Faculty" className="text-primary">
                       Faculty
                     </FieldLabel>
-                    <Select defaultValue="">
+                    <Select defaultValue="" onValueChange={setFaculty} value={faculty}>
                       <SelectTrigger id="Faculty">
                         <SelectValue placeholder="Faculty" />
                       </SelectTrigger>
@@ -96,7 +131,7 @@ export default function FieldDemo() {
                     <FieldLabel htmlFor="Department" className="text-primary">
                       Department
                     </FieldLabel>
-                    <Select defaultValue="">
+                    <Select defaultValue="" onValueChange={setDepartment} value={department}>
                       <SelectTrigger id="Department">
                         <SelectValue placeholder="Department" />
                       </SelectTrigger>
@@ -120,6 +155,8 @@ export default function FieldDemo() {
                       id="StudentID"
                       placeholder="StudentID"
                       type="Number"
+                      value={student_id} 
+                      onChange={(e) => setStudentID(e.target.value)}
                       required
                     />
                   </Field>
@@ -132,6 +169,8 @@ export default function FieldDemo() {
                     <Input
                       id="Username"
                       placeholder="Username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       required
                     />
                   </Field>
@@ -143,6 +182,8 @@ export default function FieldDemo() {
                       id="Password"
                       placeholder="Password"
                       type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       required
                     />
                   </Field>
