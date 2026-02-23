@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="th">
       <body className={`${inter.variable} ${ibmPlexThai.variable} font-sans antialiased`}>
           <Navbar/>
-            <main className="pt-20">
+            <main className="pt-16">
               {children}
             </main>
       </body>

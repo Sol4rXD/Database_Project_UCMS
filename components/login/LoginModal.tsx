@@ -24,7 +24,6 @@ export function LoginModal() {
 
   const [student_id , setStudent_id] = useState("")
   const [password, setPassword] = useState("")
-  const router = useRouter()
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,10 +34,10 @@ export function LoginModal() {
       });
 
       if (res.status === 200) {
-        alert("Login Success");
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        // alert("Login Success");
         setOpen(false);
-        router.push("/");
-        router.refresh()
+        window.location.reload();
       }
     } catch (error) {
       console.log("Error: ", error);
