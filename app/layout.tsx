@@ -27,10 +27,10 @@ export default function RootLayout({
   return (
     <html lang="th">
       <body className={`${inter.variable} ${ibmPlexThai.variable} font-sans antialiased`}>
-        <Navbar/>
-        <main className="pt-20">
-          {children}
-        </main>
+          <Navbar/>
+            <main className="pt-20">
+              {children}
+            </main>
       </body>
     </html>
   );

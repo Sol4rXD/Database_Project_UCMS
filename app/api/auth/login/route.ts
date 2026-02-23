@@ -4,9 +4,9 @@ import { prisma } from "@/lib/prisma";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { username , password } = body;
+    const { student_id , password } = body;
 
-    if (!username || !password) {
+    if (!student_id || !password) {
       return NextResponse.json(
         { message: "Please fill in all the required information."},
         { status: 400 }
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     }
     // Logic
     const user = await prisma.users.findUnique({
-      where: { username: username},
+      where: { student_id: student_id},
     })
     if(!user) {
       return NextResponse.json(
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
       message: "Login Success",
       user: {
         id: user.id,
-        username: user.username,
+        student_id: user.student_id,
         fullname: user.fullname
       }
     }, { status: 200}
