@@ -49,7 +49,7 @@ export function LoginModal() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className="bg-[#070974] hover:bg-blue-500 text-white px-6 py-2 h-10 font-bold cursor-pointer transition duration-300">Sign In</Button>
+          <Button className="bg-primary hover:bg-blue-500 text-white px-6 py-2 h-10 font-bold cursor-pointer transition duration-300">Sign In</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-sm">
           <form onSubmit={handleLogin}>

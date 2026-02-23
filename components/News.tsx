@@ -1,6 +1,5 @@
 "use client"
 
-
 import { useState, useEffect } from "react"
 
 
@@ -39,7 +38,7 @@ export function News() {
         <div
             style={{
                 background: "#f4f6f9",
-                minHeight: "180vh",
+                minHeight: "90vh",
                 padding: "15px 120px",
             }}
         >
@@ -205,156 +204,6 @@ export function News() {
                             }}
                         />
                     ))}
-                </div>
-            </div>
-
-            {/* WHAT'S CLUB */}
-            <div
-                style={{
-                    marginTop: "80px",
-                    textAlign: "center",
-                }}
-            >
-                <h2
-                    style={{
-                        fontSize: "40px",
-                        fontWeight: "700",
-                        color: "#0f2b46",
-                    }}
-                >
-                    What’s club ?
-                </h2>
-
-                <p
-                    style={{
-                        marginTop: "12px",
-                        color: "#6b7280",
-                        fontSize: "13px",
-                    }}
-                >
-                    Register now จะเด้งไปหน้า รายชื่อชมรมทั้งหมด
-                </p>
-
-                <div
-                    style={{
-                        marginTop: "35px",
-                        maxWidth: "1000px",   // ⭐ แคบลงอีก
-                        marginInline: "auto",
-                        display: "grid",
-                        gridTemplateColumns: "repeat(2, 1fr)",
-                        gap: "20px",
-                    }}
-                >
-                    {Array.from({ length: 6 }).map((_, index) => {
-                        const isOpen = index % 2 === 0
-
-                        return (
-                            <div
-                                key={index}
-                                style={{
-                                    background: "white",
-                                    padding: "18px 22px",   // ⭐ บางลง
-                                    borderRadius: "14px",
-                                    boxShadow:
-                                        "0 5px 14px rgba(0,0,0,0.05)",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: "18px",
-                                    transition: "0.2s ease",
-                                    cursor: "pointer",
-                                }}
-                                onMouseEnter={(e) =>
-                                (e.currentTarget.style.transform =
-                                    "translateY(-3px)")
-                                }
-                                onMouseLeave={(e) =>
-                                (e.currentTarget.style.transform =
-                                    "translateY(0)")
-                                }
-                            >
-                                <img
-                                    src="/testpic/dongtaan.png"
-                                    style={{
-                                        width: "95px",  // ⭐ เล็กลงอีก
-                                        objectFit: "contain",
-                                    }}
-                                />
-
-
-                                <div style={{ textAlign: "left" }}>
-                                    <h3
-                                        style={{
-                                            fontSize: "14px",
-                                            fontWeight: "600",
-                                            color: "#111827",
-                                        }}
-                                    >
-                                        Dongtan Racing Team
-                                    </h3>
-
-
-                                    <p
-                                        style={{
-                                            fontSize: "12px",
-                                            color: "#2563eb",
-                                            marginTop: "4px",
-                                        }}
-                                    >
-                                        สถานที่: ตึกวิศวกรรมเครื่องกล
-                                    </p>
-
-
-                                    <div
-                                        style={{
-                                            marginTop: "8px",
-                                            display: "inline-flex",
-                                            alignItems: "center",
-                                            gap: "6px",
-                                            padding: "4px 10px",
-                                            borderRadius: "999px",
-                                            fontSize: "11px",
-                                            fontWeight: "600",
-                                            background: isOpen
-                                                ? "#dcfce7"
-                                                : "#fee2e2",
-                                            color: isOpen
-                                                ? "#16a34a"
-                                                : "#dc2626",
-                                        }}
-                                    >
-                                        <span
-                                            style={{
-                                                width: "7px",
-                                                height: "7px",
-                                                borderRadius: "50%",
-                                                background: isOpen
-                                                    ? "#16a34a"
-                                                    : "#dc2626",
-                                            }}
-                                        />
-                                        {isOpen
-                                            ? "เปิดรับสมัคร"
-                                            : "ปิดรับสมัคร"}
-                                    </div>
-
-
-                                    <p
-                                        style={{
-                                            marginTop: "8px",
-                                            fontSize: "12px",
-                                            color: "#6b7280",
-                                            lineHeight: "1.5",
-                                            maxWidth: "340px",
-                                        }}
-                                    >
-                                        ทีมแข่งขันของนิสิตคณะวิศวกรรมศาสตร์
-                                        ที่มีชื่อเสียงและประสบความสำเร็จ
-                                        ในการแข่งขัน Formula Student
-                                    </p>
-                                </div>
-                            </div>
-                        )
-                    })}
                 </div>
             </div>
         </div>

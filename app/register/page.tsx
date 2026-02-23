@@ -71,7 +71,7 @@ export default function FieldDemo() {
                 <div className="text-primary font-extrabold text-2xl mt-10">Register</div>
                 <Link href="/" className="-mb-17">
                   <Button variant="outline" size="icon" aria-label="Go Back" className="cursor-pointer">
-                    <ArrowLeftIcon/>
+                    <ArrowLeftIcon className="cursor-pointer"/>
                   </Button>
                 </Link>
               </div>
