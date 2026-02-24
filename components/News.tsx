@@ -37,7 +37,7 @@ export function News() {
     return (
         <div
             style={{
-                background: "#f4f6f9",
+                background: "#F8FAFC",
                 minHeight: "90vh",
                 padding: "15px 120px",
             }}

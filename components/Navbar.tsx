@@ -58,7 +58,6 @@ return (
               <DropdownMenuLabel>บัญชีของฉัน</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="cursor-pointer">โปรไฟล์</DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">ชมรมของฉัน</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem 
                 onClick={handleLogout} 
