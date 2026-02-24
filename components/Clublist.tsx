@@ -14,7 +14,7 @@ export default function Clublist() {
         const response = await axios.get("/api/club");
         setClubs(response.data); 
       } catch (error) {
-        console.error("ดึงข้อมูลไม่มาว่ะเฮีย:", error);
+        console.error("Fail to fetch: ", error);
       } finally {
         setLoading(false);
       }
