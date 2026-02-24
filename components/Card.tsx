@@ -5,11 +5,12 @@ interface ClubProps {
   location: string;
   imageSrc: string;
   status: string;
+  description: string;
 }
 
-export default function Card({ name, location, imageSrc, status }: ClubProps) {
+export default function Card({ name, location, imageSrc, status, description }: ClubProps) {
   return (
-    <div className="max-w-xl mx-auto bg-white rounded-3xl shadow-lg overflow-hidden p-5 flex items-center gap-6 border border-gray-100 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+    <div className="max-w-xl mx-auto bg-white rounded-3xl shadow-lg overflow-hidden p-5 flex items-center gap-6 border border-gray-100 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl h-fit">
       <div className="flex-shrink-0 w-32 h-32 relative">
         <Image
           src={imageSrc} 
@@ -30,7 +31,7 @@ export default function Card({ name, location, imageSrc, status }: ClubProps) {
           <span className="text-xs font-bold">{status}</span>
         </div>
         <p className="text-gray-500 text-xs line-clamp-2 leading-relaxed">
-          คือทีมแข่งรถของนิสิตคณะวิศวกรรมศาสตร์ที่มีชื่อเสียงและประวัติยาวนาน...
+          {description}
         </p>
       </div>
     </div>
