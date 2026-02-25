@@ -1,215 +1,154 @@
 "use client"
 
-import { useState, useEffect } from "react"
-
+import { useState, useEffect, useRef } from "react"
 
 export function News() {
+
     const slides = [
         "/testpic/driver-recruitment.jpg",
-        "/testpic/KCC.png",
+        "/testpic/KUACOU.png",
+        "/testpic/KUTECH.png",
     ]
 
     const [current, setCurrent] = useState(0)
-
+    const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
     const nextSlide = () => {
         setCurrent((prev) => (prev + 1) % slides.length)
     }
 
-
     const prevSlide = () => {
         setCurrent((prev) => (prev - 1 + slides.length) % slides.length)
     }
 
+    const startAutoSlide = () => {
+        intervalRef.current = setInterval(() => {
+            nextSlide()
+        }, 3000)
+    }
+
+    const resetAutoSlide = () => {
+        if (intervalRef.current) clearInterval(intervalRef.current)
+        startAutoSlide()
+    }
 
     useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === "ArrowRight") nextSlide()
-            if (e.key === "ArrowLeft") prevSlide()
+        startAutoSlide()
+        return () => {
+            if (intervalRef.current) clearInterval(intervalRef.current)
         }
-
-
-        window.addEventListener("keydown", handleKeyDown)
-        return () => window.removeEventListener("keydown", handleKeyDown)
     }, [])
 
+    // Keyboard
+    useEffect(() => {
+        const handleKey = (e: KeyboardEvent) => {
+            if (e.key === "ArrowRight") {
+                nextSlide()
+                resetAutoSlide()
+            }
+            if (e.key === "ArrowLeft") {
+                prevSlide()
+                resetAutoSlide()
+            }
+        }
+
+        window.addEventListener("keydown", handleKey)
+        return () => window.removeEventListener("keydown", handleKey)
+    }, [])
 
     return (
-        <div
-            style={{
-                background: "#F8FAFC",
-                minHeight: "90vh",
-                padding: "15px 120px",
-            }}
-        >
-            {/* HERO */}
-            <div style={{ textAlign: "center" }}>
-                <h1 style={{
-                    fontSize: "50px",
-                    fontWeight: "700",
-                    color: "#0f2b46",
-                }}>
-                    Big Announcement
+        <section className="relative w-full min-h-[91vh] 
+                            bg-neutral-800 text-white 
+                            flex items-center overflow-hidden">
+
+            {/* BACKGROUND EFFECT */}
+            <div className="absolute inset-0 bg-gradient-to-r 
+                from-black via-white/20 to-transparent z-0" />
+
+            <div className="absolute inset-0 bg-gradient-to-t 
+                from-blue-500/25 via-transparent to-transparent z-0" />
+
+            {/* LEFT SIDE */}
+            <div className="relative z-10 w-full md:w-1/2 px-8 md:px-20">
+                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+                    ANNOUNCEMENT FROM US
                 </h1>
 
-
-                <p style={{ color: "#6b7280", marginTop: "0px" }}>
+                <p className="mt-1 text-gray-300 text-lg max-w-lg">
                     Register now จะเปิดรับสมัครเร็ว ๆ นี้
                 </p>
-            </div>
 
-
-            <div className="mt-3 flex justify-center">
-                <button
-                    className="
-                           bg-[#0B2C4D]
-                           text-white
-                           px-6
-                           py-3
-                           rounded-full
-                           text-lg
-                           font-semibold
-                           flex
-                           items-center
-                           gap-3
-                           shadow-md
-                           transition-all
-                           duration-300
-                           ease-out
-                           hover:scale-105
-                           hover:shadow-lg
-                           ">
-                    Register Now
-                    <span className="text-xl">→</span>
+                <button className="mt-6 bg-primary px-8 py-4 rounded-full
+                                   text-white font-semibold
+                                   hover:scale-105 transition">
+                    Register Now →
                 </button>
             </div>
 
+            {/* RIGHT SIDE - SLIDER */}
+            <div className="relative z-10 w-full md:w-1/2 h-[85vh]
+                            flex items-center justify-center md:-ml-16 overflow-hidden">
 
-            {/* CAROUSEL */}
-            <div
-                style={{
-                    marginTop: "25px",
-                    position: "relative",
-                    display: "flex",
-                    justifyContent: "center",
-                }}
-            >
-                <div style={{ overflow: "hidden" }}>
-                    <div
-                        style={{
-                            display: "flex",
-                            transform: `translateX(-${current * 100}%)`,
-                            transition: "transform 0.5s ease",
-                        }}
-                    >
-                        {slides.map((slide, index) => (
-                            <div
-                                key={index}
-                                style={{
-                                    minWidth: "100%",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        background: "#e5e7eb",
-                                        borderRadius: "0px",
-                                        padding: "8px",
-                                        display: "inline-block",
-                                        position: "relative",
-                                    }}
-                                >
-                                    <img
-                                        src={slide}
-                                        alt={`slide-${index}`}
-                                        style={{
-                                            height: "500px",
-                                            width: "auto",
-                                            objectFit: "contain",
-                                            display: "block",
-                                            borderRadius: "0px",
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                <div
+                    className="flex transition-transform duration-500 ease-in-out h-full"
+                    style={{ transform: `translateX(-${current * 100}%)` }}
+                >
+                    {slides.map((slide, index) => (
+                        <div
+                            key={index}
+                            className="min-w-full flex items-center justify-center"
+                        >
+                            <img
+                                src={slide}
+                                alt="poster"
+                                className="max-h-[85vh] w-auto object-contain"
+                            //drop-shadow-[0_30px_80px_rgba(0,0,0,0.8)]
+                            />
+                        </div>
+                    ))}
                 </div>
 
-
+                {/* NAV BUTTONS */}
                 <button
-                    onClick={prevSlide}
-                    style={{
-                        position: "absolute",
-                        left: "250px",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        width: "45px",
-                        height: "45px",
-                        borderRadius: "50%",
-                        border: "none",
-                        background: "#0f2b46",
-                        color: "white",
-                        fontSize: "18px",
-                        cursor: "pointer",
-                    }}
+                    onClick={() => { prevSlide(); resetAutoSlide() }}
+                    className="absolute left-3 top-1/2 -translate-y-1/2
+                        w-12 h-12 rounded-full
+                        bg-white/10 backdrop-blur-md
+                        text-white text-xl
+                        hover:bg-white/20 transition"
                 >
                     ‹
                 </button>
 
-
                 <button
-                    onClick={nextSlide}
-                    style={{
-                        position: "absolute",
-                        right: "250px",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        width: "45px",
-                        height: "45px",
-                        borderRadius: "50%",
-                        border: "none",
-                        background: "#0f2b46",
-                        color: "white",
-                        fontSize: "18px",
-                        cursor: "pointer",
-                    }}
+                    onClick={() => { nextSlide(); resetAutoSlide() }}
+                    className="absolute right-3 top-1/2 -translate-y-1/2
+                        w-12 h-12 rounded-full
+                        bg-white/10 backdrop-blur-md
+                        text-white text-xl
+                        hover:bg-white/20 transition"
                 >
                     ›
                 </button>
 
-
                 {/* DOTS */}
-                <div
-                    style={{
-                        position: "absolute",
-                        bottom: "-20px",
-                        width: "100%",
-                        textAlign: "center",
-                    }}
-                >
+                <div className="absolute bottom-8 w-full flex justify-center gap-3">
                     {slides.map((_, index) => (
-                        <span
+                        <button
                             key={index}
-                            onClick={() => setCurrent(index)}
-                            style={{
-                                display: "inline-block",
-                                width: "8px",
-                                height: "8px",
-                                borderRadius: "50%",
-                                margin: "0 4px",
-                                background: current === index ? "#111" : "#ccc",
-                                cursor: "pointer",
-                            }}
+                            onClick={() => { setCurrent(index); resetAutoSlide() }}
+                            className={`
+                                h-2 rounded-full transition-all duration-300
+                                ${current === index
+                                    ? "w-8 bg-primary"
+                                    : "w-3 bg-white/40"}
+                            `}
                         />
                     ))}
                 </div>
+
             </div>
-        </div>
+
+        </section>
     )
 }
-
-
-
-
