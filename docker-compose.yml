@@ -11,5 +11,17 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  mongodb:
+    image: mongo:latest
+    container_name: database_project_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: clubsystem
+    volumes:
+      - mongo_data:/data/db
+
 volumes:
   mysql_data:
+  mongo_data:

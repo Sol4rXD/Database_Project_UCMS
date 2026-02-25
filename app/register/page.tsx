@@ -33,7 +33,6 @@ export default function FieldDemo() {
   const [faculty, setFaculty] = useState("");
   const [department, setDepartment] = useState("");
   const [student_id, setStudentID] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
@@ -41,7 +40,6 @@ export default function FieldDemo() {
     e.preventDefault();
     try {
       const res = await axios.post("/api/users", {
-        username,
         password,
         fullname,
         surname,
@@ -55,9 +53,12 @@ export default function FieldDemo() {
         router.push("/");
         router.refresh()
       }
+      if (res.status === 400) {
+        alert("StudentID already exist");
+      }
     } catch (error) {
       console.log("Error: ", error);
-      alert("Register fail");
+      alert("Something wrong");
     }
   }
 
@@ -119,10 +120,10 @@ export default function FieldDemo() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="01">วิศวกรรมศาสตร์</SelectItem>
-                          <SelectItem value="02">บัญชี</SelectItem>
-                          <SelectItem value="03">อุตสาหกรรมเกษตร</SelectItem>
-                          <SelectItem value="04">เศรษฐศาสตร์</SelectItem>
+                          <SelectItem value="วิศวกรรมศาสตร์">วิศวกรรมศาสตร์</SelectItem>
+                          <SelectItem value="บัญชี">บัญชี</SelectItem>
+                          <SelectItem value="อุตสาหกรรมเกษตร">อุตสาหกรรมเกษตร</SelectItem>
+                          <SelectItem value="เศรษฐศาสตร์">เศรษฐศาสตร์</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -137,10 +138,10 @@ export default function FieldDemo() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="01">คอมพิวเตอร์</SelectItem>
-                          <SelectItem value="02">เครื่องกล</SelectItem>
-                          <SelectItem value="03">อุตสาหกรรมเกษตร</SelectItem>
-                          <SelectItem value="04">เศรษฐศาสตร์</SelectItem>
+                          <SelectItem value="คอมพิวเตอร์">คอมพิวเตอร์</SelectItem>
+                          <SelectItem value="เครื่องกล">เครื่องกล</SelectItem>
+                          <SelectItem value="อุตสาหกรรมเกษตร">อุตสาหกรรมเกษตร</SelectItem>
+                          <SelectItem value="เศรษฐศาสตร์">เศรษฐศาสตร์</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -162,18 +163,6 @@ export default function FieldDemo() {
                   </Field>
                 </div>
                 <div className="flex justify-between gap-10">
-                  <Field>
-                    <FieldLabel htmlFor="Username" className="text-primary">
-                      Username
-                    </FieldLabel>
-                    <Input
-                      id="Username"
-                      placeholder="Username"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      required
-                    />
-                  </Field>
                   <Field>
                     <FieldLabel htmlFor="Password" className="text-primary">
                       Password

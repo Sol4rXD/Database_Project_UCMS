@@ -22,7 +22,7 @@ import { Label } from "@/components/ui/label"
 export function LoginLink() {
   const [open, setOpen] = useState(false);
 
-  const [username , setUsername] = useState("")
+  const [student_id , setStudent_id] = useState("")
   const [password, setPassword] = useState("")
   const router = useRouter()
 
@@ -30,7 +30,7 @@ export function LoginLink() {
     e.preventDefault();
     try {
       const res = await axios.post("/api/auth/login", {
-        username,
+        student_id,
         password
       });
 
@@ -67,11 +67,11 @@ export function LoginLink() {
             </div>
           </DialogHeader>
           <FieldGroup className="mt-3">
-            <Field>
-              <Label htmlFor="username" className="text-primary">Username</Label>
-              <Input id="name-1" name="name" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+             <Field>
+              <Label htmlFor="username" className="text-primary">StudentID</Label>
+              <Input id="name-1" name="name" placeholder="StudentID" value={student_id} onChange={(e) => setStudent_id(e.target.value)}/>
             </Field>
-            <Field>
+           <Field>
               <Label htmlFor="password" className="text-primary">Password</Label>
               <Input id="username-1" name="username"  placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
             </Field>

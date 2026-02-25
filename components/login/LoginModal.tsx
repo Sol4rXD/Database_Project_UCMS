@@ -22,23 +22,22 @@ import { Label } from "@/components/ui/label"
 export function LoginModal() {
   const [open, setOpen] = useState(false);
 
-  const [username , setUsername] = useState("")
+  const [student_id , setStudent_id] = useState("")
   const [password, setPassword] = useState("")
-  const router = useRouter()
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const res = await axios.post("/api/auth/login", {
-        username,
+        student_id,
         password
       });
 
       if (res.status === 200) {
-        alert("Login Success");
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        // alert("Login Success");
         setOpen(false);
-        router.push("/");
-        router.refresh()
+        window.location.reload();
       }
     } catch (error) {
       console.log("Error: ", error);
@@ -62,10 +61,10 @@ export function LoginModal() {
               <Link href="/register" className="text-sm text-[#308DD5] hover:underline" onClick={() => setOpen(false)}>Register now</Link>
             </div>
           </DialogHeader>
-          <FieldGroup className="mt-3">
+          <FieldGroup className="mt-6">
             <Field>
-              <Label htmlFor="username" className="text-primary">Username</Label>
-              <Input id="name-1" name="name" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+              <Label htmlFor="username" className="text-primary">StudentID</Label>
+              <Input id="name-1" name="name" placeholder="StudentID" value={student_id} onChange={(e) => setStudent_id(e.target.value)}/>
             </Field>
             <Field>
               <Label htmlFor="password" className="text-primary">Password</Label>

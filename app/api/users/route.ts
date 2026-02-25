@@ -3,7 +3,6 @@ import { prisma } from "@/lib/prisma";
 export async function POST(req: Request) {
   try {
     const {
-      username,
       password,
       fullname,
       surname,
@@ -12,14 +11,13 @@ export async function POST(req: Request) {
       department
     } = await req.json()
 
-    const existingUser = await prisma.users.findUnique({ where: { username } });
+    const existingUser = await prisma.users.findUnique({ where: { student_id } });
     if (existingUser) {
-      return Response.json({ message: "Username already exists" }, { status: 400 });
+      return Response.json({ message: "student_id already exists" }, { status: 400 });
     }
 
     const user = await prisma.users.create({
       data: {
-        username,    
         password,    
         fullname,
         surname,
