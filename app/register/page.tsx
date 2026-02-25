@@ -6,6 +6,7 @@ import axios from "axios"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { LoginLink } from "@/components/login/LoginLink"
+import { toast } from "sonner"
 import {
   Field,
   FieldGroup,
@@ -49,7 +50,8 @@ export default function FieldDemo() {
       });
 
       if (res.status === 201) {
-        alert("Register Success");
+        toast("Register Success");
+        
         router.push("/");
         router.refresh()
       }
@@ -58,7 +60,7 @@ export default function FieldDemo() {
       }
     } catch (error) {
       console.log("Error: ", error);
-      alert("Something wrong");
+      toast("Error");
     }
   }
 

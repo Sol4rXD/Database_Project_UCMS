@@ -57,7 +57,9 @@ return (
             <DropdownMenuContent align="end" className="w-56">
               <DropdownMenuLabel>บัญชีของฉัน</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer">โปรไฟล์</DropdownMenuItem>
+              <Link href="/profile">
+                <DropdownMenuItem className="cursor-pointer">โปรไฟล์</DropdownMenuItem>
+              </Link>
               <DropdownMenuSeparator />
               <DropdownMenuItem 
                 onClick={handleLogout} 

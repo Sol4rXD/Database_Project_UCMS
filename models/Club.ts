@@ -1,7 +1,8 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const ClubSchema = new Schema({
   club_name: { type: String, required: true },
+  slug: { type: String, unique: true, required: true },
   club_category: { type: String },
   logo_url: { type: String}, 
   location: { type: String, required: true },

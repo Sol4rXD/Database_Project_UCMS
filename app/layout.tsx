@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Sans_Thai } from "next/font/google"
+import { Toaster } from "@/components/ui/sonner"
 import Navbar from "@/components/Navbar"
 import "./globals.css";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
           <Navbar/>
             <main className="pt-16">
               {children}
+              <Toaster richColors position="top-center" />
             </main>
       </body>
     </html>
