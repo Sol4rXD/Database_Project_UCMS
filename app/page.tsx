@@ -1,6 +1,6 @@
 import { News } from "@/components/News";
 import Clublist from "@/components/Clublist";
-import { AdminFab } from "@/components/AdminFab";
+import AdminFab from "@/components/AdminFab";
 
 export default function Home() {
   return (

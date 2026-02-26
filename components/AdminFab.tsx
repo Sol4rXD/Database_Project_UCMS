@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { Plus, Trash2, Pencil, ShieldCheck } from "lucide-react"
+import { Plus, Trash2, Pencil, ShieldCheck, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu,
@@ -13,52 +13,69 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
 
-export function AdminFab() {
+export default function AdminFab() {
     return (
         <div className="fixed bottom-8 right-8 z-50">
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button
                         size="icon"
-                        className="h-14 w-14 rounded-full shadow-2xl bg-gradient-to-br from-indigo-600 to-violet-700 hover:from-indigo-700 hover:to-violet-800 transition-all duration-300 transform hover:scale-110 active:scale-95 border-none group"
+                        className="h-16 w-16 rounded-full shadow-[0_8px_30px_rgb(7,9,116,0.3)] bg-[#070974] hover:bg-[#070974]/90 transition-all duration-500 transform hover:scale-110 active:scale-95 border-none group relative overflow-hidden"
                     >
-                        <Plus className="h-8 w-8 text-white transition-transform duration-300 group-data-[state=open]:rotate-45" />
+                        <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <Plus className="h-8 w-8 text-white transition-transform duration-500 group-data-[state=open]:rotate-45 relative z-10" />
                         <span className="sr-only">Admin Menu</span>
                     </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" side="top" className="w-56 mb-4 p-2 rounded-2xl border-none shadow-2xl bg-white/95 backdrop-blur-md">
-                    <DropdownMenuLabel className="flex items-center gap-2 px-3 py-2 text-indigo-900">
-                        <ShieldCheck className="w-4 h-4" />
-                        <span className="font-semibold text-sm">ผู้ดูเเลระบบ (Admin)</span>
+                <DropdownMenuContent align="end" side="top" className="w-64 mb-6 p-2 rounded-2xl border-none shadow-[0_20px_50px_rgba(0,0,0,0.15)] bg-white/95 backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2 duration-300">
+                    <DropdownMenuLabel className="flex items-center gap-3 px-3 py-3 text-[#070974]">
+                        <div className="p-1.5 bg-primary/10 rounded-lg">
+                            <ShieldCheck className="w-4 h-4" />
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="font-bold text-sm leading-none">ผู้ดูเเลระบบ</span>
+                            <span className="text-[10px] text-muted-foreground uppercase tracking-widest mt-1">Administrator</span>
+                        </div>
                     </DropdownMenuLabel>
-                    <DropdownMenuSeparator className="bg-indigo-100" />
+                    <DropdownMenuSeparator className="bg-gray-100 mx-2" />
 
-                    <DropdownMenuItem asChild className="flex items-center gap-3 p-3 cursor-pointer rounded-xl hover:bg-indigo-50 transition-colors group">
-                        <Link href="/addclub">
-                            <div className="p-2 bg-emerald-100 text-emerald-600 rounded-lg group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                                <Plus className="w-4 h-4" />
-                            </div>
-                            <span className="font-medium">เพิ่มชมรม</span>
-                        </Link>
-                    </DropdownMenuItem>
+                    <div className="grid gap-1 mt-1">
+                        <DropdownMenuItem asChild className="p-0 focus:bg-transparent">
+                            <Link href="/addclub" className="flex items-center justify-between gap-3 p-3 cursor-pointer rounded-xl hover:bg-gray-50 transition-all group mx-1">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-sm">
+                                        <Plus className="w-4 h-4" />
+                                    </div>
+                                    <span className="font-semibold text-gray-700">เพิ่มชมรม</span>
+                                </div>
+                                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-gray-900 transition-all opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0" />
+                            </Link>
+                        </DropdownMenuItem>
 
-                    <DropdownMenuItem asChild className="flex items-center gap-3 p-3 cursor-pointer rounded-xl hover:bg-indigo-50 transition-colors group">
-                        <Link href="/editclub">
-                            <div className="p-2 bg-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                                <Pencil className="w-4 h-4" />
-                            </div>
-                            <span className="font-medium">เเก้ไขชมรม</span>
-                        </Link>
-                    </DropdownMenuItem>
+                        <DropdownMenuItem asChild className="p-0 focus:bg-transparent">
+                            <Link href="/editclub" className="flex items-center justify-between gap-3 p-3 cursor-pointer rounded-xl hover:bg-gray-50 transition-all group mx-1">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
+                                        <Pencil className="w-4 h-4" />
+                                    </div>
+                                    <span className="font-semibold text-gray-700">เเก้ไขชมรม</span>
+                                </div>
+                                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-gray-900 transition-all opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0" />
+                            </Link>
+                        </DropdownMenuItem>
 
-                    <DropdownMenuItem asChild className="flex items-center gap-3 p-3 cursor-pointer rounded-xl hover:bg-rose-50 transition-colors group">
-                        <Link href="/deleteclub">
-                            <div className="p-2 bg-rose-100 text-rose-600 rounded-lg group-hover:bg-rose-600 group-hover:text-white transition-colors">
-                                <Trash2 className="w-4 h-4" />
-                            </div>
-                            <span className="font-medium text-rose-600 group-hover:text-rose-700">ลบชมรม</span>
-                        </Link>
-                    </DropdownMenuItem>
+                        <DropdownMenuItem asChild className="p-0 focus:bg-transparent">
+                            <Link href="/deleteclub" className="flex items-center justify-between gap-3 p-3 cursor-pointer rounded-xl hover:bg-red-50 transition-all group mx-1">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2.5 bg-red-50 text-red-600 rounded-xl group-hover:bg-red-600 group-hover:text-white transition-all shadow-sm">
+                                        <Trash2 className="w-4 h-4" />
+                                    </div>
+                                    <span className="font-semibold text-red-600">ลบชมรม</span>
+                                </div>
+                                <ChevronRight className="w-4 h-4 text-red-300 group-hover:text-red-900 transition-all opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0" />
+                            </Link>
+                        </DropdownMenuItem>
+                    </div>
                 </DropdownMenuContent>
             </DropdownMenu>
         </div>
