@@ -26,26 +26,46 @@ export default function Navbar() {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("user"); 
-    window.location.reload(); 
+    localStorage.removeItem("user");
+    window.location.reload();
   };
 
-return (
+  return (
     <nav className="flex justify-between items-center bg-white p-4 drop-shadow-md fixed top-0 left-0 w-full z-50">
       <ul className="text-2xl font-bold text-primary ml-4 cursor-pointer">
         <li><Link href="/">UCMS</Link></li>
       </ul>
-      
+
       <div className="flex items-center">
         <ul className="flex gap-10 text-base font-medium text-black mr-10">
-          <li><Link href="/" className="hover:text-blue-500 font-bold transition duration-200">ข่าวสาร</Link></li>
-          <li><Link href="/" className="hover:text-blue-500 font-bold transition duration-200">รายชื่อชมรม</Link></li>
+          <li>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('news')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="hover:text-blue-500 font-bold transition duration-200 cursor-pointer bg-transparent border-none p-0 outline-none"
+            >
+              ข่าวสาร
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('clublist')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="hover:text-blue-500 font-bold transition duration-200 cursor-pointer bg-transparent border-none p-0 outline-none"
+            >
+              รายชื่อชมรม
+            </button>
+          </li>
           <li><Link href="/" className="hover:text-blue-500 font-bold transition duration-200">ตารางกิจกรรม</Link></li>
           <li><Link href="/" className="hover:text-blue-500 font-bold transition duration-200">ค้นหาชมรมที่ใช่</Link></li>
         </ul>
 
         {!mounted ? (
-          <div className="w-[100px] h-9"></div> 
+          <div className="w-[100px] h-9"></div>
         ) : user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -61,8 +81,8 @@ return (
                 <DropdownMenuItem className="cursor-pointer">โปรไฟล์</DropdownMenuItem>
               </Link>
               <DropdownMenuSeparator />
-              <DropdownMenuItem 
-                onClick={handleLogout} 
+              <DropdownMenuItem
+                onClick={handleLogout}
                 className="text-red-500 focus:text-red-500 cursor-pointer"
               >
                 <LogOutIcon className="mr-2 h-4 w-4" />
@@ -71,7 +91,7 @@ return (
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
-          <LoginModal /> 
+          <LoginModal />
         )}
       </div>
     </nav>
