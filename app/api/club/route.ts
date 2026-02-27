@@ -20,6 +20,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ message: "Create club success", data: newClub }, { status: 201 });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: error.message}, { status: 500 });
   }
 }

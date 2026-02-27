@@ -1,9 +1,10 @@
 import mongoose, { Schema, model, models } from "mongoose";
 
 const ClubSchema = new Schema({
+  slug: { type: String, unique: true, required: true },
   club_name: { type: String, required: true },
   club_category: { type: String },
-  logo_url: { type: String}, 
+  logo_url: { type: String },
   location: { type: String, required: true },
   google_map_link: { type: String },
 
@@ -12,12 +13,16 @@ const ClubSchema = new Schema({
     full: { type: String },
   },
 
-  activity_images: [
+  what_we_do: [
     {
-      url: { type: String },
-      caption: { type: String },
+      activity_name: { type: String },
+      image_url: { type: String },
+      description: { type: String },
+      year: { type: Number },
     },
   ],
+
+  activity_images: [{ type: String }],
 
   position: [
     {
@@ -30,10 +35,13 @@ const ClubSchema = new Schema({
 
   reviews: [
     {
-      user_id: { type: String }, // Relate to user_id (MySQL)
-      star: { type: Number, min: 1, max: 5 },
-      text: { type: String },
-      create_at: { type: Date, default: Date.now },
+      name: { type: String },
+      rating: { type: Number, min: 1, max: 5 },
+      comment: { type: String },
+      year: { type: Number },
+      position: { type: String },
+      user_image: { type: String },
+      created_at: { type: Date, default: Date.now },
     },
   ],
 
@@ -41,6 +49,13 @@ const ClubSchema = new Schema({
     {
       platform: { type: String }, // Facebook, Instagram
       link: { type: String },
+    },
+  ],
+
+  faqs: [
+    {
+      question: { type: String },
+      answer: { type: String },
     },
   ],
 
