@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     await connectDB();
-    const clubs = await Club.find({}); 
+    const clubs = await Club.find({});
     return NextResponse.json(clubs);
   } catch (error) {
     return NextResponse.json({ error: "Error to fetch data" }, { status: 500 });
@@ -14,7 +14,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
-    await connectDB(); 
+    await connectDB();
     const body = await req.json();
     const newClub = await Club.create(body);
 

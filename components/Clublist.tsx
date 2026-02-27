@@ -56,7 +56,8 @@ export default function Clublist() {
               location={club.location}
               imageSrc={club.logo_url}
               isOpen={club.is_open}
-              description={club.description.short}
+              description={club.description?.short || ""}
+              slug={club.slug}
             />
           ))}
         </div>

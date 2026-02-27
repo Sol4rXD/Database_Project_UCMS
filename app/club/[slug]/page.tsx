@@ -1,165 +1,150 @@
-"use client"
-import { useParams } from "next/navigation";
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"
-import { useState, useRef, useEffect } from "react"
+import { notFound } from "next/navigation"
 import Image from "next/image"
+import { ChevronDown, Quote, Star } from "lucide-react"
+import ActivityCarousel from "@/components/ActivityCarousel"
+import ReviewForm from "@/components/ReviewForm"
+import ContactBanner from "@/components/ContactBanner"
 
-const clubs = [{
-    name: "Dongatan",
-    image: "/testpic/driver-recruitment.jpg",
-    location: "13.7563,100.5018",
-    requirement: [
-        "ตัดต่อ 1 คน",
-        "ตัดต่อ 1 คน",
-        "ตัดต่อ 1 คน",
-        "ตัดต่อ 1 คน",
-        "ตัดต่อ 1 คน",
-    ],
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. It was popularised in the 1960s with the release of Letraset sheets."
+async function getClub(slug: string) {
+    const res = await fetch(
+        `http://localhost:3000/api/club/${slug}`,
+        { cache: "no-store" }
+    )
+
+    if (!res.ok) return null
+    return res.json()
 }
-]
 
+export default async function Page(
+    { params }: { params: Promise<{ slug: string }> }
+) {
+    const { slug } = await params
+    const club = await getClub(slug)
 
-const ClubDetail = () => {
-    const { name } = useParams();
+    if (!club) return notFound()
 
-    const [open, setOpen] = useState<number | null>(0)
-    const sliderRef = useRef<HTMLDivElement>(null)
-
-    const scroll = (direction: "left" | "right") => {
-        if (!sliderRef.current) return
-
-        const scrollAmount = 370
-
-        if (direction === "left") {
-            sliderRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" })
-        } else {
-            sliderRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" })
+    const faqs = club.faqs?.length ? club.faqs : [
+        {
+            question: "How do I join the club?",
+            answer: "You can join by clicking the 'Register now' button on the top right. Make sure to check the requirements section first to see if you meet the criteria for your preferred position."
+        },
+        {
+            question: "What are the requirements for new members?",
+            answer: "Requirements vary by position. Generally, we look for passion, dedication, and a willingness to learn. Specific technical skills are listed under each position in the 'Requirement Position' section."
+        },
+        {
+            question: "Where can I find more information about club activities?",
+            answer: "You can follow our social media platforms listed in the contact section or check the 'What we Do' section below for highlights of our previous activities."
         }
-    }
-
-    const [isHovering, setIsHovering] = useState(false)
-    // AUTO SLIDE
-    useEffect(() => {
-        if (isHovering) return
-
-        const interval = setInterval(() => {
-            if (!sliderRef.current) return
-
-            const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current
-
-            // ถ้าเลื่อนสุดแล้ว → กลับต้น
-            if (scrollLeft + clientWidth >= scrollWidth - 5) {
-                sliderRef.current.scrollTo({ left: 0, behavior: "smooth" })
-            } else {
-                sliderRef.current.scrollBy({ left: 370, behavior: "smooth" })
-            }
-        }, 3000)
-
-        return () => clearInterval(interval)
-    }, [isHovering])
-
-    const faqs = [
-        "How do I start searching for a property with Urbanouse?",
-        "What services does Urbanouse offer for first-time homebuyers?",
-        "Can Urbanouse help me sell my property?"
     ]
+
+    const getSafeUrl = (url: any, fallback: string) => {
+        if (!url || typeof url !== 'string' || url.trim() === "" || url === "undefined") return fallback;
+        const trimmed = url.trim();
+        if (trimmed.startsWith("http")) return trimmed;
+        if (trimmed.startsWith("/")) return trimmed;
+        if (trimmed.startsWith("data:")) return trimmed; // Allow Base64/Data URLs
+        return `/${trimmed}`;
+    };
+
+    const logoUrl = getSafeUrl(club.logo_url, "/testpic/dongtaan.png");
 
     return (
         <main className="bg-[#F5F7FA] text-[#0f2b46]">
 
-            {/* ================= TOP SECTION ================= */}
+            {/* ================= HERO SECTION ================= */}
             <section className="max-w-[1180px] mx-auto px-6 pt-10">
 
-                {/* ================= IMAGE GRID ================= */}
-                <div className="grid grid-cols-3 gap-3">
-
-                    {/* LEFT 4 IMAGES */}
-                    <div className="grid grid-cols-2 gap-3">
-                        {[1, 2, 3, 4].map((i) => (
-                            <Image
-                                key={i}
-                                src="/testpic/driver-recruitment.jpg"
-                                alt=""
-                                width={500}
-                                height={300}
-                                className="rounded-3xl object-cover w-full h-[185px]"
-                            />
-                        ))}
-                    </div>
-
-                    {/* RIGHT BIG IMAGE */}
-                    <div className="col-span-2">
-                        <Image
-                            src="/testpic/driver-recruitment.jpg"
-                            alt=""
-                            width={1200}
-                            height={800}
-                            className="rounded-3xl object-cover w-full h-[385px]"
-                        />
-                    </div>
-
+                <div className="w-full h-[420px] relative rounded-3xl overflow-hidden bg-slate-200">
+                    <Image
+                        src={logoUrl}
+                        alt={club.club_name}
+                        fill
+                        className="object-cover"
+                    />
                 </div>
 
-                {/* ================= CONTENT GRID ================= */}
-                <div className="grid grid-cols-3 gap-16 mt-9">
+                <div className="grid grid-cols-3 gap-16 mt-10">
 
                     {/* LEFT CONTENT */}
                     <div className="col-span-2">
 
                         <h1 className="text-[46px] font-bold leading-[1.2]">
-                            {decodeURIComponent(name as any)}
+                            {club.club_name}
                         </h1>
 
-                        <p className="mt-6 text-[15px] text-gray-500 leading-relaxed max-w-[760px]">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            It was popularised in the 1960s with the release of Letraset sheets.
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            It was popularised in the 1960s with the release of Letraset sheets.
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            It was popularised in the 1960s with the release of Letraset sheets.
+                        <p className="mt-6 text-[15px] text-gray-500 leading-relaxed">
+                            {club.description?.short ||
+                                club.description?.full ||
+                                "No description available"}
                         </p>
 
-                        {/* REQUIREMENT TITLE */}
+                        {/* REQUIREMENT */}
                         <h3 className="mt-12 text-[25px] font-semibold">
                             Requirement Position
                         </h3>
 
-                        {/* REQUIREMENT BOX */}
-                        <div className="mt-4 border border-gray-200 rounded-2xl px-7 py-4 shadow-sm">
-
-                            <div className="grid grid-cols-3 gap-y-5 gap-x-5 text-[14px]">
-
-                                <div><span className="mr-2">•</span>ตัดต่อ 1 คน</div>
-                                <div><span className="mr-2">•</span>ตัดต่อ 1 คน</div>
-                                <div><span className="mr-2">•</span>ตัดต่อ 1 คน</div>
-                                <div><span className="mr-2">•</span>ตัดต่อ 1 คน</div>
-                                <div><span className="mr-2">•</span>ตัดต่อ 1 คน</div>
-
+                        <div className="mt-4 border border-gray-200 rounded-2xl px-7 py-6 shadow-sm">
+                            <div className="grid grid-cols-2 gap-y-4 text-[14px]">
+                                {club.position?.length ? (
+                                    club.position.map((pos: any, i: number) => (
+                                        <div key={pos._id || i}>
+                                            • {pos.name} ({pos.amount} คน)
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div>No position available</div>
+                                )}
                             </div>
                         </div>
 
                         {/* LOCATION */}
-                        <div className="col-span-2"></div>
-                        <div className="mt-10">
+                        <div className="mt-12">
                             <h3 className="text-[26px] font-semibold mb-3">
                                 Location
                             </h3>
 
-                            <div className="w-full h-[460px] rounded-[15px] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.08)]">                                <iframe
-                                src="https://www.google.com/maps?q=13.7563,100.5018&z=15&output=embed"
-                                width="100%"
-                                height="100%"
-                                style={{ border: 0 }}
-                                allowFullScreen
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                            />
-                            </div>
+                            {(() => {
+                                let mapUrl = null;
+
+                                if (club.google_map_link) {
+                                    const rawLink = club.google_map_link;
+
+                                    // Check if it's a coordinate link like .../@13.85,100.54
+                                    const coordMatch = rawLink.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+
+                                    if (coordMatch) {
+                                        const lat = coordMatch[1];
+                                        const lng = coordMatch[2];
+                                        mapUrl = `https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`;
+                                    } else if (rawLink.includes("output=embed")) {
+                                        mapUrl = rawLink;
+                                    } else {
+                                        mapUrl = `${rawLink}${rawLink.includes('?') ? '&' : '?'}output=embed`;
+                                    }
+                                } else if (club.location) {
+                                    mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(club.location)}&output=embed`;
+                                }
+
+                                return mapUrl ? (
+                                    <div className="w-[585px] h-[400px] rounded-[15px] overflow-hidden shadow-lg border border-gray-100">
+                                        <iframe
+                                            src={mapUrl}
+                                            width="100%"
+                                            height="100%"
+                                            style={{ border: 0 }}
+                                            loading="lazy"
+                                            referrerPolicy="no-referrer-when-downgrade"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="bg-gray-200 h-[200px] flex items-center justify-center rounded-xl text-gray-400">
+                                        No location information available
+                                    </div>
+                                );
+                            })()}
                         </div>
+
                     </div>
 
                     {/* RIGHT CARD */}
@@ -170,218 +155,131 @@ const ClubDetail = () => {
                         </p>
 
                         <p className="text-[42px] font-bold mt-2">
-                            60 คน
+                            {club.position?.length
+                                ? club.position.reduce((sum: number, p: any) => sum + (p.amount || 0), 0)
+                                : (club.member_count ?? 10)
+                            } คน
                         </p>
 
-                        <button className="mt-3 w-full bg-[#0B2C4D] text-white py-4 rounded-xl text-[15px] font-semibold hover:opacity-90 transition">
-                            Register now
+                        <button
+                            className={`mt-2 w-full py-4 rounded-xl text-[15px] font-semibold transition
+                ${club.is_open
+                                    ? "bg-[#0B2C4D] text-white hover:opacity-90"
+                                    : "bg-gray-300 text-gray-600 cursor-not-allowed"}
+              `}
+                            disabled={!club.is_open}
+                        >
+                            {club.is_open ? "Register now" : "Closed"}
                         </button>
 
                     </div>
-
                 </div>
             </section>
 
-            {/* BLUE DIVIDER */}
-            <div className="h-[8px] bg-[#0B2C4D] mt-12" />
 
-            {/* ================= WHAT WE DO ================= */}
-            <section className="bg-white py-13">
-                <div className="max-w-[1180px] mx-auto px-6 relative">
+            <div className="h-[8px] bg-[#0B2C4D] mt-14" />
 
-                    <div className="inline-flex items-center gap-2 bg-[#F2F2F2] px-4 py-2 rounded-full mb-4">
-                        <span className="w-2 h-2 bg-black rounded-full"></span>
-                        <span className="text-[13px] font-medium text-black">
-                            Highlight
-                        </span>
-                    </div>
+            {/* ================= WHAT WE DO (Client Side Component) ================= */}
+            <ActivityCarousel whatWeDo={club.what_we_do || []} logoUrl={club.logo_url} />
 
-                    <div className="flex justify-between items-end mb-8">
-                        <h2 className="text-[36px] font-bold">
-                            What we Do ?
-                        </h2>
+            <div className="h-[8px] bg-[#0B2C4D]" />
 
-                        {/* ARROW BUTTONS */}
-                        <div className="flex gap-3">
-                            <button
-                                onClick={() => scroll("left")}
-                                className="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-gray-100 transition"
-                            >
-                                <ChevronLeft size={20} />
-                            </button>
-
-                            <button
-                                onClick={() => scroll("right")}
-                                className="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-gray-100 transition"
-                            >
-                                <ChevronRight size={20} />
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* SLIDER */}
-                    <div
-                        ref={sliderRef}
-                        onMouseEnter={() => setIsHovering(true)}
-                        onMouseLeave={() => setIsHovering(false)}
-                        className="flex gap-8 overflow-x-auto scroll-smooth no-scrollbar"
-                    >
-                        {[1, 2, 3, 4, 5].map((i) => (
-                            <div
-                                key={i}
-                                className="min-w-[350px] flex-shrink-0"
-                            >
-                                <Image
-                                    src="/testpic/driver-recruitment.jpg"
-                                    alt=""
-                                    width={400}
-                                    height={250}
-                                    className="rounded-3xl object-cover w-full h-[240px]"
-                                />
-                                <h4 className="mt-5 font-semibold text-[16px]">
-                                    Activity Name
-                                </h4>
-                                <p className="text-[13px] text-gray-400 mt-1">Year</p>
-                                <p className="text-[13px] text-gray-400 mt-1">Description</p>
-                            </div>
+            {/* ================= FAQ SECTION ================= */}
+            <section className="bg-[#F9FAFB] py-24">
+                <div className="max-w-[1180px] mx-auto px-6 flex items-start gap-20">
+                    <div className="flex-1 space-y-4">
+                        {faqs.map((faq: any, i: number) => (
+                            <details key={i} className="group border-b border-gray-200 pb-4">
+                                <summary className="flex justify-between items-center cursor-pointer list-none py-2">
+                                    <h4 className="text-[18px] font-semibold text-[#0B2C4D]">
+                                        {faq.question}
+                                    </h4>
+                                    <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180 text-gray-400" />
+                                </summary>
+                                <div className="mt-5 text-[15px] text-gray-500 leading-relaxed px-1">
+                                    {faq.answer}
+                                </div>
+                            </details>
                         ))}
                     </div>
 
-                </div>
-            </section>
-            {/* BLUE DIVIDER */}
-            <div className="h-[8px] bg-[#0B2C4D]" />
-
-            {/* ================= FAQ ================= */}
-            <section className="bg-[#F5F7FA] py-15">
-                <div className="max-w-[1180px] mx-auto px-6">
-
-                    {/* OUTER BOX */}
-                    <div className="bg-white/10 border border-gray-150 rounded-2xl p-16 relative">
-
-                        {/* BADGE */}
-                        <div className="absolute top-18 right-19">
-                            <div className="inline-flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm">
-                                <span className="w-2 h-2 bg-black rounded-full"></span>
-                                <span className="text-[13px] font-medium text-black">
-                                    FAQ's
-                                </span>
-                            </div>
+                    <div className="w-[450px] relative">
+                        <div className="absolute -top-12 right-0 inline-flex items-center gap-2 bg-white border border-gray-100 px-4 py-1.5 rounded-full shadow-sm">
+                            <span className="w-1.5 h-1.5 bg-black rounded-full"></span>
+                            <span className="text-[12px] font-semibold text-black">FAQ's</span>
                         </div>
-
-                        <div className="grid grid-cols-2 gap-5 items-start">
-
-                            {/* LEFT SIDE */}
-                            <div>
-                                {faqs.map((q, index) => (
-                                    <div key={index} className="border-b border-gray-200 py-7">
-                                        <button
-                                            onClick={() => setOpen(open === index ? null : index)}
-                                            className="flex justify-between w-full text-left text-[18px] font-medium text-[#1E2A38]"
-                                        >
-                                            {q}
-                                            <ChevronDown
-                                                size={20}
-                                                className={`transition-transform duration-300 ${open === index ? "rotate-180" : ""
-                                                    }`}
-                                            />
-                                        </button>
-
-                                        {open === index && (
-                                            <p className="text-[15px] text-gray-500 mt-4 pr-10 leading-relaxed">
-                                                You can begin browsing our property search tool which allows you
-                                                to filter by location, property type and price.
-                                            </p>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* RIGHT SIDE */}
-                            <div className="flex flex-col items-end text-right pt-12 pr-6">
-                                <h2 className="text-[72px] font-bold leading-[1.05] text-[#0F2B46]">
-                                    Frequently Asked
-                                    <br />
-                                    Questions
-                                </h2>
-
-                                <p className="text-gray-400 text-[16px] mt-1 max-w-[420px]">
-                                    คำถามที่พบบ่อยเกี่ยวกับการสมัคร
-                                </p>
-                            </div>
-
-                        </div>
+                        <h2 className="text-[64px] font-bold text-[#0B2C4D] leading-[1.1] text-right">
+                            Frequently<br />
+                            Asked<br />
+                            Questions
+                        </h2>
+                        <p className="text-right text-gray-400 mt-0 text-[14px]">
+                            คำถามที่พบบ่อยเกี่ยวกับการสมัคร
+                        </p>
                     </div>
                 </div>
             </section>
 
-
-
             {/* ================= REVIEWS ================= */}
-            <section className="bg-[#062B4D] py-16">
+            <section className="bg-[#062B4D] pt-12 pb-20">
                 <div className="max-w-[1100px] mx-auto px-6">
 
-                    {/* TITLE */}
-                    <h2 className="text-center text-[36px] font-bold text-[#F2E6E6] mb-12 tracking-wide">
+                    <h2 className="text-center text-[36px] font-bold text-white mb-10 tracking-wide">
                         REVIEWS FROM US
                     </h2>
 
-                    {/* CARDS */}
-                    <div className="grid grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1000px] mx-auto">
+                        {/* INPUT REVIEW CARD */}
+                        <ReviewForm slug={slug} positions={club.position} />
 
-                        {[1, 2, 3].map((i) => (
+                        {club.reviews?.map((review: any, i: number) => (
                             <div
                                 key={i}
-                                className="bg-[#F4F4F4] rounded-[26px] p-7 shadow-md"
+                                className="bg-white rounded-[20px] p-6 shadow-sm flex flex-col relative overflow-hidden max-w-[340px] mx-auto w-full"
                             >
-                                {/* TAG */}
-                                <div className="inline-block bg-green-100 text-green-700 text-[12px] font-semibold px-3 py-1.5 rounded-md mb-4">
-                                    Tourist Evisa
+                                {/* TOP BADGE */}
+                                <div className="self-start bg-[#E8F8F0] text-[#10B981] text-[11px] font-bold px-2.5 py-1 rounded-md mb-4 leading-none text-center">
+                                    {review.position || "Member"}
                                 </div>
 
-                                {/* TEXT */}
-                                <p className="text-[14px] text-gray-700 leading-relaxed">
-                                    Applying for my visa was a breeze with 190evisa.com! I entered my
-                                    details, uploaded my photo, and paid. My visa arrived in just three
-                                    days. I'll use this service again!
+                                {/* MAIN TEXT */}
+                                <p className="text-[14px] text-[#374151] leading-relaxed mb-4 font-medium">
+                                    {review.text || "No review available"}
                                 </p>
 
                                 {/* STARS */}
-                                <div className="mt-4 text-yellow-400 text-[16px]">
-                                    ★ ★ ★ ★ ★
+                                <div className="flex gap-1 mb-6 mt-auto">
+                                    {[...Array(5)].map((_, starI) => (
+                                        <Star
+                                            key={starI}
+                                            className={`w-4 h-4 ${starI < (review.star || 5) ? 'fill-[#FBBF24] text-[#FBBF24]' : 'fill-gray-200 text-gray-200'}`}
+                                        />
+                                    ))}
                                 </div>
 
-                                {/* AUTHOR */}
-                                <div className="mt-5 flex items-center gap-3">
-
-                                    {/* PROFILE IMAGE */}
-                                    <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-300">
-                                        <img
-                                            src="/testpic/dongtaan.png"
-                                            className="w-full h-full object-cover"
+                                {/* PROFILE FOOTER (Avatar Left of Name/Bio) */}
+                                <div className="flex items-center gap-2.5">
+                                    <div className="w-9 h-9 rounded-full overflow-hidden shrink-0 relative border-1 border-white shadow-sm">
+                                        <Image
+                                            src={getSafeUrl(review.user_image, "/testpic/anonymous.webp")}
+                                            alt="avatar"
+                                            fill
+                                            className="object-cover"
                                         />
                                     </div>
-
-                                    {/* INFO */}
-                                    <div>
-                                        <p className="font-semibold text-[14px] text-[#1E2A38]">
-                                            Dongtaan, Thailand
-                                        </p>
-                                        <p className="text-gray-500 text-[13px]">
-                                            Freelance Writer
-                                        </p>
+                                    <div className="flex flex-col text-left">
+                                        <h5 className="font-bold text-[13px] text-[#111827] leading-tight">{review.name || "Anonymous"}</h5>
+                                        <p className="text-[11px] text-[#6B7280] mt-0.5">{review.year ? `Class of ${review.year}` : "Member"}</p>
                                     </div>
-
                                 </div>
                             </div>
                         ))}
-
                     </div>
                 </div>
             </section>
 
-        </main>
+            <ContactBanner contacts={club.contact} />
+        </main >
     )
 }
 
-export default ClubDetail

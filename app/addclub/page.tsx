@@ -29,7 +29,11 @@ export default function AddClubPage() {
         description: {
             short: "",
             full: ""
-        }
+        },
+        what_we_do: [] as any[],
+        position: [] as any[],
+        faqs: [] as any[],
+        contact: [] as any[]
     })
 
     const generateSlug = (name: string) => {
@@ -73,7 +77,11 @@ export default function AddClubPage() {
                     description: {
                         short: s(json.description?.short || json.short_description),
                         full: s(json.description?.full || json.full_description)
-                    }
+                    },
+                    what_we_do: Array.isArray(json.what_we_do) ? json.what_we_do : [],
+                    position: Array.isArray(json.position) ? json.position : [],
+                    faqs: Array.isArray(json.faqs) ? json.faqs : [],
+                    contact: Array.isArray(json.contact) ? json.contact : []
                 }
 
                 setFormData(importedData)
@@ -86,6 +94,63 @@ export default function AddClubPage() {
             }
         }
         reader.readAsText(file)
+    }
+
+    const addWhatWeDo = () => {
+        setFormData({
+            ...formData,
+            what_we_do: [...formData.what_we_do, { activity_name: "", image_url: "", description: "", year: new Date().getFullYear() }]
+        })
+    }
+
+    const removeWhatWeDo = (index: number) => {
+        const newData = [...formData.what_we_do]
+        newData.splice(index, 1)
+        setFormData({ ...formData, what_we_do: newData })
+    }
+
+    const updateWhatWeDo = (index: number, field: string, value: any) => {
+        const newData = [...formData.what_we_do]
+        newData[index] = { ...newData[index], [field]: value }
+        setFormData({ ...formData, what_we_do: newData })
+    }
+
+    const addPosition = () => {
+        setFormData({
+            ...formData,
+            position: [...formData.position, { name: "", amount: 1 }]
+        })
+    }
+
+    const removePosition = (index: number) => {
+        const newData = [...formData.position]
+        newData.splice(index, 1)
+        setFormData({ ...formData, position: newData })
+    }
+
+    const updatePosition = (index: number, field: string, value: any) => {
+        const newData = [...formData.position]
+        newData[index] = { ...newData[index], [field]: value }
+        setFormData({ ...formData, position: newData })
+    }
+
+    const addFaq = () => {
+        setFormData({
+            ...formData,
+            faqs: [...formData.faqs, { question: "", answer: "" }]
+        })
+    }
+
+    const removeFaq = (index: number) => {
+        const newData = [...formData.faqs]
+        newData.splice(index, 1)
+        setFormData({ ...formData, faqs: newData })
+    }
+
+    const updateFaq = (index: number, field: string, value: string) => {
+        const newData = [...formData.faqs]
+        newData[index] = { ...newData[index], [field]: value }
+        setFormData({ ...formData, faqs: newData })
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -358,6 +423,177 @@ export default function AddClubPage() {
                                     className="rounded-xl border-gray-200 focus-visible:ring-primary/20 min-h-[200px] resize-none"
                                 />
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Positions Section */}
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transform transition-all hover:shadow-md">
+                        <div className="px-6 py-4 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <div className="p-2 bg-blue-500/10 rounded-lg text-blue-600">
+                                    <User className="h-5 w-5" />
+                                </div>
+                                <h2 className="text-lg font-semibold text-blue-600">Requirement Positions</h2>
+                            </div>
+                            <Button type="button" onClick={addPosition} variant="outline" size="sm" className="rounded-xl border-blue-200 text-blue-600 hover:bg-blue-50">
+                                <Plus className="h-4 w-4 mr-1" /> Add Position
+                            </Button>
+                        </div>
+                        <div className="p-8 space-y-4">
+                            {formData.position.length === 0 && (
+                                <p className="text-gray-400 text-center py-4 italic">No positions added yet. Click 'Add Position' to start.</p>
+                            )}
+                            {formData.position.map((pos, index) => (
+                                <div key={index} className="flex gap-4 p-4 bg-blue-50/30 rounded-xl border border-blue-100/50 animate-in fade-in zoom-in-95 duration-200">
+                                    <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div className="space-y-1.5">
+                                            <Label className="text-xs font-semibold text-blue-600">Position Name</Label>
+                                            <Input
+                                                value={pos.name}
+                                                onChange={(e) => updatePosition(index, "name", e.target.value)}
+                                                placeholder="e.g. Graphic Designer"
+                                                className="rounded-xl border-blue-100 h-10"
+                                            />
+                                        </div>
+                                        <div className="space-y-1.5">
+                                            <Label className="text-xs font-semibold text-blue-600">Amount (Persons)</Label>
+                                            <Input
+                                                type="number"
+                                                value={pos.amount}
+                                                onChange={(e) => updatePosition(index, "amount", parseInt(e.target.value) || 0)}
+                                                className="rounded-xl border-blue-100 h-10"
+                                            />
+                                        </div>
+                                    </div>
+                                    <Button
+                                        type="button"
+                                        variant="ghost"
+                                        size="icon"
+                                        onClick={() => removePosition(index)}
+                                        className="self-end text-red-500 hover:bg-red-50 hover:text-red-600 rounded-xl h-10 w-10"
+                                    >
+                                        <X className="h-4 w-4" />
+                                    </Button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* What We Do / Activities Section */}
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transform transition-all hover:shadow-md">
+                        <div className="px-6 py-4 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <div className="p-2 bg-emerald-500/10 rounded-lg text-emerald-600">
+                                    <Globe className="h-5 w-5" />
+                                </div>
+                                <h2 className="text-lg font-semibold text-emerald-600">What We Do (Activities)</h2>
+                            </div>
+                            <Button type="button" onClick={addWhatWeDo} variant="outline" size="sm" className="rounded-xl border-emerald-200 text-emerald-600 hover:bg-emerald-50">
+                                <Plus className="h-4 w-4 mr-1" /> Add Activity
+                            </Button>
+                        </div>
+                        <div className="p-8 space-y-6">
+                            {formData.what_we_do.length === 0 && (
+                                <p className="text-gray-400 text-center py-4 italic">No activities added yet. Click 'Add Activity' to start.</p>
+                            )}
+                            {formData.what_we_do.map((act, index) => (
+                                <div key={index} className="p-6 bg-emerald-50/30 rounded-2xl border border-emerald-100/50 space-y-4 relative animate-in fade-in slide-in-from-right-4 duration-300">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div className="space-y-1.5">
+                                            <Label className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Activity Name</Label>
+                                            <Input
+                                                value={act.activity_name}
+                                                onChange={(e) => updateWhatWeDo(index, "activity_name", e.target.value)}
+                                                placeholder="Volunteer Camp, Tech Workshop..."
+                                                className="rounded-xl border-emerald-100 h-11"
+                                            />
+                                        </div>
+                                        <div className="space-y-1.5">
+                                            <Label className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Year</Label>
+                                            <Input
+                                                type="number"
+                                                value={act.year}
+                                                onChange={(e) => updateWhatWeDo(index, "year", parseInt(e.target.value) || 0)}
+                                                className="rounded-xl border-emerald-100 h-11"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <Label className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Image URL</Label>
+                                        <Input
+                                            value={act.image_url}
+                                            onChange={(e) => updateWhatWeDo(index, "image_url", e.target.value)}
+                                            placeholder="https://..."
+                                            className="rounded-xl border-emerald-100 h-11"
+                                        />
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <Label className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Description</Label>
+                                        <Textarea
+                                            value={act.description}
+                                            onChange={(e) => updateWhatWeDo(index, "description", e.target.value)}
+                                            placeholder="Briefly describe this activity..."
+                                            className="rounded-xl border-emerald-100 resize-none min-h-[80px]"
+                                        />
+                                    </div>
+                                    <Button
+                                        type="button"
+                                        variant="ghost"
+                                        size="icon"
+                                        onClick={() => removeWhatWeDo(index)}
+                                        className="absolute top-2 right-2 text-red-400 hover:bg-red-50 hover:text-red-500 rounded-full"
+                                    >
+                                        <X className="h-5 w-5" />
+                                    </Button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* FAQ Section */}
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transform transition-all hover:shadow-md">
+                        <div className="px-6 py-4 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <div className="p-2 bg-amber-500/10 rounded-lg text-amber-600">
+                                    <FileText className="h-5 w-5" />
+                                </div>
+                                <h2 className="text-lg font-semibold text-amber-600">FAQ's Sections</h2>
+                            </div>
+                            <Button type="button" onClick={addFaq} variant="outline" size="sm" className="rounded-xl border-amber-200 text-amber-600 hover:bg-amber-50">
+                                <Plus className="h-4 w-4 mr-1" /> Add FAQ
+                            </Button>
+                        </div>
+                        <div className="p-8 space-y-4">
+                            {formData.faqs.length === 0 && (
+                                <p className="text-gray-400 text-center py-4 italic">No FAQs added yet. Click 'Add FAQ' to start.</p>
+                            )}
+                            {formData.faqs.map((faq, index) => (
+                                <div key={index} className="p-4 bg-amber-50/30 rounded-xl border border-amber-100/50 relative animate-in fade-in slide-in-from-top-2 duration-200">
+                                    <div className="space-y-3 pr-8">
+                                        <Input
+                                            value={faq.question}
+                                            onChange={(e) => updateFaq(index, "question", e.target.value)}
+                                            placeholder="Question: How do I join?"
+                                            className="rounded-xl border-amber-100 h-10 font-medium"
+                                        />
+                                        <Textarea
+                                            value={faq.answer}
+                                            onChange={(e) => updateFaq(index, "answer", e.target.value)}
+                                            placeholder="Answer: You can join by..."
+                                            className="rounded-xl border-amber-100 resize-none min-h-[70px]"
+                                        />
+                                    </div>
+                                    <Button
+                                        type="button"
+                                        variant="ghost"
+                                        size="icon"
+                                        onClick={() => removeFaq(index)}
+                                        className="absolute top-4 right-2 text-red-500 hover:bg-red-50 rounded-xl"
+                                    >
+                                        <X className="h-4 w-4" />
+                                    </Button>
+                                </div>
+                            ))}
                         </div>
                     </div>
 

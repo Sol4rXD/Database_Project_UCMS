@@ -4,7 +4,7 @@ const ClubSchema = new Schema({
   club_name: { type: String, required: true },
   slug: { type: String, unique: true, required: true },
   club_category: { type: String },
-  logo_url: { type: String}, 
+  logo_url: { type: String },
   location: { type: String, required: true },
   google_map_link: { type: String },
 
@@ -13,10 +13,12 @@ const ClubSchema = new Schema({
     full: { type: String },
   },
 
-  activity_images: [
+  what_we_do: [
     {
-      url: { type: String },
-      caption: { type: String },
+      activity_name: { type: String },
+      image_url: { type: String },
+      description: { type: String },
+      year: { type: Number },
     },
   ],
 
@@ -34,6 +36,7 @@ const ClubSchema = new Schema({
       user_id: { type: String }, // Relate to user_id (MySQL)
       star: { type: Number, min: 1, max: 5 },
       text: { type: String },
+      year: { type: Number },
       create_at: { type: Date, default: Date.now },
     },
   ],
@@ -45,8 +48,24 @@ const ClubSchema = new Schema({
     },
   ],
 
+  faqs: [
+    {
+      question: { type: String },
+      answer: { type: String },
+    },
+  ],
+
   is_open: { type: Boolean, default: true },
   created_at: { type: Date, default: Date.now },
 });
+
+// In Next.js dev mode, the model is cached. We need to clear it to see schema changes.
+if (process.env.NODE_ENV === "development") {
+  for (const modelName in models) {
+    if (modelName === "Club") {
+      delete models[modelName];
+    }
+  }
+}
 
 export const Club = models.Club || model("Club", ClubSchema);
