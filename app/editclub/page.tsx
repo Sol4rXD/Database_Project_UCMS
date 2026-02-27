@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { X, SlidersHorizontal, Check, ChevronsUpDown, Trophy, Phone, FileText, MapPin, User, Globe, ArrowLeft, Save, Calendar, Activity, Search, Loader2 } from "lucide-react"
+import { X, SlidersHorizontal, Check, ChevronsUpDown, Trophy, Phone, FileText, MapPin, User, Globe, ArrowLeft, Save, Calendar, Activity, Search, Loader2, Plus } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import axios from "axios"
@@ -51,9 +51,7 @@ export default function EditClubPage() {
             full: ""
         },
         is_open: true,
-        // Optional fields that might not be in the model but are in the UI
-        advisor_name: "",
-        phone: "",
+        contact: [] as any[],
     })
 
     useEffect(() => {
@@ -90,8 +88,7 @@ export default function EditClubPage() {
                         full: data.description?.full || ""
                     },
                     is_open: data.is_open !== undefined ? data.is_open : true,
-                    advisor_name: data.advisor_name || "",
-                    phone: data.phone || "",
+                    contact: data.contact || [],
                 })
             } catch (error) {
                 console.error("Failed to fetch club details:", error)
@@ -119,6 +116,25 @@ export default function EditClubPage() {
         } finally {
             setIsUpdating(false)
         }
+    }
+
+    const addContact = () => {
+        setFormData({
+            ...formData,
+            contact: [...formData.contact, { platform: "", link: "" }]
+        })
+    }
+
+    const removeContact = (index: number) => {
+        const newData = [...formData.contact]
+        newData.splice(index, 1)
+        setFormData({ ...formData, contact: newData })
+    }
+
+    const updateContact = (index: number, field: string, value: string) => {
+        const newData = [...formData.contact]
+        newData[index] = { ...newData[index], [field]: value }
+        setFormData({ ...formData, contact: newData })
     }
 
     return (
@@ -294,37 +310,54 @@ export default function EditClubPage() {
 
                         {/* Contact Information Section */}
                         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transform transition-all hover:shadow-md">
-                            <div className="px-6 py-4 bg-gray-50/50 border-b border-gray-100 flex items-center gap-3">
-                                <div className="p-2 bg-primary/10 rounded-lg text-primary">
-                                    <User className="h-5 w-5" />
-                                </div>
-                                <h2 className="text-lg font-semibold text-primary">Advisor & Contact</h2>
-                            </div>
-                            <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <Label htmlFor="advisor-name" className="text-sm font-medium">Advisor Name</Label>
-                                    <Input
-                                        id="advisor-name"
-                                        value={formData.advisor_name}
-                                        onChange={(e) => setFormData({ ...formData, advisor_name: e.target.value })}
-                                        className="rounded-xl border-gray-200 focus-visible:ring-primary/20 h-12"
-                                    />
-                                </div>
-
-                                <div className="space-y-2">
-                                    <Label htmlFor="change-phone" className="text-sm font-medium">Phone Number</Label>
-                                    <div className="relative">
-                                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                                            <Phone className="h-4 w-4" />
-                                        </div>
-                                        <Input
-                                            id="change-phone"
-                                            value={formData.phone}
-                                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                            className="rounded-xl border-gray-200 focus-visible:ring-primary/20 h-12 pl-11"
-                                        />
+                            <div className="px-6 py-4 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2 bg-primary/10 rounded-lg text-primary">
+                                        <Phone className="h-5 w-5" />
                                     </div>
+                                    <h2 className="text-lg font-semibold text-primary">Contact Information</h2>
                                 </div>
+                                <Button type="button" onClick={addContact} variant="outline" size="sm" className="rounded-xl border-primary/20 text-primary hover:bg-primary/5">
+                                    <Plus className="h-4 w-4 mr-1" /> Add Contact
+                                </Button>
+                            </div>
+                            <div className="p-8 space-y-4">
+                                {formData.contact.length === 0 && (
+                                    <p className="text-gray-400 text-center py-4 italic">No contact information added yet. Click 'Add Contact' to start.</p>
+                                )}
+                                {formData.contact.map((con, index) => (
+                                    <div key={index} className="flex gap-4 p-4 bg-gray-50/50 rounded-xl border border-gray-100 animate-in fade-in zoom-in-95 duration-200 relative">
+                                        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <div className="space-y-1.5">
+                                                <Label className="text-xs font-semibold text-gray-600">Platform (e.g. Facebook, Line, Phone)</Label>
+                                                <Input
+                                                    value={con.platform}
+                                                    onChange={(e) => updateContact(index, "platform", e.target.value)}
+                                                    placeholder="Platform name"
+                                                    className="rounded-xl border-gray-200 h-10"
+                                                />
+                                            </div>
+                                            <div className="space-y-1.5">
+                                                <Label className="text-xs font-semibold text-gray-600">Link or Info</Label>
+                                                <Input
+                                                    value={con.link}
+                                                    onChange={(e) => updateContact(index, "link", e.target.value)}
+                                                    placeholder="URL or handle"
+                                                    className="rounded-xl border-gray-200 h-10"
+                                                />
+                                            </div>
+                                        </div>
+                                        <Button
+                                            type="button"
+                                            variant="ghost"
+                                            size="icon"
+                                            onClick={() => removeContact(index)}
+                                            className="self-end text-red-500 hover:bg-red-50 hover:text-red-600 rounded-xl h-10 w-10"
+                                        >
+                                            <X className="h-4 w-4" />
+                                        </Button>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 

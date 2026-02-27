@@ -22,7 +22,7 @@ import { Label } from "@/components/ui/label"
 export function LoginLink() {
   const [open, setOpen] = useState(false);
 
-  const [student_id , setStudent_id] = useState("")
+  const [student_id, setStudent_id] = useState("")
   const [password, setPassword] = useState("")
   const router = useRouter()
 
@@ -35,28 +35,28 @@ export function LoginLink() {
       });
 
       if (res.status === 200) {
-        alert("Login Success");
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        // alert("Login Success");
         setOpen(false);
-        router.push("/");
-        router.refresh()
+        window.location.reload();
       }
     } catch (error) {
       console.log("Error: ", error);
       alert("username or password incorrect");
     }
   }
-  
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-                <div 
-                  className="text-sm text-[#308DD5] hover:underline font-medium cursor-pointer"
-                >
-                  Login now
-                </div>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-sm">
-          <form onSubmit={handleLogin}>
+      <DialogTrigger asChild>
+        <div
+          className="text-sm text-[#308DD5] hover:underline font-medium cursor-pointer"
+        >
+          Login now
+        </div>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-sm">
+        <form onSubmit={handleLogin}>
           <DialogHeader>
             <DialogTitle className="text-primary font-extrabold text-2xl">Log in</DialogTitle>
             <div className="flex">
@@ -67,20 +67,20 @@ export function LoginLink() {
             </div>
           </DialogHeader>
           <FieldGroup className="mt-3">
-             <Field>
+            <Field>
               <Label htmlFor="username" className="text-primary">StudentID</Label>
-              <Input id="name-1" name="name" placeholder="StudentID" value={student_id} onChange={(e) => setStudent_id(e.target.value)}/>
+              <Input id="name-1" name="name" placeholder="StudentID" value={student_id} onChange={(e) => setStudent_id(e.target.value)} />
             </Field>
-           <Field>
+            <Field>
               <Label htmlFor="password" className="text-primary">Password</Label>
-              <Input id="username-1" name="username"  placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+              <Input id="username-1" name="username" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </Field>
           </FieldGroup>
           <DialogFooter>
             <Button type="submit" className="w-full mt-7 cursor-pointer">Sign In</Button>
           </DialogFooter>
-          </form>
-        </DialogContent>
+        </form>
+      </DialogContent>
     </Dialog>
   )
 }

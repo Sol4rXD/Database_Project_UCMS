@@ -14,6 +14,21 @@ import {
 import Link from "next/link"
 
 export default function AdminFab() {
+    const [user, setUser] = React.useState<any>(null)
+    const [mounted, setMounted] = React.useState(false)
+
+    React.useEffect(() => {
+        setMounted(true)
+        const savedUser = localStorage.getItem("user")
+        if (savedUser) {
+            setUser(JSON.parse(savedUser))
+        }
+    }, [])
+
+    if (!mounted || !user || user.role !== "ADMIN") {
+        return null
+    }
+
     return (
         <div className="fixed bottom-8 right-8 z-50">
             <DropdownMenu>

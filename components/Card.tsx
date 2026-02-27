@@ -31,7 +31,7 @@ export default function Card({ name, location, imageSrc, isOpen, description, sl
 
   return (
     <Link href={`/club/${slug}`} className="block group">
-      <div className="w-full max-w-3xl h-[180px] mx-auto bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden p-4 flex items-center gap-6 cursor-pointer transition-all duration-500 hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.07)] hover:-translate-y-1 relative">
+      <div className="w-full max-w-3xl min-h-[180px] h-auto mx-auto bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden p-5 flex items-center gap-6 cursor-pointer transition-all duration-500 hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.07)] hover:-translate-y-1 relative">
 
         {/* Background Decorative Element */}
         <div className={`absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 rounded-full opacity-[0.03] transition-all duration-700 group-hover:scale-150 ${isOpen ? 'bg-green-500' : 'bg-red-500'}`} />
@@ -48,9 +48,9 @@ export default function Card({ name, location, imageSrc, isOpen, description, sl
         </div>
 
         {/* Content Section */}
-        <div className="flex-grow flex flex-col py-1 pr-4 h-full relative z-10">
+        <div className="flex-grow flex flex-col pr-4 h-full relative z-10">
           <div className="space-y-1">
-            <h2 className="text-xl font-extrabold text-[#0f172a] leading-tight line-clamp-1 flex items-center gap-2">
+            <h2 className="text-xl font-extrabold text-[#0f172a] leading-tight line-clamp-2 flex items-center gap-2">
               {name}
             </h2>
             <div className="flex items-center gap-1.5 text-blue-500 mb-2">
