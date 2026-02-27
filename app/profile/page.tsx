@@ -8,6 +8,7 @@ export default function ProfilePage() {
     studentId: "64xxxxxxxx",
     faculty: "คณะวิศวกรรมศาสตร์",
     major: "สาขาวิศวกรรมเครื่องกล",
+    email: "user@example.com",
   };
 
   const myClubs = [
@@ -77,7 +78,7 @@ export default function ProfilePage() {
                   name={club.club_name}
                   location={club.location}
                   imageSrc={club.logo_url}
-                  status={club.is_open ? "เปิดรับสมัคร" : "ปิดรับสมัคร"}
+                  isOpen={club.is_open}
                   description={club.description.short}
                 />
               ))}

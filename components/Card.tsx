@@ -7,11 +7,11 @@ interface ClubProps {
   name: string;
   location: string;
   imageSrc: string;
-  status: string;
+  isOpen: boolean;
   description: string;
 }
 
-export default function Card({ name, location, imageSrc, status, description }: ClubProps) {
+export default function Card({ name, location, imageSrc, isOpen, description }: ClubProps) {
   const isValidUrl = (url: string) => {
     try {
       return url.startsWith("/") || url.startsWith("http://") || url.startsWith("https://");
@@ -50,9 +50,9 @@ export default function Card({ name, location, imageSrc, status, description }: 
         </div>
 
         <div className="space-y-2 -mt-1.5">
-          <div className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border w-fit ${status === 'เปิดรับสมัคร' ? 'border-green-500 bg-green-50 text-green-600' : 'border-red-500 bg-red-50 text-red-600'}`}>
-            <div className={`w-2 h-2 rounded-full ${status === 'เปิดรับสมัคร' ? 'bg-green-500' : 'bg-red-500'}`}></div>
-            <span className="text-xs font-bold">{status}</span>
+          <div className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border w-fit ${isOpen ? 'border-green-500 bg-green-50 text-green-600' : 'border-red-500 bg-red-50 text-red-600'}`}>
+            <div className={`w-2 h-2 rounded-full ${isOpen ? 'bg-green-500' : 'bg-red-500'}`}></div>
+            <span className="text-xs font-bold">{isOpen ? 'เปิดรับสมัคร' : 'ปิดรับสมัคร'}</span>
           </div>
 
           <p className="text-gray-500 text-xs line-clamp-2 leading-relaxed">

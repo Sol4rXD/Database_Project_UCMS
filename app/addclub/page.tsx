@@ -22,9 +22,10 @@ export default function AddClubPage() {
         logo_url: "",
         location: "",
         google_map_link: "",
-        advisor_name: "", // Combined from first/last in UI if needed, but let's stick to model or add it
+        advisor_name: "",
         phone: "",
         other_contact: "",
+        is_open: true,
         description: {
             short: "",
             full: ""
@@ -47,21 +48,18 @@ export default function AddClubPage() {
             try {
                 let json = JSON.parse(event.target?.result as string)
 
-                // If it's an array, take the first club as a preview/import
                 if (Array.isArray(json)) {
                     json = json[0]
                 }
 
-                // Helper to ensure we only get strings for inputs
                 const s = (val: any) => typeof val === 'string' ? val : ""
+                const b = (val: any, fallback: boolean) => typeof val === 'boolean' ? val : fallback
 
-                // Handle contact mapping from array (mock.json structure)
                 let contactVal = s(json.other_contact || json.contact_info)
                 if (!contactVal && Array.isArray(json.contact) && json.contact.length > 0) {
                     contactVal = s(json.contact[0].link)
                 }
 
-                // Map basic structure with fallbacks
                 const importedData = {
                     club_name: s(json.club_name || json.name),
                     club_category: s(json.club_category || json.category),
@@ -71,6 +69,7 @@ export default function AddClubPage() {
                     advisor_name: s(json.advisor_name || json.advisor),
                     phone: s(json.phone),
                     other_contact: contactVal,
+                    is_open: b(json.is_open, true),
                     description: {
                         short: s(json.description?.short || json.short_description),
                         full: s(json.description?.full || json.full_description)
@@ -80,7 +79,6 @@ export default function AddClubPage() {
                 setFormData(importedData)
                 toast.success("JSON data imported! Review and click 'Create Club' to save.")
 
-                // Reset input
                 if (fileInputRef.current) fileInputRef.current.value = ""
             } catch (error) {
                 console.error("JSON Parse Error:", error)
@@ -104,7 +102,6 @@ export default function AddClubPage() {
             const payload = {
                 ...formData,
                 slug,
-                is_open: true // Default to open
             }
 
             await axios.post("/api/club", payload)
@@ -168,11 +165,30 @@ export default function AddClubPage() {
                 <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
                     {/* Club Basic Information Section */}
                     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transform transition-all hover:shadow-md">
-                        <div className="px-6 py-4 bg-gray-50/50 border-b border-gray-100 flex items-center gap-3">
-                            <div className="p-2 bg-primary/10 rounded-lg text-primary">
-                                <Trophy className="h-5 w-5" />
+                        <div className="px-6 py-4 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <div className="p-2 bg-primary/10 rounded-lg text-primary">
+                                    <Trophy className="h-5 w-5" />
+                                </div>
+                                <h2 className="text-lg font-semibold text-primary">Club Details</h2>
                             </div>
-                            <h2 className="text-lg font-semibold text-primary">Club Details</h2>
+
+                            {/* Status Toggle */}
+                            <div className="flex items-center gap-3 bg-white px-4 py-2 rounded-xl border border-gray-100 shadow-sm">
+                                <Label htmlFor="is-open" className="text-sm font-semibold text-gray-600 cursor-pointer">
+                                    {formData.is_open ? "เปิดรับสมัคร" : "ปิดรับสมัคร"}
+                                </Label>
+                                <div
+                                    onClick={() => setFormData({ ...formData, is_open: !formData.is_open })}
+                                    className={`relative w-12 h-6 rounded-full cursor-pointer transition-colors duration-200 ease-in-out ${formData.is_open ? 'bg-green-500' : 'bg-gray-300'
+                                        }`}
+                                >
+                                    <div
+                                        className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full shadow-sm transform transition-transform duration-200 ease-in-out ${formData.is_open ? 'translate-x-6' : 'translate-x-0'
+                                            }`}
+                                    />
+                                </div>
+                            </div>
                         </div>
                         <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="md:col-span-2 space-y-2">
