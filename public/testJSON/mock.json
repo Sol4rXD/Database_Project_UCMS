@@ -1,0 +1,192 @@
+[
+    {
+        "club_name": "KU Robotics & AI",
+        "slug": "ku-robotics-ai",
+        "club_category": "วิศวกรรมและเทคโนโลยี",
+        "logo_url": "/testpic/dongtaan.png",
+        "location": "อาคารนวัตกรรมวิจัย ชั้น 4",
+        "google_map_link": "https://maps.google.com/example-me1",
+        "description": {
+            "short": "ออกแบบและสร้างหุ่นยนต์อัจฉริยะ พร้อมส่งเข้าแข่งขันระดับโลก",
+            "full": "พวกเราเน้นการเรียนรู้ด้านการเขียนโปรแกรมควบคุมหุ่นยนต์ การออกแบบแผงวงจร และระบบ AI เพื่อนำไปประยุกต์ใช้ในอุตสาหกรรมจริง"
+        },
+        "activity_images": [
+            {
+                "url": "/testpic/activity-robot.jpg",
+                "caption": "การแข่งขันหุ่นยนต์ระดับประเทศ 2026"
+            }
+        ],
+        "position": [
+            {
+                "name": "AI Developer",
+                "amount": 4
+            },
+            {
+                "name": "Embedded Engineer",
+                "amount": 3
+            }
+        ],
+        "contact": [
+            {
+                "platform": "Facebook",
+                "link": "fb.com/KURobotics"
+            }
+        ],
+        "is_open": true
+    },
+    {
+        "club_name": "ชมรมถ่ายภาพ (Photo Club)",
+        "slug": "ku-photo-club",
+        "club_category": "ศิลปะและนันทนาการ",
+        "logo_url": "/testpic/dongtaan.png",
+        "location": "อาคารกิจกรรม ชั้น 3",
+        "google_map_link": "https://maps.google.com/example-me2",
+        "description": {
+            "short": "บันทึกความทรงจำผ่านเลนส์ พร้อมเวิร์กชอปถ่ายภาพและแต่งรูป",
+            "full": "แหล่งรวมตัวของคนรักการถ่ายภาพ ไม่ว่าจะเป็นสาย Portrait, Landscape หรือ Street เรามีห้องมืดสำหรับล้างฟิล์มและสตูดิโอไฟจัดเต็ม"
+        },
+        "activity_images": [
+            {
+                "url": "/testpic/activity-photo.jpg",
+                "caption": "ทริปถ่ายภาพอุทยานแห่งชาติ"
+            }
+        ],
+        "position": [
+            {
+                "name": "ช่างภาพกิจกรรม",
+                "amount": 5
+            },
+            {
+                "name": "ฝ่ายกราฟิก (Retoucher)",
+                "amount": 2
+            }
+        ],
+        "contact": [
+            {
+                "platform": "Instagram",
+                "link": "@ku_photo_official"
+            }
+        ],
+        "is_open": true
+    },
+    {
+        "club_name": "ชมรมอนุรักษ์ธรรมชาติ",
+        "slug": "nature-conservation-club",
+        "club_category": "สิ่งแวดล้อม",
+        "logo_url": "/testpic/dongtaan.png",
+        "location": "อาคารกิจกรรม ชั้น 1",
+        "google_map_link": "https://maps.google.com/example-me3",
+        "description": {
+            "short": "ปลูกป่า สร้างฝาย และรณรงค์เรื่องขยะในรั้วมหาวิทยาลัย",
+            "full": "เรามุ่งเน้นการสร้างจิตสำนึกด้านสิ่งแวดล้อมผ่านกิจกรรมลงพื้นที่จริง เช่น การเดินป่าศึกษาธรรมชาติและการจัดการขยะอย่างถูกวิธี"
+        },
+        "activity_images": [],
+        "position": [
+            {
+                "name": "วิทยากรชุมชน",
+                "amount": 3
+            },
+            {
+                "name": "สวัสดิการค่าย",
+                "amount": 10
+            }
+        ],
+        "contact": [
+            {
+                "platform": "Facebook",
+                "link": "fb.com/KUNature"
+            }
+        ],
+        "is_open": true
+    },
+    {
+        "club_name": "KU E-Sports Club",
+        "slug": "ku-esports-club",
+        "club_category": "กีฬาและเกม",
+        "logo_url": "/testpic/dongtaan.png",
+        "location": "ศูนย์คอมพิวเตอร์ ห้อง 405",
+        "google_map_link": "https://maps.google.com/example-me4",
+        "description": {
+            "short": "ฝึกซ้อมและจัดการแข่งขันเกมยอดนิยมในระดับมหาวิทยาลัย",
+            "full": "ชมรมที่สนับสนุนการเล่นเกมอย่างสร้างสรรค์ เรามีทีมแข่ง ROV, Valorant และ LoL ที่เป็นตัวแทนมหาวิทยาลัยไปแข่งชิงแชมป์ภาค"
+        },
+        "activity_images": [],
+        "position": [
+            {
+                "name": "นักกีฬาตัวจริง",
+                "amount": 0
+            },
+            {
+                "name": "Streamer/Caster",
+                "amount": 2
+            }
+        ],
+        "contact": [
+            {
+                "platform": "Discord",
+                "link": "discord.gg/ku-esports"
+            }
+        ],
+        "is_open": false
+    },
+    {
+        "club_name": "ชมรมภาษาญี่ปุ่น (J-Club)",
+        "slug": "ku-japanese-club",
+        "club_category": "วิชาการและภาษา",
+        "logo_url": "/testpic/KCC.png",
+        "location": "อาคารมนุษยศาสตร์ 1",
+        "google_map_link": "https://maps.google.com/example-me5",
+        "description": {
+            "short": "แลกเปลี่ยนวัฒนธรรมญี่ปุ่น ติวภาษา และจัดงานเทศกาลญี่ปุ่น",
+            "full": "พื้นที่สำหรับคนรักญี่ปุ่น! เรามีกิจกรรมสอนภาษาเบื้องต้น แลกเปลี่ยนกับนิสิตชาวญี่ปุ่น และจัดงาน Matsuri ใหญ่ทุกปี"
+        },
+        "activity_images": [],
+        "position": [
+            {
+                "name": "ฝ่ายล่าม/วิชาการ",
+                "amount": 2
+            },
+            {
+                "name": "ฝ่ายตกแต่งสถานที่",
+                "amount": 5
+            }
+        ],
+        "contact": [
+            {
+                "platform": "Facebook",
+                "link": "fb.com/KUJapaneseClub"
+            }
+        ],
+        "is_open": true
+    },
+    {
+        "club_name": "ชมรมพุทธศาสตร์",
+        "slug": "ku-buddhist-club",
+        "club_category": "คุณธรรมและจริยธรรม",
+        "logo_url": "/testpic/KCC.png",
+        "location": "อาคารกิจกรรม ชั้น 4",
+        "google_map_link": "https://maps.google.com/example-me6",
+        "description": {
+            "short": "ฝึกสมาธิ ฟังธรรม และทำกิจกรรมบำเพ็ญกุศลร่วมกัน",
+            "full": "ส่งเสริมการนำหลักธรรมมาปรับใช้ในชีวิตประจำวัน ผ่านการทำสมาธิร่วมกันและกิจกรรมอาสาจัดงานบุญต่าง ๆ ภายในมหาวิทยาลัย"
+        },
+        "activity_images": [],
+        "position": [
+            {
+                "name": "ฝ่ายพิธีกรสงฆ์",
+                "amount": 2
+            },
+            {
+                "name": "ฝ่ายจัดเตรียมสถานที่",
+                "amount": 4
+            }
+        ],
+        "contact": [
+            {
+                "platform": "Facebook",
+                "link": "fb.com/KUBuddhist"
+            }
+        ],
+        "is_open": true
+    }
+]

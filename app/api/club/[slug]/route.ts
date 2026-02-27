@@ -11,7 +11,7 @@ export async function GET(
 
         await connectDB() // 👈 แค่ connect ไม่ต้องรับค่า
 
-        // ใช้ mongoose connection โดยตรง
+        // ใช้ mongoose connection โดยตรงx`
         const club = await mongoose.connection
             .collection("clubs")
             .findOne({ slug })

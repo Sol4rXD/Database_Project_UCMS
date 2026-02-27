@@ -38,8 +38,28 @@ export default function Navbar() {
 
       <div className="flex items-center">
         <ul className="flex gap-10 text-base font-medium text-black mr-10">
-          <li><Link href="/" className="hover:text-blue-500 font-bold transition duration-200">ข่าวสาร</Link></li>
-          <li><Link href="/" className="hover:text-blue-500 font-bold transition duration-200">รายชื่อชมรม</Link></li>
+          <li>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('news')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="hover:text-blue-500 font-bold transition duration-200 cursor-pointer bg-transparent border-none p-0 outline-none"
+            >
+              ข่าวสาร
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('clublist')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="hover:text-blue-500 font-bold transition duration-200 cursor-pointer bg-transparent border-none p-0 outline-none"
+            >
+              รายชื่อชมรม
+            </button>
+          </li>
           <li><Link href="/" className="hover:text-blue-500 font-bold transition duration-200">ตารางกิจกรรม</Link></li>
           <li><Link href="/" className="hover:text-blue-500 font-bold transition duration-200">ค้นหาชมรมที่ใช่</Link></li>
         </ul>
@@ -57,9 +77,9 @@ export default function Navbar() {
             <DropdownMenuContent align="end" className="w-56">
               <DropdownMenuLabel>บัญชีของฉัน</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer">
-                <Link href="/profile" className="w-full">โปรไฟล์</Link>
-              </DropdownMenuItem>
+              <Link href="/profile">
+                <DropdownMenuItem className="cursor-pointer">โปรไฟล์</DropdownMenuItem>
+              </Link>
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={handleLogout}
