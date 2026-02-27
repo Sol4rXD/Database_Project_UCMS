@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { MapPin, ArrowRight, CheckCircle2, XCircle } from "lucide-react";
 
 interface ClubProps {
   name: string;
@@ -27,38 +30,54 @@ export default function Card({ name, location, imageSrc, isOpen, description, sl
   }, [imageSrc]);
 
   return (
-    <Link href={`/club/${slug}`} className="block">
-      <div className="w-full max-w-3xl h-[180px] mx-auto bg-white rounded-3xl shadow-lg overflow-hidden px-6 py-5 flex items-center gap-6 border border-gray-100 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group">
+    <Link href={`/club/${slug}`} className="block group">
+      <div className="w-full max-w-3xl h-[180px] mx-auto bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden p-4 flex items-center gap-6 cursor-pointer transition-all duration-500 hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.07)] hover:-translate-y-1 relative">
 
-        <div className="flex-shrink-0 w-28 h-28 relative rounded-2xl overflow-hidden">
+        {/* Background Decorative Element */}
+        <div className={`absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 rounded-full opacity-[0.03] transition-all duration-700 group-hover:scale-150 ${isOpen ? 'bg-green-500' : 'bg-red-500'}`} />
+
+        {/* Image Container */}
+        <div className="flex-shrink-0 w-32 h-32 relative rounded-2xl overflow-hidden transition-colors duration-500">
           <Image
             src={imgSrc}
             alt={name}
             fill
-            className="object-contain"
+            className="object-contain transform transition-transform duration-700 group-hover:scale-110"
             onError={() => setImgSrc("/testpic/dongtaan.png")}
           />
         </div>
 
-        <div className="flex-grow flex flex-col space-y-3 py-1">
-          <div>
-            <h2 className="text-lg font-bold text-black leading-tight line-clamp-2">
+        {/* Content Section */}
+        <div className="flex-grow flex flex-col py-1 pr-4 h-full relative z-10">
+          <div className="space-y-1">
+            <h2 className="text-xl font-extrabold text-[#0f172a] leading-tight line-clamp-1 flex items-center gap-2">
               {name}
             </h2>
-            <p className="text-sm text-blue-500 font-medium mt-1">
-              สถานที่: {location}
+            <div className="flex items-center gap-1.5 text-blue-500 mb-2">
+              <MapPin className="h-3.5 w-3.5" />
+              <span className="text-xs font-semibold tracking-wide uppercase">{location}</span>
+            </div>
+
+            <p className="text-slate-500 text-sm line-clamp-2 leading-relaxed font-medium">
+              {description || "No description available for this club."}
             </p>
           </div>
 
-          <div className="space-y-2 -mt-1.5">
-            <div className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border w-fit ${isOpen ? 'border-green-500 bg-green-50 text-green-600' : 'border-red-500 bg-red-50 text-red-600'}`}>
-              <div className={`w-2 h-2 rounded-full ${isOpen ? 'bg-green-500' : 'bg-red-500'}`}></div>
-              <span className="text-xs font-bold">{isOpen ? 'เปิดรับสมัคร' : 'ปิดรับสมัคร'}</span>
-            </div>
+          <div className="mt-auto pt-3">
+            <div className="flex items-center justify-between">
+              <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border shadow-sm ${isOpen
+                ? 'bg-emerald-50 text-emerald-600 border-emerald-100'
+                : 'bg-rose-50 text-rose-600 border-rose-100'
+                }`}>
+                {isOpen ? <CheckCircle2 className="h-3 w-3" /> : <XCircle className="h-3 w-3" />}
+                {isOpen ? 'Open Now' : 'Closed'}
+              </div>
 
-            <p className="text-gray-500 text-xs line-clamp-2 leading-relaxed">
-              {description}
-            </p>
+              <div className="flex items-center gap-1 text-slate-400 group-hover:text-blue-500 transition-colors duration-300">
+                <span className="text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-500">View Detail</span>
+                <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
