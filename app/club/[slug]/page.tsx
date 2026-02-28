@@ -48,6 +48,7 @@ export default async function Page(
     };
 
     const logoUrl = getSafeUrl(club.logo_url, "/testpic/dongtaan.png");
+    const coverUrl = getSafeUrl(club.cover_image, "/testpic/dongtaan.png");
 
     return (
         <main className="bg-[#F5F7FA] text-[#0f2b46]">
@@ -57,9 +58,10 @@ export default async function Page(
 
                 <div className="w-full h-[420px] relative rounded-3xl overflow-hidden bg-slate-200">
                     <Image
-                        src={logoUrl}
+                        src={coverUrl}
                         alt={club.club_name}
                         fill
+                        unoptimized={true}
                         className="object-cover"
                     />
                 </div>

@@ -20,6 +20,7 @@ export default function AddClubPage() {
         club_name: "",
         club_category: "",
         logo_url: "",
+        cover_image: "",
         location: "",
         google_map_link: "",
         is_open: true,
@@ -60,6 +61,7 @@ export default function AddClubPage() {
                     club_name: s(json.club_name || json.name),
                     club_category: s(json.club_category || json.category),
                     logo_url: s(json.logo_url || json.logo),
+                    cover_image: s(json.cover_image || json.cover),
                     location: s(json.location),
                     google_map_link: s(json.google_map_link || json.map),
                     is_open: b(json.is_open, true),
@@ -304,6 +306,22 @@ export default function AddClubPage() {
                                         id="club-logo"
                                         value={formData.logo_url}
                                         onChange={(e) => setFormData({ ...formData, logo_url: e.target.value })}
+                                        placeholder="https://..."
+                                        className="rounded-xl border-gray-200 focus-visible:ring-primary/20 h-12 pl-11"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="cover-image" className="text-sm font-medium">Club Cover Image URL</Label>
+                                <div className="relative">
+                                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                                        <Plus className="h-4 w-4" />
+                                    </div>
+                                    <Input
+                                        id="cover-image"
+                                        value={formData.cover_image}
+                                        onChange={(e) => setFormData({ ...formData, cover_image: e.target.value })}
                                         placeholder="https://..."
                                         className="rounded-xl border-gray-200 focus-visible:ring-primary/20 h-12 pl-11"
                                     />

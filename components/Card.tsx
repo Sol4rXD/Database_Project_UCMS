@@ -42,6 +42,7 @@ export default function Card({ name, location, imageSrc, isOpen, description, sl
             src={imgSrc}
             alt={name}
             fill
+            unoptimized={true}
             className="object-contain transform transition-transform duration-700 group-hover:scale-110"
             onError={() => setImgSrc("/testpic/dongtaan.png")}
           />
