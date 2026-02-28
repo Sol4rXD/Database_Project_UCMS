@@ -80,6 +80,16 @@ export default function Navbar() {
               <Link href="/profile">
                 <DropdownMenuItem className="cursor-pointer">โปรไฟล์</DropdownMenuItem>
               </Link>
+              {user.role === "ADMIN" && (
+                <>
+                  <DropdownMenuSeparator />
+                  <Link href="/admin/applications">
+                    <DropdownMenuItem className="cursor-pointer font-bold text-blue-600">
+                      จัดการการสมัคร
+                    </DropdownMenuItem>
+                  </Link>
+                </>
+              )}
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={handleLogout}

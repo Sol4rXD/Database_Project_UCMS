@@ -4,6 +4,7 @@ import { ChevronDown, Quote, Star, MapPin } from "lucide-react"
 import ActivityCarousel from "@/components/ActivityCarousel"
 import ReviewForm from "@/components/ReviewForm"
 import ContactBanner from "@/components/ContactBanner"
+import ApplyButton from "@/components/ApplyButton"
 
 async function getClub(slug: string) {
     const res = await fetch(
@@ -208,16 +209,7 @@ export default async function Page(
                                     Join our community and grow your skills with passionate people. Applications are reviewed on a rolling basis.
                                 </p>
 
-                                <button
-                                    className={`mt-10 w-full py-5 rounded-2xl text-[16px] font-black tracking-wide uppercase transition-all duration-300 shadow-xl
-                    ${club.is_open
-                                            ? "bg-white text-[#0B2C4D] hover:bg-blue-50 hover:scale-[1.02] shadow-blue-900/40"
-                                            : "bg-white/10 text-white/40 cursor-not-allowed shadow-none"}
-                  `}
-                                    disabled={!club.is_open}
-                                >
-                                    {club.is_open ? "Apply for Club" : "Registration Closed"}
-                                </button>
+                                <ApplyButton clubId={club._id} isOpen={club.is_open} />
 
                                 {club.is_open && (
                                     <p className="text-center mt-4 text-[11px] text-blue-300 font-bold uppercase tracking-tighter animate-pulse">
