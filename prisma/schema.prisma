@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 
@@ -13,19 +13,19 @@ datasource db {
   provider = "mysql"
 }
 
-model Users { 
-  id    Int     @id @default(autoincrement()) 
-  password  String?
-  fullname String
-  surname String
-  student_id String @unique
-  faculty String
+model Users {
+  id         Int     @id @default(autoincrement())
+  password   String?
+  fullname   String
+  surname    String
+  student_id String  @unique
+  faculty    String
   department String
-  role Role @default(USER)
+  role       Role    @default(USER)
 
   club_apply Club_Apply[]
-  user_club User_Clubs[]
-} 
+  user_club  User_Clubs[]
+}
 
 enum Role {
   ADMIN
@@ -33,10 +33,10 @@ enum Role {
 }
 
 model Club_Apply {
-  id    Int     @id @default(autoincrement()) 
-  user_id Int
-  club_id String
-  status Status @default(PENDING)
+  id        Int      @id @default(autoincrement())
+  user_id   Int
+  club_id   String
+  status    Status   @default(PENDING)
   create_at DateTime @default(now())
 
   user Users @relation(fields: [user_id], references: [id])
@@ -49,11 +49,9 @@ enum Status {
 }
 
 model User_Clubs {
-  id    Int     @id @default(autoincrement()) 
+  id      Int    @id @default(autoincrement())
   user_id Int
   club_id String
 
   user Users @relation(fields: [user_id], references: [id])
 }
-
-
