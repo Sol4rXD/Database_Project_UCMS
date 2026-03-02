@@ -11,14 +11,13 @@ const createPrismaClient = () => {
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
-    connectionLimit: 10,
-    connectTimeout: 10000,
-    acquireTimeout: 10000,
+    connectionLimit: 5, 
+    allowPublicKeyRetrieval: true, 
   });
 
   return new PrismaClient({
     adapter,
-    log: ["query", "error", "warn"], // 👈 ใส่ Log ไว้ดูใน Terminal ว่ามันส่งคำสั่งอะไรไปแล้วพัง
+    log: ["query", "error", "warn"],
   });
 };
 const prisma = globalForPrisma.prisma || createPrismaClient();

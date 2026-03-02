@@ -63,7 +63,7 @@ export default function Navbar() {
               รายชื่อชมรม
             </button>
           </li>
-          <li><Link href="/" className="hover:text-blue-500 font-bold transition duration-200">ตารางกิจกรรม</Link></li>
+          <li><Link href="/calendar" className="hover:text-blue-500 font-bold transition duration-200">ตารางกิจกรรม</Link></li>
         </ul>
 
         {!mounted ? (
