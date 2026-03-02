@@ -16,53 +16,53 @@ type EventType = {
 
 const events: EventType[] = [
     //KU Tech
-    { title: "Openning core team KU Tech", start: "2026-03-01", end: "2026-03-15", club: "KU Tech" },
-    { title: "Hiring KU Tech Staff team tech camp #4", start: "2026-04-15", end: "2026-04-30", club: "KU Tech" },
-    { title: "Tech camp #4", start: "2026-07-05", end: "2026-07-06", club: "KU Tech" },
-    { title: "KU Tech First meet", start: "2026-07-24", end: "2026-07-24", club: "KU Tech" },
+    { title: "KU Tech Core Team Opening", start: "2026-03-01", end: "2026-03-15", club: "KU Tech" },
+    { title: "KU Tech Staff Recruitment (Tech Camp #4)", start: "2026-04-15", end: "2026-04-30", club: "KU Tech" },
+    { title: "KU Tech Camp #4 Official Event", start: "2026-07-05", end: "2026-07-06", club: "KU Tech" },
+    { title: "KU Tech General Assembly & Orientation", start: "2026-07-24", end: "2026-07-24", club: "KU Tech" },
 
     //Dongtaan Racing
-    { title: "Tsae ’26", start: "2026-02-05", end: "2026-02-07", club: "Dongtaan Racing" },
-    { title: "FSAEJ ’26 Formula student competition", start: "2026-09-08", end: "2026-09-13", club: "Dongtaan Racing" },
-    { title: "Dongtan recruitment", start: "2026-05-20", end: "2026-05-30", club: "Dongtaan Racing" },
-    { title: "Open house Ku engineering Dongtan Booth", start: "2026-06-14", end: "2026-06-15", club: "Dongtaan Racing" },
-    { title: "Driver recruitment", start: "2026-06-12", end: "2026-06-18", club: "Dongtaan Racing" },
+    { title: "TSAE Auto Challenge 2026", start: "2026-02-05", end: "2026-02-07", club: "Dongtaan Racing" },
+    { title: "FSAEJ 2026 Formula Student Competition", start: "2026-09-08", end: "2026-09-13", club: "Dongtaan Racing" },
+    { title: "Dongtaan Racing Official Recruitment", start: "2026-05-20", end: "2026-05-30", club: "Dongtaan Racing" },
+    { title: "KU Engineering Open House (Dongtaan Booth)", start: "2026-06-14", end: "2026-06-15", club: "Dongtaan Racing" },
+    { title: "Official Driver Audition & Selection", start: "2026-06-12", end: "2026-06-18", club: "Dongtaan Racing" },
 
     //KUMUN
-    { title: "Kumun Conference Delegate register", start: "2026-11-11", end: "2026-11-11", club: "KUMUN" },
-    { title: "Kumun conference 2026", start: "2026-12-11", end: "2026-12-11", club: "KUMUN" },
-    { title: "Kumun x Polsci conference Register", start: "2026-08-07", end: "2026-08-16", club: "KUMUN" },
-    { title: "Kumun x Polsci conference interview", start: "2026-08-17", end: "2026-08-23", club: "KUMUN" },
-    { title: "Kumun x Polsci conference announcement", start: "2026-08-24", end: "2026-08-24", club: "KUMUN" },
-    { title: "Kumun x Polsci conference D-day", start: "2026-09-01", end: "2026-09-01", club: "KUMUN" },
-    { title: "Kumun member recruitment and interview", start: "2026-04-10", end: "2026-05-15", club: "KUMUN" },
+    { title: "KUMUN Conference Delegate Registration", start: "2026-11-11", end: "2026-11-11", club: "KUMUN" },
+    { title: "KUMUN Annual Conference 2026", start: "2026-12-11", end: "2026-12-11", club: "KUMUN" },
+    { title: "KUMUN x PolSci Conference Registration", start: "2026-08-07", end: "2026-08-16", club: "KUMUN" },
+    { title: "KUMUN x PolSci Conference Interview", start: "2026-08-17", end: "2026-08-23", club: "KUMUN" },
+    { title: "KUMUN x PolSci Official Announcement", start: "2026-08-24", end: "2026-08-24", club: "KUMUN" },
+    { title: "KUMUN x PolSci Conference Day", start: "2026-09-01", end: "2026-09-01", club: "KUMUN" },
+    { title: "KUMUN Membership Recruitment & Interview", start: "2026-04-10", end: "2026-05-15", club: "KUMUN" },
 
     //KU Acoustic
-    { title: "Ku Acoustic Concert register", start: "2026-02-18", end: "2026-02-25", club: "KU Acoustic" },
-    { title: "Ku Acoustic Concert", start: "2026-02-25", end: "2026-02-25", club: "KU Acoustic" },
-    { title: "Waves of vibes concert (คลื่นที่ใช่ไวบ์ที่ชอบ)", start: "2026-03-03", end: "2026-03-03", club: "KU Acoustic" },
-    { title: "Ku Acoustic Audition", start: "2026-08-31", end: "2026-09-12", club: "KU Acoustic" },
-    { title: "Ku Acoustic First meet 2026", start: "2026-09-19", end: "2026-09-19", club: "KU Acoustic" },
-    { title: "Ku Acoustic Freshy festival", start: "2026-07-28", end: "2026-07-28", club: "KU Acoustic" },
+    { title: "KU Acoustic Concert Registration", start: "2026-02-18", end: "2026-02-25", club: "KU Acoustic" },
+    { title: "KU Acoustic Annual Concert 2026", start: "2026-02-25", end: "2026-02-25", club: "KU Acoustic" },
+    { title: "Waves of Vibes Concert (Official Venue)", start: "2026-03-03", end: "2026-03-03", club: "KU Acoustic" },
+    { title: "KU Acoustic Official Audition", start: "2026-08-31", end: "2026-09-12", club: "KU Acoustic" },
+    { title: "KU Acoustic Official Orientation", start: "2026-09-19", end: "2026-09-19", club: "KU Acoustic" },
+    { title: "KU Acoustic Freshy Festival Performance", start: "2026-07-28", end: "2026-07-28", club: "KU Acoustic" },
 
     //KU Band
-    { title: "งานดนตรีในสวน @อุทยาน 100 ปี จุฬา", start: "2026-12-05", end: "2026-12-05", club: "KU Band" },
-    { title: "Ku band Freshy festival", start: "2026-07-28", end: "2026-07-28", club: "KU Band" },
-    { title: "Ku band Ku inter day", start: "2026-02-14", end: "2026-02-14", club: "KU Band" },
-    { title: "Ku band SWU music festival", start: "2026-02-25", end: "2026-02-25", club: "KU Band" },
-    { title: "Ku band open Audition", start: "2026-09-20", end: "2026-09-30", club: "KU Band" },
+    { title: "KU Band Garden Music @CU 100 Years Park", start: "2026-12-05", end: "2026-12-05", club: "KU Band" },
+    { title: "KU Band Freshy Festival Performance", start: "2026-07-28", end: "2026-07-28", club: "KU Band" },
+    { title: "KU Band International Day Celebration", start: "2026-02-14", end: "2026-02-14", club: "KU Band" },
+    { title: "KU Band x SWU Music Festival", start: "2026-02-25", end: "2026-02-25", club: "KU Band" },
+    { title: "KU Band Official Audition 2026", start: "2026-09-20", end: "2026-09-30", club: "KU Band" },
 
     //Astronomy
-    { title: "Astro summer camp 12 application", start: "2026-01-03", end: "2026-01-20", club: "Astronomy" },
-    { title: "Astronomy Winter camp 12", start: "2026-01-15", end: "2026-01-20", club: "Astronomy" },
-    { title: "Astronomy member recruitment", start: "2026-04-01", end: "2026-04-20", club: "Astronomy" },
-    { title: "Astronomy first meet", start: "2026-08-01", end: "2026-08-31", club: "Astronomy" },
+    { title: "Astronomy Summer Camp #12 Application", start: "2026-01-03", end: "2026-01-20", club: "Astronomy" },
+    { title: "Astronomy Winter Camp #12 Official Event", start: "2026-01-15", end: "2026-01-20", club: "Astronomy" },
+    { title: "Astronomy Membership Recruitment", start: "2026-04-01", end: "2026-04-20", club: "Astronomy" },
+    { title: "Astronomy Official Orientation", start: "2026-08-01", end: "2026-08-31", club: "Astronomy" },
 
     //PSC
-    { title: "PSC workshop & training", start: "2026-11-25", end: "2026-12-20", club: "PSC" },
-    { title: "PSC Final audition", start: "2026-12-21", end: "2026-12-21", club: "PSC" },
-    { title: "PSC first audition", start: "2026-10-01", end: "2026-10-07", club: "PSC" },
-    { title: "PSC Proud to be KU", start: "2026-06-14", end: "2026-06-15", club: "PSC" },
+    { title: "PSC Professional Workshop & Training", start: "2026-11-25", end: "2026-12-20", club: "PSC" },
+    { title: "PSC Annual Final Audition", start: "2026-12-21", end: "2026-12-21", club: "PSC" },
+    { title: "PSC Initial Round Audition", start: "2026-10-01", end: "2026-10-07", club: "PSC" },
+    { title: "PSC Proud to be KU Official Event", start: "2026-06-14", end: "2026-06-15", club: "PSC" },
 ];
 
 const clubThemes: Record<string, { bg: string, text: string, border: string, dot: string }> = {
@@ -81,7 +81,7 @@ export default function Calendar() {
     const startOfMonth = currentMonth.startOf("month");
     const endOfMonth = currentMonth.endOf("month");
     const daysInMonth = endOfMonth.date();
-    const startDayOfWeek = startOfMonth.day(); // 0 = Sun
+    const startDayOfWeek = startOfMonth.day();
 
     const calendarDays = [];
     for (let i = 0; i < startDayOfWeek; i++) {
@@ -90,9 +90,24 @@ export default function Calendar() {
     for (let i = 1; i <= daysInMonth; i++) {
         calendarDays.push(startOfMonth.date(i));
     }
+    while (calendarDays.length % 7 !== 0) {
+        calendarDays.push(null);
+    }
 
-    const nextMonth = () => setCurrentMonth(currentMonth.add(1, "month"));
-    const prevMonth = () => setCurrentMonth(currentMonth.subtract(1, "month"));
+    const nextMonth = () => {
+        if (currentMonth.month() === 11) {
+            setCurrentMonth(currentMonth.month(0));
+        } else {
+            setCurrentMonth(currentMonth.add(1, "month"));
+        }
+    };
+    const prevMonth = () => {
+        if (currentMonth.month() === 0) {
+            setCurrentMonth(currentMonth.month(11));
+        } else {
+            setCurrentMonth(currentMonth.subtract(1, "month"));
+        }
+    };
 
     return (
         <div className="bg-[#F8F9FA] min-h-screen font-sans py-12">
@@ -100,13 +115,19 @@ export default function Calendar() {
 
                 <div className="pt-2">
                     <div className="mb-6 border-l-4 border-blue-600 pl-6">
-                        <h1 className="text-4xl font-bold text-gray-900 leading-none tracking-tighter mb-2">
+                        <h1
+                            className="text-4xl font-bold text-gray-900 leading-none tracking-tighter mb-2"
+                        >
                             {currentMonth.format("YYYY")}
                         </h1>
                         <h2 className="text-lg font-bold text-gray-500 flex items-center gap-2">
                             <span>Upcoming</span>
                             <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                            <span className="text-blue-600 uppercase tracking-wider">{currentMonth.format("MMMM")}</span>
+                            <span
+                                className="text-blue-600 uppercase tracking-wider"
+                            >
+                                {currentMonth.format("MMMM")}
+                            </span>
                         </h2>
                     </div>
 
@@ -121,7 +142,10 @@ export default function Calendar() {
                             })
                             .sort((a, b) => dayjs(a.start).diff(dayjs(b.start)))
                             .map((e, i) => (
-                                <div key={i} className="bg-white p-4 rounded-xl shadow-sm border border-gray-100/50">
+                                <div
+                                    key={`${currentMonth.format("MMMM")}-${e.title}-${i}`}
+                                    className="bg-white p-4 rounded-xl shadow-sm border border-gray-100/50"
+                                >
                                     <div className="text-[10px] text-gray-400 font-medium mb-1">
                                         {dayjs(e.start).format("ddd MMM DD")} – {dayjs(e.end).format("ddd MMM DD, YYYY")}
                                     </div>
@@ -142,24 +166,23 @@ export default function Calendar() {
                     </div>
                 </div>
                 <div className="col-span-3 bg-white rounded-3xl shadow-[0_10px_50px_rgb(0,0,0,0.04)] p-8 border border-gray-100/80 transition-shadow">
-                    <div className="flex items-center gap-6 mb-8">
-                        <div className="flex bg-[#E9ECEF] rounded-md p-1">
-                            <button
-                                onClick={prevMonth}
-                                className="p-1.5 hover:bg-white rounded transition-all shadow-sm group"
-                            >
-                                <ChevronLeft size={18} className="text-gray-600 group-hover:text-blue-600" />
-                            </button>
-                        </div>
-
-                        <h2 className="text-xl font-bold text-[#212529]">
+                    <div className="flex items-center justify-between mb-8">
+                        <h2
+                            className="text-xl font-bold text-[#212529]"
+                        >
                             {currentMonth.format("MMMM YYYY")}
                         </h2>
 
-                        <div className="flex bg-[#E9ECEF] rounded-md p-1">
+                        <div className="flex bg-[#E9ECEF] rounded-md p-1 gap-1">
+                            <button
+                                onClick={prevMonth}
+                                className="p-1.5 rounded transition-all shadow-sm group hover:bg-white"
+                            >
+                                <ChevronLeft size={18} className="text-gray-600 group-hover:text-blue-600" />
+                            </button>
                             <button
                                 onClick={nextMonth}
-                                className="p-1.5 hover:bg-white rounded transition-all shadow-sm group"
+                                className="p-1.5 rounded transition-all shadow-sm group hover:bg-white"
                             >
                                 <ChevronRight size={18} className="text-gray-600 group-hover:text-blue-600" />
                             </button>
@@ -207,16 +230,15 @@ export default function Calendar() {
                                                     const theme = clubThemes[event.club] || { bg: "bg-gray-100", text: "text-gray-700", border: "border-gray-200" };
 
                                                     if (isStartOfEvent || isStartOfWeek || isStartOfMonth) {
-                                                        const isTrueEnd = (date.day() + span - 1 === 6) || isEndOfEvent;
+                                                        const endDateOfSegment = date.add(span - 1, 'day');
                                                         return (
                                                             <div
                                                                 key={i}
                                                                 className={`h-7 text-[11px] font-bold px-2 flex items-center gap-1.5 z-10 transition-all hover:brightness-90
-                                                                    ${isStartOfEvent ? 'rounded-l ml-2' : 'rounded-l-none ml-0'} 
-                                                                    ${isTrueEnd ? 'rounded-r mr-2' : 'rounded-r-none mr-0'} 
-                                                                    ${theme.bg} ${theme.text} border-y ${isStartOfEvent ? 'border-l' : 'border-l-transparent'} ${isTrueEnd ? 'border-r' : 'border-r-transparent'} ${theme.border}`}
+                                                                    rounded ml-2 mr-2
+                                                                    ${theme.bg} ${theme.text} border ${theme.border}`}
                                                                 style={{
-                                                                    width: `calc(${span}00% + ${(span - 1)}px - ${isStartOfEvent ? 8 : 0}px - ${isTrueEnd ? 8 : 0}px)`,
+                                                                    width: `calc(${span}00% + ${(span - 1)}px - 16px)`,
                                                                     position: 'relative'
                                                                 }}
                                                             >
