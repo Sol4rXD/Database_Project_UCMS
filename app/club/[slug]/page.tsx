@@ -114,8 +114,8 @@ export default async function Page(
                                                 </div>
                                                 <span className="font-bold text-[#1e293b] text-lg">{pos.name}</span>
                                             </div>
-                                            <div className="flex items-center gap-2 px-4 py-1.5 bg-blue-600 text-white rounded-full font-bold text-sm shadow-blue-200 shadow-lg">
-                                                {pos.amount} <span className="text-[10px] uppercase opacity-80">Seats</span>
+                                            <div className="flex items-center justify-center w-12 h-8 bg-blue-600 text-white rounded-xl font-bold text-sm shadow-blue-200 shadow-lg">
+                                                {pos.amount}
                                             </div>
                                         </div>
                                     ))
@@ -202,12 +202,10 @@ export default async function Page(
                                             : (club.member_count ?? 0)
                                         }
                                     </span>
-                                    <span className="text-2xl font-bold text-blue-200">Seats</span>
+                                    <span className="text-2xl font-bold text-blue-200">Total</span>
                                 </div>
 
-                                <p className="mt-8 text-blue-100/60 text-sm font-medium leading-relaxed">
-                                    Join our community and grow your skills with passionate people. Applications are reviewed on a rolling basis.
-                                </p>
+
 
                                 <ApplyButton clubId={club._id} isOpen={club.is_open} />
 
@@ -219,13 +217,8 @@ export default async function Page(
                             </div>
                         </div>
 
-                        {/* Quick Stats/Info */}
-                        <div className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm space-y-6">
-                            <div className="flex items-center justify-between pb-4 border-b border-slate-50">
-                                <span className="text-slate-400 font-semibold text-xs uppercase tracking-wider">Member Count</span>
-                                <span className="text-slate-900 font-bold">{club.member_count || 0} Members</span>
-                            </div>
-                            <div className="flex items-center justify-between pb-4 border-b border-slate-50">
+                        <div className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm">
+                            <div className="flex items-center justify-between">
                                 <span className="text-slate-400 font-semibold text-xs uppercase tracking-wider">Category</span>
                                 <span className="text-blue-600 font-bold">{club.club_category || "General"}</span>
                             </div>
