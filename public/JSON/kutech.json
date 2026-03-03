@@ -1,0 +1,89 @@
+{
+    "club_name": "KU Tech",
+    "slug": "ku-tech",
+    "club_category": "เทคโนโลยีและนวัตกรรม",
+    "logo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsosxdgWI6nUJPXfSU5JReNVsIr0pqysMYQQ&s",
+    "location": "อาคารเทพสถิตย์ ชั้น 5",
+    "google_map_link": "https://www.google.com/maps?q=13.8456262,100.5679688&hl=th&z=17&output=embed",
+    "description": {
+        "short": "ชมรมด้านเทคโนโลยีและนวัตกรรมที่มุ่งพัฒนาทักษะดิจิทัลและการสร้างสรรค์ผลงานเชิงเทคโนโลยี",
+        "full": "KU Tech เป็นชมรมด้านเทคโนโลยีและนวัตกรรมของมหาวิทยาลัยเกษตรศาสตร์ ที่มุ่งส่งเสริมการเรียนรู้และพัฒนาทักษะด้านดิจิทัล เทคโนโลยีสมัยใหม่ และการสร้างสรรค์นวัตกรรม\n\nกิจกรรมของชมรมครอบคลุมทั้งการเขียนโปรแกรม การพัฒนาเว็บไซต์และแอปพลิเคชัน การออกแบบ UX/UI พื้นฐานปัญญาประดิษฐ์ (AI) การวิเคราะห์ข้อมูล และการประยุกต์ใช้เทคโนโลยีเพื่อแก้ปัญหาในชีวิตจริง\n\nสมาชิกจะได้เรียนรู้ผ่านการอบรมเชิงปฏิบัติการ (Workshop) การทำโปรเจกต์จริง และการเข้าร่วมแข่งขันด้านเทคโนโลยี เช่น Hackathon ซึ่งช่วยพัฒนาทักษะการทำงานเป็นทีม การคิดเชิงวิเคราะห์ และการแก้ไขปัญหาอย่างเป็นระบบ\n\nKU Tech เปิดโอกาสให้นิสิตทุกคณะเข้าร่วม ไม่จำกัดสาขาวิชา ผู้ที่มีความสนใจด้านเทคโนโลยี ไม่ว่าจะมีพื้นฐานมาก่อนหรือไม่ สามารถเข้ามาเรียนรู้และพัฒนาศักยภาพของตนเองได้ในสภาพแวดล้อมที่ส่งเสริมการทดลองและการสร้างสรรค์"
+    },
+    "what_we_do": [
+        {
+            "activity_name": "Tech Talk 2024: Journey to UX/UI 101",
+            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoIamrR2UgY9YF6j99DkthpsXWCG0f9Wbzxg&s",
+            "description": "TECH TALK 2024 Journey to UX/UI 101 👀💡 ที่พาทุกคนออกมาท่องโลก และเปิดประสบการ์ณการออกแบบ UX/UI จากวิทยากรผู้เชี่ยวชาญ ",
+            "year": 2025
+        },
+        {
+            "activity_name": "KU Hackathon 2024 : Low Carbon in KU",
+            "image_url": "https://ms.src.ku.ac.th/wp-content/uploads/2024/09/457371542_1024629776339301_4302840444208512219_n.jpg",
+            "description": "กิจกรรม Networking KU HACKATHON ซึ่งเป็นกิจกรรมภายใต้โครงการ KU Pitching & Hackathon : Low Carbon in KU",
+            "year": 2025
+        },
+        {
+            "activity_name": "Tech Talk 2567: Career Path and Opportunities for Undergraduate Students",
+            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN9xXfVUV0yPPzuz4cfvia0uC6KTAJ12zz6w&s",
+            "description": "กิจกรรมที่จะวางแผนอนาคต เสริมโอกาสให้ตัวเองอีกทั้งยังพบกับคำแนะนำด้านอาชีพ, CV และ Workshop สร้างโปรไฟล์ Linkedln จากผู้มีประสบการณ์",
+            "year": 2025
+        },
+        {
+            "activity_name": "TechCamp#3",
+            "image_url": "https://i.ytimg.com/vi/qi5oYdSlLkk/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGFIgRShlMA8=&rs=AOn4CLCIYngG6WmNVcQgx_y7BrH9IyByDA",
+            "description": "กิจกรรมที่จะสอนน้อง ๆ ทำWorkshop และแนะนำการเข้ามหาลัยในสาขาที่ใช่",
+            "year": 2024
+        }
+    ],
+    "position": [
+        {
+            "name": "PR Director",
+            "amount": 1
+        },
+        {
+            "name": "PR CO-Director",
+            "amount": 1
+        },
+        {
+            "name": "IT Developer ",
+            "amount": 10
+        },
+        {
+            "name": "UX/UI",
+            "amount": 6
+        },
+        {
+            "name": "Project Management (PM)",
+            "amount": 2
+        },
+        {
+            "name": "Public Relations",
+            "amount": 3
+        }
+    ],
+    "contact": [
+        {
+            "platform": "Facebook",
+            "link": "https://www.facebook.com/ku.t3ch/"
+        },
+        {
+            "platform": "Instagram",
+            "link": "https://www.instagram.com/ku.t3ch/?hl=en"
+        }
+    ],
+    "faqs": [
+        {
+            "question": "ต้องมีพื้นฐานการเขียนโปรแกรมมาก่อนหรือไม่?",
+            "answer": "ไม่จำเป็นต้องมีพื้นฐานมาก่อน แต่ถ้ามีพื้นฐานก็ยิ่งดีจะพิจารณาพิเศษ ชมรมมีการอบรมตั้งแต่ระดับพื้นฐาน และมีพี่ ๆ คอยให้คำแนะนำอย่างใกล้ชิด"
+        },
+        {
+            "question": "นักศึกษาจากทุกคณะสามารถเข้าร่วมได้หรือไม่?",
+            "answer": "สามารถเข้าร่วมได้ ชมรมเปิดรับนิสิตทุกคณะ โดยเน้นความสนใจและความตั้งใจในการพัฒนาตนเองเป็นสำคัญ"
+        },
+        {
+            "question": "การเข้าร่วมชมรมช่วยต่อยอดด้านอาชีพอย่างไร?",
+            "answer": "สมาชิกจะได้รับประสบการณ์ทำโปรเจกต์จริง การทำงานเป็นทีม และการแก้ปัญหาเชิงเทคนิค ซึ่งเป็นทักษะสำคัญในสายงานด้านเทคโนโลยีและดิจิทัล"
+        }
+    ],
+    "is_open": true
+}

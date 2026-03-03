@@ -1,0 +1,63 @@
+{
+    "club_name": "Ruam dao krajui Band",
+    "slug": "ruam-dao-krajui-band",
+    "club_category": "ศิลปะและดนตรี",
+    "logo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvAGSv4ADizwvs9EMUN_ZtCNnnkwB9wNUbBg&s",
+    "location": "ชมรมวงดนตรีลูกทุ่งรวมดาวกระจุย มหาวิทยาลัยเกษตรศาสตร์",
+    "google_map_link": "https://www.google.com/maps?q=13.8460125,100.5659844&hl=th&z=17&output=embed",
+    "description": {
+        "short": "ชมรมดนตรีของมหาวิทยาลัยเกษตรศาสตร์ ที่เปิดโอกาสให้นิสิตฝึกฝนและแสดงดนตรีในรูปแบบต่าง ๆ",
+        "full": "ชมรมวงดนตรีรวมดาวกระจุย เป็นชมรมดนตรีที่มีบทบาทสำคัญในกิจกรรมศิลปะและวัฒนธรรมของมหาวิทยาลัยเกษตรศาสตร์ โดยสมาชิกชมรมมีโอกาสฝึกฝนทักษะการเล่นดนตรี การจัดแสดง และการร่วมแสดงในกิจกรรมต่าง ๆ ของมหาวิทยาลัย เช่น งานกาชาด งานวันเด็ก และกิจกรรมภายในนิสิต ซึ่งช่วยส่งเสริมการทำงานเป็นทีม ความคิดสร้างสรรค์ และการแสดงออกทางศิลปะของสมาชิกชมรม ชมรมวงดนตรีรวมดาวกระจุยมีส่วนร่วมในงานมหาวิทยาลัยอย่างสม่ำเสมอ แสดงให้เห็นถึงความสามารถและความมีชีวิตชีวาในด้านศิลปะการแสดงของนิสิตเกษตรศาสตร์"
+    },
+    "what_we_do": [
+        {
+            "activity_name": "KU Farewell Night 2026 SHOW ME YOUR COLOR ✨🎬",
+            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy0SMbfZhlwlZ53wpKGaoXOlLBYpgWIimIdQ&s",
+            "description": "This is not just a farewell. It’s our movie.",
+            "year": 2026
+        },
+        {
+            "activity_name": "ดาวรุ่งลูกทุ่งนนทรี 2025",
+            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0AbTusnREw_DyTt6y2xkDu9OERtFQ8z7mDw&s",
+            "description": "แสดงละครเวที เรื่อง เวทีดาวรุ่งนนทรี ณเวทีลานดาวหลังหอประชุมใหญ่มหาลัยเกษตรศาสตร์",
+            "year": 2025
+        },
+        {
+            "activity_name": "ดาวกระจุย X Proud to be KU 2025",
+            "image_url": "https://i.ytimg.com/vi/qHy20M_m3po/maxresdefault.jpg",
+            "description": "“รวมดาวกระจุย” มาเสิร์ฟความม่วนแบบไม่มียั้ง!แดนซ์กันให้เวทีสะเทือน ต้อนรับน้องใหม่ในงาน Proud to be KU 2568",
+            "year": 2025
+        }
+    ],
+    "position": [
+        {
+            "name": "Daokrajui Audition",
+            "amount": 23
+        }
+    ],
+    "contact": [
+        {
+            "platform": "Facebook",
+            "link": "https://www.facebook.com/daokrajuis/?locale=th_TH"
+        },
+        {
+            "platform": "Instagram",
+            "link": "https://www.instagram.com/daokrajui/?hl=en"
+        }
+    ],
+    "faqs": [
+        {
+            "question": "ต้องมีพื้นฐานด้านดนตรีมาก่อนหรือไม่?",
+            "answer": "ไม่จำเป็นต้องมีพื้นฐานมาก่อน ผู้ที่สนใจสามารถเข้ามาฝึกฝนและเรียนรู้ร่วมกับชมรมได้ โดยมีพี่ ๆ ช่วยแนะนำและพัฒนาอย่างต่อเนื่อง"
+        },
+        {
+            "question": "นักศึกษาจากคณะอื่นสามารถเข้าร่วมชมรมได้หรือไม่?",
+            "answer": "สามารถสมัครเข้าร่วมได้ ชมรมเปิดรับนิสิตทุกคณะที่มีความสนใจด้านดนตรีและการแสดง"
+        },
+        {
+            "question": "ชมรมจัดกิจกรรมใดบ้าง?",
+            "answer": "ชมรมจัดทั้งการฝึกซ้อม การแสดงในกิจกรรมต่าง ๆ ของมหาวิทยาลัย และโอกาสแสดงผลงานในกิจกรรมร่วมกับชุมชนหรือนิสิตภายนอก"
+        }
+    ],
+    "is_open": true
+}

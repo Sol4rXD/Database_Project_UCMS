@@ -29,7 +29,6 @@ const ClubSchema = new Schema({
     },
   ],
 
-  member_count: { type: Number, default: 0 },
   cover_image: { type: String },
 
   reviews: [

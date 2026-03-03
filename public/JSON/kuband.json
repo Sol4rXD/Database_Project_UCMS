@@ -1,0 +1,93 @@
+{
+    "club_name": "KU Band",
+    "slug": "ku-band",
+    "club_category": "ศิลปะและดนตรี",
+    "logo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoO-xThfM7dFmbj8C5GPcCUw5KWWDx76BJ2A&s",
+    "location": "อาคารอวบ เหมะรัชตะ ใกล้สนามเปตอง",
+    "google_map_link": "https://www.google.com/maps?q=13.8496834,100.5652397&hl=th&z=17&output=embed",
+    "description": {
+        "short": "ชมรมดนตรีอคูสติกของมหาวิทยาลัยเกษตรศาสตร์ ที่เปิดโอกาสให้นิสิตฝึกฝนการเล่นดนตรีและร่วมแสดงผลงานในกิจกรรมต่าง ๆ",
+        "full": "KU Band เป็นชมรมดนตรีสากลของมหาวิทยาลัยเกษตรศาสตร์ ซึ่งเป็นพื้นที่สำหรับนิสิตที่มีความสนใจในดนตรีทุกแนว โดยเฉพาะแนวดนตรีสากล สมาชิกของชมรมมีโอกาสฝึกฝนทักษะการเล่นเครื่องดนตรี การจัดเตรียมวง การบรรเลงและการแสดงในกิจกรรมต่าง ๆ ทั้งภายในมหาวิทยาลัยและกิจกรรมนอกสถานศึกษา\n\nชมรมมีบทบาทสำคัญในการสร้างเสริมทักษะทั้งด้านเทคนิคการเล่นดนตรี ความร่วมมือในวงดนตรี และการจัดแสดงบนเวที ผ่านการฝึกซ้อมเป็นทีม การจัดแสดงคอนเสิร์ต และการเข้าร่วมกิจกรรมดนตรีร่วมกับชมรมอื่น ๆ ซึ่งช่วยเพิ่มพูนประสบการณ์และความมั่นใจให้กับสมาชิกในด้านศิลปะการแสดง\n\nที่ตั้งของชมรม KU Band อยู่ที่อาคารอวบ เหมะรัชตะ ซึ่งตั้งอยู่บริเวณใกล้ **สนามเปตอง** ภายในมหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตบางเขน โดยบริเวณนี้เป็นพื้นที่ที่นิสิตสามารถฝึกซ้อมและจัดกิจกรรมดนตรีร่วมกันได้อย่างสะดวกสบาย และเป็นหนึ่งในศูนย์กลางกิจกรรมศิลปวัฒนธรรมของมหาวิทยาลัย"
+    },
+    "what_we_do": [
+        {
+            "activity_name": "KU Band : SWU Music Festival 1st!!! ",
+            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8-hokhByyHu_KyAthYjVi2EQWnP7UgMSEXQ&s",
+            "description": "KU BAND ในงานเทศกาลดนตรีแห่งมหาวิทยาลัยศรีนครินทรวิโรฒ ครั้งที่ 1 !",
+            "year": 2025
+        },
+        {
+            "activity_name": "KU Band X งานกาชาด ประจำปี 2567",
+            "image_url": "https://i.ytimg.com/vi/fQylg2BIYyw/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGEsgSShlMA8=&rs=AOn4CLAZIffhZBJFs9Ebe8aXXLr0UOdxrg",
+            "description": "ณ สวนลุมพินี เวทีบูท มหาวิทยาลัยเกษตรศาสตร์ (บูท4.4) ",
+            "year": 2024
+        },
+        {
+            "activity_name": "Painted Harmony The Junior Show",
+            "image_url": "https://i.ytimg.com/vi/PkKcv7MfA3o/maxresdefault.jpg",
+            "description": "โชว์สุดพิเศษที่จะพาทุกคนไปพบกับสีสันของเสียงดนตรี จากพี่ๆปีสาม “Painted Harmony The Junior Show",
+            "year": 2024
+        },
+        {
+            "activity_name": "KU Band X KU Freshy Festival 2024",
+            "image_url": "https://i.ytimg.com/vi/JxBTXNSkSEY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCqWPDz1m6XrYBse2LhIEd_tXaJcw",
+            "description": "พวกเราชาวเคยูแบนด์ เตรียมความสนุก ความมันส์ มามอบให้กับน้องๆเฟรชชี่และเพื่อนๆชาวKU83",
+            "year": 2024
+        }
+    ],
+    "position": [
+        {
+            "name": "Vocalist",
+            "amount": 4
+        },
+        {
+            "name": "Guitar",
+            "amount": 1
+        },
+        {
+            "name": "Bass",
+            "amount": 1
+        },
+        {
+            "name": "Keyboard",
+            "amount": 1
+        },
+        {
+            "name": "Drum",
+            "amount": 1
+        },
+        {
+            "name": "Sound Engineer & Technician",
+            "amount": 2
+        },
+        {
+            "name": "Saxophone",
+            "amount": 1
+        }
+    ],
+    "contact": [
+        {
+            "platform": "Facebook",
+            "link": "https://www.facebook.com/kuband1951?locale=th_TH"
+        },
+        {
+            "platform": "Instagram",
+            "link": "https://www.instagram.com/kubandofficial/?hl=en"
+        }
+    ],
+    "faqs": [
+        {
+            "question": "ต้องมีพื้นฐานการเล่นดนตรีมาก่อนหรือไม่?",
+            "answer": "สมาชิกจำเป็นต้องมีพื้นฐานมาก่อน ชมรมยินดีต้อนรับผู้ที่มีใจรักในดนตรีและต้องการเรียนรู้โดยจะมีการฝึกซ้อมและคำแนะนำให้ตลอด"
+        },
+        {
+            "question": "นักศึกษาจากทุกคณะสามารถเข้าร่วมชมรมได้หรือไม่?",
+            "answer": "สามารถเข้าร่วมได้ ชมรมเปิดรับนิสิตทุกคณะที่มีความสนใจในดนตรี และพร้อมทุ่มเทเวลาในการฝึกซ้อมร่วมกับทีม"
+        },
+        {
+            "question": "การเข้าร่วมชมรมช่วยพัฒนาทักษะอะไรบ้าง?",
+            "answer": "สมาชิกจะได้รับการพัฒนาทักษะการเล่นดนตรี การทำงานร่วมเป็นทีม ความมั่นใจในการแสดงต่อหน้าเพื่อนและผู้ชม รวมถึงประสบการณ์จัดแสดงบนเวที"
+        }
+    ],
+    "is_open": true
+}
