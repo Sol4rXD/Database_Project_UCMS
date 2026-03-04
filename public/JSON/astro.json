@@ -1,0 +1,64 @@
+{
+    "club_name": "Astronomy Club KU",
+    "slug": "astronomy-club-ku",
+    "club_category": "วิทยาศาสตร์และดาราศาสตร์",
+    "logo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyNSnTxKYNKejsebYJxh8V48IrsYxtrw4dEg&s",
+    "location": "อาคารเทพศาสตร์สถิตย์ ชั้น 5 มหาวิทยาลัยเกษตรศาสตร์",
+    "google_map_link": "https://www.google.com/maps?q=13.8456262,100.5679688&hl=th&z=17&output=embed",
+    "description": {
+        "short": "ชมรมทางวิชาการด้านดาราศาสตร์ของมหาวิทยาลัยเกษตรศาสตร์ ที่เปิดโอกาสให้นิสิตผู้สนใจศึกษาดาราศาสตร์และท้องฟ้า",
+        "full": "ชมรมดาราศาสตร์ (Astronomy Club) มหาวิทยาลัยเกษตรศาสตร์ เป็นชมรมที่รวมตัวนิสิตที่มีความสนใจในด้านดาราศาสตร์ ฟิสิกส์ท้องฟ้า และการสังเกตการณ์ท้องฟ้า เพื่อส่งเสริมการเรียนรู้และแลกเปลี่ยนความรู้เกี่ยวกับจักรวาล ดวงดาว และปรากฏการณ์ทางดาราศาสตร์ต่าง ๆ นอกเหนือจากหลักสูตรการเรียนภาคปกติ\n\nชมรมมีการจัดกิจกรรมทั้งภาคทฤษฎีและภาคปฏิบัติ อาทิ การบรรยายความรู้พื้นฐานเกี่ยวกับจักรวาล การใช้งานกล้องดูดาวและอุปกรณ์ดาราศาสตร์ การจัดกิจกรรมดูดาวกลางแจ้ง และการเข้าร่วมงานวิชาการทางด้านดาราศาสตร์ นอกจากนี้ชมรมยังเป็นพื้นที่ให้นิสิตได้พบปะเพื่อนที่มีความสนใจเหมือนกัน และสามารถเรียนรู้ร่วมกันอย่างต่อเนื่องในบรรยากาศที่เปิดกว้าง\n\nชมรมนี้ตั้งอยู่ภายใน **อาคารเทพศาสตร์สถิตย์ ชั้น 5** ของมหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตบางเขน ซึ่งเป็นพื้นที่กิจกรรมของชมรมในกลุ่มกิจกรรมด้านวิชาการของนักศึกษา พร้อมทั้งจัดกิจกรรมและการรวมกลุ่มอภิปรายอย่างสม่ำเสมอ"
+    },
+    "cover_image": "https://scontent.fbkk9-2.fna.fbcdn.net/v/t39.30808-6/469163302_18056199568928281_8007744418222332567_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_ohc=OZgtevybkcAQ7kNvwG3TPJl&_nc_oc=AdkyG5usKziFlJlBCKiWjazzyylCmuCACl5-nsJw6kQhVT68RPsA212yd-1-NBMc3Kql_j6846MCsUCPVhWufv9r&_nc_zt=23&_nc_ht=scontent.fbkk9-2.fna&_nc_gid=Z4AQSmw-OjP5LHu7c5UTbg&_nc_ss=8&oh=00_AfyIl232s-zUyDehHwOQ8G451lqsV83TDdPbDPnOZIfl3Q&oe=69AD56EB",
+    "what_we_do": [
+        {
+            "activity_name": "งานนิทรรศการดาราศาสตร์ครั้งที่ 2 ใน Theme ”Moon call away🌙 เสียงกระซิบจากดวงจันทร์ถึงความเหงา...“",
+            "image_url": "https://scontent.fbkk12-4.fna.fbcdn.net/v/t51.82787-15/590425384_18092427040928281_4464549789553431528_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=13d280&_nc_ohc=wn_U3al8qrkQ7kNvwGdP9k9&_nc_oc=AdlCbGMvKNvlU1Z4g4s0JCdZHTtITDQ9Sumz34NBmHVE0eQVPEQ4qFNTQVLydog2FyVFNeM3nrszrGqaPmBNPlQi&_nc_zt=23&_nc_ht=scontent.fbkk12-4.fna&_nc_gid=BFuOEBHjZx_x_9OgfoimLQ&_nc_ss=8&oh=00_AfyUNjaxt3Eqmlx7zN7lIsnEB9Dx_we_lpMMdAsEF41wxg&oe=69AD5CD4",
+            "description": "ห้องแสดงนิทรรศการดาราศาสตร์ / ห้องฉายภาพพระจันทร์ดวงใหญ่ / เล่านิทานดาว 🖍 เวิร์คช็อปเพ้นเฮนน่า / ส่องกล้องโทรทรรศน์ และพวงกุญแจ nfc ที่สามารถออกแบบเองได้",
+            "year": 2025
+        },
+        {
+            "activity_name": "คืนที่ฟ้าเปลี่ยน 12th",
+            "image_url": "https://scontent.fbkk13-2.fna.fbcdn.net/v/t51.82787-15/540094271_18081734626928281_199287433364761068_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=13d280&_nc_ohc=xwBql9gXxFYQ7kNvwHoI1HG&_nc_oc=AdkqgUAuFXQCKDYZLYDzExMZD-DnhjWKWiEf5DaLDbyE_WxB7NBhf2tPa2Hz8WGI-a5UGMiwriCnWUXlVRJAuUzB&_nc_zt=23&_nc_ht=scontent.fbkk13-2.fna&_nc_gid=QlmxLXUZ0tE9x6onkUVW_Q&_nc_ss=8&oh=00_Afye-L5WdcV6w799oqXwbcrKXXbkOr0IDB38svu83j1jNw&oe=69AD7705",
+            "description": "“ณ หอดูดาวเฉลิมพระเกียรติ 7 รอบพระชนมพรรษา นครราชสีมา",
+            "year": 2025
+        },
+        {
+            "activity_name": "Astronomy Winter camp 12.1 ",
+            "image_url": "https://scontent.fbkk8-4.fna.fbcdn.net/v/t51.82787-15/560306212_18085849936928281_4226368621522598315_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=13d280&_nc_ohc=B1zVvOPdjL4Q7kNvwFKkcpv&_nc_oc=AdktXEcfFN22GUW05VBgosfNNW9wDpsSggDAysP5EaC9NHAGbZdQX1biMvCsnT_nAcGJigMWMmH3lDdG_G3JoOJ9&_nc_zt=23&_nc_ht=scontent.fbkk8-4.fna&_nc_gid=cOiQRzQEneZ8sy2mOUNeMg&_nc_ss=8&oh=00_AfyN7I6oPtXFcifwE22YAHBWh6qk3rFWK3W2dZJJKLWr2A&oe=69AD7294",
+            "description": "ค่ายหน้าหนาวแอ่วเหนือของAstroในปีนี้ วันที่ 7 - 13 พฤศจิกายน 2025 ณ ศูนย์ศึกษาการพัฒนาห้วยฮ่องไคร้ อ.ดอยสะเก็ด จ.เชียงใหม่",
+            "year": 2025
+        }
+    ],
+    "position": [
+        {
+            "name": "Astronomy Winter Camp 12.2",
+            "amount": 65
+        }
+    ],
+    "contact": [
+        {
+            "platform": "Facebook",
+            "link": "https://www.facebook.com/Astronomykasetsart/"
+        },
+        {
+            "platform": "Instagram",
+            "link": "https://www.instagram.com/astroclubku/?hl=en"
+        }
+    ],
+    "faqs": [
+        {
+            "question": "นักศึกษาคณะอื่นสามารถสมัครเข้าชมรมได้หรือไม่?",
+            "answer": "สามารถสมัครเข้าชมรมได้ โดยเปิดรับนิสิตทุกคณะที่มีความสนใจด้านดาราศาสตร์ ไม่จำเป็นต้องเป็นนิสิตสาขาวิทยาศาสตร์เท่านั้น"
+        },
+        {
+            "question": "ต้องมีพื้นฐานด้านดาราศาสตร์หรือไม่?",
+            "answer": "ไม่จำเป็นต้องมีพื้นฐานมาก่อน ชมรมจะมีการอบรมและให้คำแนะนำตั้งแต่ระดับพื้นฐาน เพื่อให้สมาชิกทุกคนเรียนรู้และพัฒนาทักษะร่วมกันได้"
+        },
+        {
+            "question": "กิจกรรมชมรมมีอะไรบ้าง?",
+            "answer": "ชมรมจัดทั้งการบรรยาย ความรู้พื้นฐานกิจกรรมดูดาว การสังเกตการณ์กลางแจ้ง การเรียนรู้การใช้กล้องดูดาว และกิจกรรมวิชาการอื่น ๆ ที่เกี่ยวข้องกับดาราศาสตร์"
+        }
+    ],
+    "is_open": true
+}
