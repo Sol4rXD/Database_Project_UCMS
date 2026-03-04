@@ -1,89 +1,194 @@
 "use client";
 
-import React, { useState } from "react";
-import { Star, Send, User, ChevronDown } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Star, Send, User, Loader2, Check, Pencil, Trash2, X } from "lucide-react";
+import axios from "axios";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
-export default function ReviewForm({ slug, positions }: { slug: string, positions?: any[] }) {
+export default function ReviewForm({ slug, clubId, existingReviews = [] }: { slug: string, clubId: string, existingReviews?: any[] }) {
     const [star, setStar] = useState(5);
     const [hover, setHover] = useState(0);
     const [name, setName] = useState("");
     const [text, setText] = useState("");
     const [year, setYear] = useState(new Date().getFullYear().toString());
-    const [selectedPosition, setSelectedPosition] = useState(positions?.[0]?.name || "Member");
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [showPosDropdown, setShowPosDropdown] = useState(false);
+    const [isAnonymous, setIsAnonymous] = useState(false);
+
+    const [isMember, setIsMember] = useState(false);
+    const [loadingMember, setLoadingMember] = useState(true);
+    const [userId, setUserId] = useState<string | null>(null);
+    const [myReview, setMyReview] = useState<any>(null);
+    const [isEditing, setIsEditing] = useState(false);
+
+    const router = useRouter();
+
+    useEffect(() => {
+        const checkMembership = async () => {
+            const savedUser = localStorage.getItem("user");
+            if (!savedUser) {
+                setLoadingMember(false);
+                return;
+            }
+            const userData = JSON.parse(savedUser);
+            const uId = userData.id.toString();
+            setUserId(uId);
+            setName(userData.fullname || "");
+
+            // Find my review if exists
+            const mine = existingReviews.find(r => r.user_id === uId);
+            if (mine) {
+                setMyReview(mine);
+            }
+
+            try {
+                const res = await axios.get(`/api/usersclub?user_id=${userData.id}&club_id=${clubId}`);
+                if (res.data) {
+                    setIsMember(true);
+                }
+            } catch (error) {
+                console.error("Failed to check membership:", error);
+            } finally {
+                setLoadingMember(false);
+            }
+        };
+
+        checkMembership();
+    }, [clubId, existingReviews]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!userId || !isMember) {
+            toast.error("You must be a member to review this club.");
+            return;
+        }
+
         setIsSubmitting(true);
 
-        // Prepare the review data
-        const reviewData = {
-            name,
-            text,
-            star,
-            position: selectedPosition,
-            year: parseInt(year),
-        };
+        try {
+            if (isEditing) {
+                await axios.put(`/api/club/${slug}/review`, {
+                    user_id: userId,
+                    name: isAnonymous ? "Anonymous" : name,
+                    text,
+                    star,
+                    year: parseInt(year),
+                });
+                toast.success("แก้ไขรีวิวเรียบร้อยครับ!");
+            } else {
+                await axios.post(`/api/club/${slug}/review`, {
+                    user_id: userId,
+                    name: isAnonymous ? "Anonymous" : name,
+                    text,
+                    star,
+                    position: "Member",
+                    year: parseInt(year),
+                });
+                toast.success("ขอบคุณสำหรับรีวิวครับ!");
+            }
 
-        console.log("Submitting Review:", reviewData);
-
-        setTimeout(() => {
-            alert("ขอบคุณสำหรับรีวิวครับ!");
-            setIsSubmitting(false);
-            setName("");
+            setIsEditing(false);
             setText("");
-            setYear(new Date().getFullYear().toString());
             setStar(5);
-        }, 1000);
+            router.refresh();
+        } catch (error: any) {
+            console.error("Submit Review Error:", error);
+            toast.error(error.response?.data?.error || "Failed to submit review.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
-    return (
-        <div className="bg-white rounded-[20px] p-6 shadow-sm flex flex-col h-full relative group border border-gray-100 max-w-[340px] mx-auto w-full">
-            <form onSubmit={handleSubmit} className="flex flex-col h-full">
-                {/* TOP BADGE (Dropdown for Position/Dept) */}
-                <div className="relative self-start mb-4">
-                    <button
-                        type="button"
-                        onClick={() => setShowPosDropdown(!showPosDropdown)}
-                        className="bg-[#E8F8F0] text-[#10B981] text-[11px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1 hover:bg-[#D1FAE5] transition-colors"
-                    >
-                        {selectedPosition}
-                        <ChevronDown className={`w-3 h-3 transition-transform ${showPosDropdown ? "rotate-180" : ""}`} />
-                    </button>
+    const handleDelete = async () => {
+        if (!userId || !confirm("คุณต้องการลบรีวิวนี้ใช่หรือไม่?")) return;
 
-                    {showPosDropdown && (
-                        <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-100 rounded-lg shadow-xl z-20 overflow-hidden animate-in fade-in slide-in-from-top-1">
-                            {positions && positions.length > 0 ? (
-                                positions.map((pos, idx) => (
-                                    <button
-                                        key={idx}
-                                        type="button"
-                                        onClick={() => {
-                                            setSelectedPosition(pos.name);
-                                            setShowPosDropdown(false);
-                                        }}
-                                        className="w-full text-left px-4 py-2 text-[12px] text-gray-600 hover:bg-gray-50 hover:text-[#10B981] transition-colors border-b border-gray-50 last:border-none"
-                                    >
-                                        {pos.name}
-                                    </button>
-                                ))
-                            ) : (
-                                ["Member", "Staff", "Lead", "Designer"].map((p, idx) => (
-                                    <button
-                                        key={idx}
-                                        type="button"
-                                        onClick={() => {
-                                            setSelectedPosition(p);
-                                            setShowPosDropdown(false);
-                                        }}
-                                        className="w-full text-left px-4 py-2 text-[12px] text-gray-600 hover:bg-gray-50 last:border-none"
-                                    >
-                                        {p}
-                                    </button>
-                                ))
-                            )}
-                        </div>
+        setIsSubmitting(true);
+        try {
+            await axios.delete(`/api/club/${slug}/review?user_id=${userId}`);
+            toast.success("ลบรีวิวเรียบร้อยครับ");
+            setMyReview(null);
+            router.refresh();
+        } catch (error: any) {
+            toast.error("Failed to delete review");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const startEdit = () => {
+        if (!myReview) return;
+        setStar(myReview.star);
+        setText(myReview.text);
+        setYear(myReview.year.toString());
+        setIsAnonymous(myReview.name === "Anonymous");
+        setName(myReview.name === "Anonymous" ? name : myReview.name);
+        setIsEditing(true);
+    };
+
+    if (loadingMember || !isMember) {
+        return null;
+    }
+
+    // If already reviewed and not editing, show "My Review" status or Edit button
+    if (myReview && !isEditing) {
+        return (
+            <div className="bg-white rounded-[20px] p-6 shadow-sm flex flex-col h-full relative group border border-blue-100 max-w-[340px] mx-auto w-full">
+                <div className="flex justify-between items-start mb-4">
+                    <div className="bg-blue-50 text-blue-600 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                        Your Review
+                    </div>
+                    <div className="flex gap-2">
+                        <button onClick={startEdit} className="p-1.5 text-gray-400 hover:text-blue-600 transition-colors">
+                            <Pencil className="w-4 h-4" />
+                        </button>
+                        <button onClick={handleDelete} className="p-1.5 text-gray-400 hover:text-rose-600 transition-colors">
+                            <Trash2 className="w-4 h-4" />
+                        </button>
+                    </div>
+                </div>
+                <p className="text-[14px] text-gray-600 italic mb-4">"คุณได้ทำการรีวิวชมรมนี้ไปแล้ว สามารถแก้ไขหรือลบรีวิวได้จากปุ่มด้านบน"</p>
+                <div className="mt-auto flex items-center gap-2">
+                    <div className="flex gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                            <Star key={i} className={`w-3.5 h-3.5 ${i < myReview.star ? "fill-amber-400 text-amber-400" : "text-gray-200"}`} />
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="bg-white rounded-[20px] p-6 shadow-sm flex flex-col h-full relative group border border-gray-100 max-w-[340px] mx-auto w-full overflow-visible">
+            {isEditing && (
+                <button
+                    onClick={() => setIsEditing(false)}
+                    className="absolute -top-3 -right-3 w-8 h-8 bg-white border border-gray-100 rounded-full shadow-md flex items-center justify-center text-gray-400 hover:text-rose-500 transition-all z-10"
+                >
+                    <X className="w-4 h-4" />
+                </button>
+            )}
+
+            <form onSubmit={handleSubmit} className="flex flex-col h-full">
+
+                <div className="flex items-center justify-between mb-4">
+                    {/* ANONYMOUS TOGGLE */}
+                    <div className="flex items-center gap-2 bg-slate-50 self-start px-3 py-1.5 rounded-full border border-slate-100 transition-all">
+                        <button
+                            type="button"
+                            onClick={() => setIsAnonymous(!isAnonymous)}
+                            className={`w-4 h-4 rounded flex items-center justify-center border transition-all ${isAnonymous ? "bg-emerald-500 border-emerald-500" : "bg-white border-slate-300"
+                                }`}
+                        >
+                            {isAnonymous && <Check className="w-3 h-3 text-white" />}
+                        </button>
+                        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider select-none cursor-pointer" onClick={() => setIsAnonymous(!isAnonymous)}>
+                            Anonymous
+                        </span>
+                    </div>
+
+                    {isEditing && (
+                        <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest bg-blue-50 px-2 py-1 rounded">Editing Mode</span>
                     )}
                 </div>
 
@@ -100,17 +205,17 @@ export default function ReviewForm({ slug, positions }: { slug: string, position
 
                 {/* STARS */}
                 <div className="flex gap-1 mb-6">
-                    {[1, 2, 3, 4, 5].map((star) => (
+                    {[1, 2, 3, 4, 5].map((s) => (
                         <button
-                            key={star}
+                            key={s}
                             type="button"
-                            onMouseEnter={() => setHover(star)}
+                            onMouseEnter={() => setHover(s)}
                             onMouseLeave={() => setHover(0)}
-                            onClick={() => setStar(star)}
+                            onClick={() => setStar(s)}
                             className="transition-transform hover:scale-110"
                         >
                             <Star
-                                className={`w-4 h-4 ${(hover || star) >= star
+                                className={`w-4 h-4 ${(hover || star) >= s
                                     ? "fill-[#FBBF24] text-[#FBBF24]"
                                     : "text-[#E5E7EB]"
                                     }`}
@@ -129,9 +234,10 @@ export default function ReviewForm({ slug, positions }: { slug: string, position
                             <input
                                 type="text"
                                 placeholder="Your Name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                className="text-[13px] font-bold text-[#111827] bg-transparent outline-none placeholder-gray-300 w-full"
+                                value={isAnonymous ? "Anonymous" : name}
+                                onChange={(e) => !isAnonymous && setName(e.target.value)}
+                                disabled={isAnonymous}
+                                className={`text-[13px] font-bold text-[#111827] bg-transparent outline-none placeholder-gray-300 w-full ${isAnonymous ? "text-gray-400 italic" : ""}`}
                                 required
                             />
                             <input
@@ -148,9 +254,9 @@ export default function ReviewForm({ slug, positions }: { slug: string, position
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-8 h-8 bg-[#0B2C4D] text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-md disabled:opacity-50 shrink-0"
+                        className={`w-8 h-8 rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-md disabled:opacity-50 shrink-0 ${isEditing ? "bg-blue-500" : "bg-[#0B2C4D]"} text-white`}
                     >
-                        <Send className="w-3.5 h-3.5" />
+                        {isSubmitting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Send className="w-3.5 h-3.5" />}
                     </button>
                 </div>
             </form>

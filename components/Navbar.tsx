@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LoginModal } from "./login/LoginModal";
 import { useState, useEffect } from "react";
 import { UserCircleIcon, LogOutIcon, GraduationCap } from "lucide-react";
@@ -30,40 +31,55 @@ export default function Navbar() {
     window.location.reload();
   };
 
+  const pathname = usePathname();
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <nav className="flex justify-between items-center bg-white p-4 drop-shadow-md fixed top-0 left-0 w-full z-50">
-      <Link href="/" className="ml-4 flex items-center gap-2 cursor-pointer">
+      <a href="/" className="ml-4 flex items-center gap-2 cursor-pointer">
         <GraduationCap className="w-6 h-6 text-primary" />
         <span className="text-2xl font-bold tracking-tight text-primary">
           UCMS
         </span>
-      </Link>
+      </a>
 
       <div className="flex items-center">
         <ul className="flex gap-10 text-base font-medium text-black mr-10">
           <li>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('news')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="hover:text-blue-500 font-bold transition duration-200 cursor-pointer bg-transparent border-none p-0 outline-none"
+            <Link
+              href="/#news"
+              onClick={(e) => handleScroll(e, "news")}
+              className="hover:text-blue-500 font-bold transition duration-200 cursor-pointer"
             >
               ข่าวสาร
-            </button>
+            </Link>
           </li>
           <li>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('clublist')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="hover:text-blue-500 font-bold transition duration-200 cursor-pointer bg-transparent border-none p-0 outline-none"
+            <Link
+              href="/#clublist"
+              onClick={(e) => handleScroll(e, "clublist")}
+              className="hover:text-blue-500 font-bold transition duration-200 cursor-pointer"
             >
               รายชื่อชมรม
-            </button>
+            </Link>
           </li>
-          <li><Link href="/calendar" className="hover:text-blue-500 font-bold transition duration-200">ตารางกิจกรรม</Link></li>
+          <li>
+            <Link
+              href="/calendar"
+              className="hover:text-blue-500 font-bold transition duration-200"
+            >
+              ตารางกิจกรรม
+            </Link>
+          </li>
         </ul>
 
         {!mounted ? (

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import Image from "next/image"
-import { ChevronDown, Quote, Star, MapPin } from "lucide-react"
+import { ChevronDown, Quote, Star, MapPin, User } from "lucide-react"
 import ActivityCarousel from "@/components/ActivityCarousel"
 import ReviewForm from "@/components/ReviewForm"
 import ContactBanner from "@/components/ContactBanner"
@@ -281,50 +281,53 @@ export default async function Page(
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1000px] mx-auto">
                         {/* INPUT REVIEW CARD */}
-                        <ReviewForm slug={slug} positions={club.position} />
+                        <ReviewForm slug={slug} clubId={club._id} existingReviews={club.reviews || []} />
 
-                        {club.reviews?.map((review: any, i: number) => (
-                            <div
-                                key={i}
-                                className="bg-white rounded-[20px] p-6 shadow-sm flex flex-col relative overflow-hidden max-w-[340px] mx-auto w-full"
-                            >
-                                {/* TOP BADGE */}
-                                <div className="self-start bg-[#E8F8F0] text-[#10B981] text-[11px] font-bold px-2.5 py-1 rounded-md mb-4 leading-none text-center">
-                                    {review.position || "Member"}
-                                </div>
-
-                                {/* MAIN TEXT */}
-                                <p className="text-[14px] text-[#374151] leading-relaxed mb-4 font-medium">
-                                    {review.text || "No review available"}
-                                </p>
-
-                                {/* STARS */}
-                                <div className="flex gap-1 mb-6 mt-auto">
-                                    {[...Array(5)].map((_, starI) => (
-                                        <Star
-                                            key={starI}
-                                            className={`w-4 h-4 ${starI < (review.star || 5) ? 'fill-[#FBBF24] text-[#FBBF24]' : 'fill-gray-200 text-gray-200'}`}
-                                        />
-                                    ))}
-                                </div>
-
-                                {/* PROFILE FOOTER (Avatar Left of Name/Bio) */}
-                                <div className="flex items-center gap-2.5">
-                                    <div className="w-9 h-9 rounded-full overflow-hidden shrink-0 relative border-1 border-white shadow-sm">
-                                        <Image
-                                            src={getSafeUrl(review.user_image, "/testpic/anonymous.webp")}
-                                            alt="avatar"
-                                            fill
-                                            className="object-cover"
-                                        />
+                        {club.reviews?.length > 0 ? (
+                            club.reviews.slice().reverse().map((review: any, i: number) => (
+                                <div
+                                    key={i}
+                                    className="bg-white rounded-[20px] p-6 shadow-sm flex flex-col relative overflow-hidden max-w-[340px] mx-auto w-full"
+                                >
+                                    {/* TOP BADGE */}
+                                    <div className="self-start bg-[#E8F8F0] text-[#10B981] text-[11px] font-bold px-2.5 py-1 rounded-md mb-4 leading-none text-center">
+                                        {review.position || "Member"}
                                     </div>
-                                    <div className="flex flex-col text-left">
-                                        <h5 className="font-bold text-[13px] text-[#111827] leading-tight">{review.name || "Anonymous"}</h5>
-                                        <p className="text-[11px] text-[#6B7280] mt-0.5">{review.year ? `Class of ${review.year}` : "Member"}</p>
+
+                                    {/* MAIN TEXT */}
+                                    <p className="text-[14px] text-[#374151] leading-relaxed mb-4 font-medium">
+                                        {review.text || "No review available"}
+                                    </p>
+
+                                    {/* STARS */}
+                                    <div className="flex gap-1 mb-6 mt-auto">
+                                        {[...Array(5)].map((_, starI) => (
+                                            <Star
+                                                key={starI}
+                                                className={`w-4 h-4 ${starI < (review.star || 5) ? 'fill-[#FBBF24] text-[#FBBF24]' : 'fill-gray-200 text-gray-200'}`}
+                                            />
+                                        ))}
+                                    </div>
+
+                                    {/* PROFILE FOOTER (Avatar Left of Name/Bio) */}
+                                    <div className="flex items-center gap-2.5">
+                                        <div className="w-9 h-9 bg-gray-50 rounded-full flex items-center justify-center border border-gray-100 shrink-0">
+                                            <User className="w-4 h-4 text-gray-400" />
+                                        </div>
+                                        <div className="flex flex-col text-left">
+                                            <h5 className="font-bold text-[13px] text-[#111827] leading-tight">{review.name || "Anonymous"}</h5>
+                                            <p className="text-[11px] text-[#6B7280] mt-0.5">{review.year ? `Class of ${review.year}` : "Member"}</p>
+                                        </div>
                                     </div>
                                 </div>
+                            ))
+                        ) : (
+                            <div className="col-span-full flex flex-col items-center justify-center py-12 px-6 bg-white/5 border-2 border-dashed border-white/20 rounded-[24px] text-center">
+                                <Quote className="w-12 h-12 text-blue-300/40 mb-4" />
+                                <p className="text-blue-100 font-bold text-xl">ยังไม่มีรีวิวสำหรับชมรมนี้</p>
+                                <p className="text-blue-200/60 text-sm mt-2">ร่วมเป็นคนแรกที่แบ่งปันประสบการณ์ของคุณ!</p>
                             </div>
-                        ))}
+                        )}
                     </div>
                 </div>
             </section>

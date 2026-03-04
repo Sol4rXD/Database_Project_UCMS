@@ -61,7 +61,7 @@ export default function Clublist() {
     });
 
   return (
-    <div className="py-10 mt-15">
+    <div className="py-10">
       <div className="max-w-5xl mx-auto px-4">
 
         <div className="flex items-center justify-between mb-8">

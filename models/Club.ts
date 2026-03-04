@@ -34,6 +34,8 @@ const ClubSchema = new Schema({
   reviews: [
     {
       user_id: { type: String }, // Relate to user_id (MySQL)
+      name: { type: String },
+      position: { type: String },
       star: { type: Number, min: 1, max: 5 },
       text: { type: String },
       year: { type: Number },
