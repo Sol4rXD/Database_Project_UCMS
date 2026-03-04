@@ -28,6 +28,94 @@ import {
   ArrowLeftIcon
 } from "lucide-react"
 
+const FACULTIES_DATA: Record<string, string[]> = {
+  "วิศวกรรมศาสตร์": [
+    "วิศวกรรมคอมพิวเตอร์",
+    "วิศวกรรมเครื่องกล",
+    "วิศวกรรมไฟฟ้า",
+    "วิศวกรรมโยธา",
+    "วิศวกรรมอุตสาหการ",
+    "วิศวกรรมเคมี",
+    "วิศวกรรมสิ่งแวดล้อม",
+    "วิศวกรรมการบินและอวกาศ"
+  ],
+  "วิทยาศาสตร์": [
+    "วิทยาการคอมพิวเตอร์",
+    "คณิตศาสตร์",
+    "เคมี",
+    "ฟิสิกส์",
+    "ชีววิทยา",
+    "สถิติ",
+    "จุลชีววิทยา",
+    "พันธุศาสตร์"
+  ],
+  "บริหารธุรกิจ": [
+    "การบัญชี",
+    "การเงิน",
+    "การตลาด",
+    "การจัดการ",
+    "การจัดการการดำเนินงาน"
+  ],
+  "เศรษฐศาสตร์": [
+    "เศรษฐศาสตร์",
+    "เศรษฐศาสตร์เกษตรและทรัพยากร",
+    "ธุรกิจการเกษตร"
+  ],
+  "อุตสาหกรรมเกษตร": [
+    "วิทยาศาสตร์และเทคโนโลยีการอาหาร",
+    "เทคโนโลยีชีวภาพ",
+    "พัฒนาผลิตภัณฑ์",
+    "เทคโนโลยีการบรรจุและวัสดุ",
+    "อุตสาหกรรมเกษตร"
+  ],
+  "มนุษยศาสตร์": [
+    "ภาษาอังกฤษ",
+    "ภาษาไทย",
+    "ภาษาญี่ปุ่น",
+    "ภาษาจีน",
+    "สื่อสารมวลชน",
+    "ท่องเที่ยวและโรงแรม"
+  ],
+  "สังคมศาสตร์": [
+    "จิตวิทยา",
+    "นิติศาสตร์",
+    "รัฐศาสตร์",
+    "ภูมิศาสตร์",
+    "สังคมวิทยาและมานุษยวิทยา"
+  ],
+  "เกษตร": [
+    "กีฏวิทยา",
+    "โรคพืช",
+    "ปฐพีวิทยา",
+    "พืชไร่นา",
+    "พืชสวน",
+    "สัตวบาล"
+  ],
+  "ศึกษาศาสตร์": [
+    "การพัฒนาทรัพยากรมนุษย์",
+    "พลศึกษา",
+    "คณิตศาสตร์ศึกษา",
+    "วิทยาศาสตร์ศึกษา"
+  ],
+  "วนศาสตร์": [
+    "การจัดการป่าไม้",
+    "ชีววิทยาป่าไม้",
+    "วนวัฒนวิทยา",
+    "วิศวกรรมป่าไม้"
+  ],
+  "ประมง": [
+    "การจัดการประมง",
+    "ชีววิทยาประมง",
+    "เพาะเลี้ยงสัตว์น้ำ",
+    "ผลิตภัณฑ์ประมง"
+  ],
+  "สถาปัตยกรรมศาสตร์": [
+    "สถาปัตยกรรม",
+    "ภูมิสถาปัตยกรรม",
+    "นวัตกรรมการออกแบบผลิตภัณฑ์"
+  ]
+};
+
 export default function FieldDemo() {
   const [fullname, setFullname] = useState("");
   const [surname, setSurname] = useState("");
@@ -36,6 +124,11 @@ export default function FieldDemo() {
   const [student_id, setStudentID] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+
+  const handleFacultyChange = (value: string) => {
+    setFaculty(value);
+    setDepartment(""); // Reset department when faculty changes
+  };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,7 +144,7 @@ export default function FieldDemo() {
 
       if (res.status === 201) {
         toast("Register Success");
-        
+
         router.push("/");
         router.refresh()
       }
@@ -74,15 +167,15 @@ export default function FieldDemo() {
                 <div className="text-primary font-extrabold text-2xl mt-10">Register</div>
                 <Link href="/" className="-mb-17">
                   <Button variant="outline" size="icon" aria-label="Go Back" className="cursor-pointer">
-                    <ArrowLeftIcon className="cursor-pointer"/>
+                    <ArrowLeftIcon className="cursor-pointer" />
                   </Button>
                 </Link>
               </div>
-              <div className="flex items-baseline gap-1.5 mb-2 -mt-4"> 
+              <div className="flex items-baseline gap-1.5 mb-2 -mt-4">
                 <span className="text-sm text-[#7A7979]">
                   New User ?
                 </span>
-                <LoginLink/>
+                <LoginLink />
               </div>
               <FieldGroup>
                 <div className="flex justify-between gap-10">
@@ -116,16 +209,15 @@ export default function FieldDemo() {
                     <FieldLabel htmlFor="Faculty" className="text-primary">
                       Faculty
                     </FieldLabel>
-                    <Select defaultValue="" onValueChange={setFaculty} value={faculty}>
+                    <Select defaultValue="" onValueChange={handleFacultyChange} value={faculty}>
                       <SelectTrigger id="Faculty">
                         <SelectValue placeholder="Faculty" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="วิศวกรรมศาสตร์">วิศวกรรมศาสตร์</SelectItem>
-                          <SelectItem value="บัญชี">บัญชี</SelectItem>
-                          <SelectItem value="อุตสาหกรรมเกษตร">อุตสาหกรรมเกษตร</SelectItem>
-                          <SelectItem value="เศรษฐศาสตร์">เศรษฐศาสตร์</SelectItem>
+                          {Object.keys(FACULTIES_DATA).map((fac) => (
+                            <SelectItem key={fac} value={fac}>{fac}</SelectItem>
+                          ))}
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -134,16 +226,20 @@ export default function FieldDemo() {
                     <FieldLabel htmlFor="Department" className="text-primary">
                       Department
                     </FieldLabel>
-                    <Select defaultValue="" onValueChange={setDepartment} value={department}>
+                    <Select
+                      defaultValue=""
+                      onValueChange={setDepartment}
+                      value={department}
+                      disabled={!faculty}
+                    >
                       <SelectTrigger id="Department">
-                        <SelectValue placeholder="Department" />
+                        <SelectValue placeholder={faculty ? "Department" : "Select Faculty First"} />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="คอมพิวเตอร์">คอมพิวเตอร์</SelectItem>
-                          <SelectItem value="เครื่องกล">เครื่องกล</SelectItem>
-                          <SelectItem value="อุตสาหกรรมเกษตร">อุตสาหกรรมเกษตร</SelectItem>
-                          <SelectItem value="เศรษฐศาสตร์">เศรษฐศาสตร์</SelectItem>
+                          {faculty && FACULTIES_DATA[faculty]?.map((dept) => (
+                            <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+                          ))}
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -158,7 +254,7 @@ export default function FieldDemo() {
                       id="StudentID"
                       placeholder="StudentID"
                       type="Number"
-                      value={student_id} 
+                      value={student_id}
                       onChange={(e) => setStudentID(e.target.value)}
                       required
                     />
