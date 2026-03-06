@@ -35,10 +35,17 @@ export default function AdminFab() {
                 <DropdownMenuTrigger asChild>
                     <Button
                         size="icon"
-                        className="h-16 w-16 rounded-full shadow-[0_8px_30px_rgb(7,9,116,0.3)] bg-[#070974] hover:bg-[#070974]/90 transition-all duration-500 transform hover:scale-110 active:scale-95 border-none group relative overflow-hidden"
+                        className="h-16 w-16 rounded-full shadow-[0_10px_40px_rgba(7,9,116,0.25)] bg-gradient-to-br from-[#070974] to-blue-900 hover:from-blue-900 hover:to-[#070974] transition-all duration-500 transform hover:scale-110 active:scale-95 border-none group relative overflow-hidden ring-4 ring-white/10 hover:ring-white/20"
                     >
-                        <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <Plus className="h-8 w-8 text-white transition-transform duration-500 group-data-[state=open]:rotate-45 relative z-10" />
+                        {/* Shimmer Effect */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
+
+                        {/* Floating Admin Label on Hover */}
+                        <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#070974] text-white text-[10px] font-bold py-1 px-3 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none uppercase tracking-wider shadow-lg">
+                            Admin Menu
+                        </div>
+
+                        <Plus className="h-8 w-8 text-white transition-transform duration-500 group-data-[state=open]:rotate-[135deg] relative z-10" />
                         <span className="sr-only">Admin Menu</span>
                     </Button>
                 </DropdownMenuTrigger>

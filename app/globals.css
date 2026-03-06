@@ -130,4 +130,14 @@
     @apply bg-background text-foreground;
     font-family: var(--font-inter), var(--font-ibm-plex-thai), sans-serif;
   }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 1.5s infinite;
+  }
 }
