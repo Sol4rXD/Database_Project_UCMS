@@ -82,7 +82,7 @@ export function News() {
                     onClick={() => document.getElementById('clublist')?.scrollIntoView({ behavior: 'smooth' })}
                     className="mt-6 bg-primary px-8 py-4 rounded-full
                                    text-white font-semibold
-                                   hover:scale-105 transition">
+                                   hover:scale-105 transition cursor-pointer">
                     Register Now →
                 </button>
             </div>

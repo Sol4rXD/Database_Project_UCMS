@@ -39,7 +39,7 @@ model Club_Apply {
   status    Status   @default(PENDING)
   create_at DateTime @default(now())
 
-  user Users @relation(fields: [user_id], references: [id])
+  user Users @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 enum Status {
@@ -53,5 +53,5 @@ model User_Clubs {
   user_id Int
   club_id String
 
-  user Users @relation(fields: [user_id], references: [id])
+  user Users @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }

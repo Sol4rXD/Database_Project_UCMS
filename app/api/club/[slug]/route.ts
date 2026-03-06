@@ -1,6 +1,7 @@
 import { connectDB } from "@/lib/mongodb";
 import { Club } from "@/models/Club";
 import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
 export async function GET(
   req: Request,
@@ -10,11 +11,11 @@ export async function GET(
     await connectDB();
     const { slug } = await params;
     console.log("Slug ที่รับมาคือ:", slug);
-    const club = await Club.findOne({ slug: slug }); 
+    const club = await Club.findOne({ slug: slug });
 
     if (!club) {
       return NextResponse.json(
-        { error: "Club not found" }, 
+        { error: "Club not found" },
         { status: 404 }
       );
     }
@@ -23,7 +24,7 @@ export async function GET(
   } catch (error) {
     console.error("GET by Slug Error:", error);
     return NextResponse.json(
-      { error: "Error to fetch data" }, 
+      { error: "Error to fetch data" },
       { status: 500 }
     );
   }
@@ -81,8 +82,17 @@ export async function DELETE(
       );
     }
 
+    // Delete related records in MySQL (Manual Cascade)
+    await prisma.user_Clubs.deleteMany({
+      where: { club_id: slug }
+    });
+
+    await prisma.club_Apply.deleteMany({
+      where: { club_id: slug }
+    });
+
     return NextResponse.json(
-      { message: "Delete club success" },
+      { message: "Delete club success and cleaned up related records" },
       { status: 200 }
     );
   } catch (error: any) {
