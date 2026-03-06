@@ -70,7 +70,14 @@ export function LoginLink() {
           <FieldGroup className="mt-3">
             <Field>
               <Label htmlFor="username" className="text-primary">StudentID</Label>
-              <Input id="name-1" name="name" placeholder="StudentID" value={student_id} onChange={(e) => setStudent_id(e.target.value)} />
+              <Input
+                id="name-1"
+                name="name"
+                placeholder="StudentID"
+                inputMode="numeric"
+                value={student_id}
+                onChange={(e) => setStudent_id(e.target.value.replace(/\D/g, ""))}
+              />
             </Field>
             <Field>
               <Label htmlFor="password" className="text-primary">Password</Label>
@@ -78,7 +85,7 @@ export function LoginLink() {
             </Field>
           </FieldGroup>
           <DialogFooter>
-            <Button type="submit" className="w-full mt-7 py-6 text-base font-bold rounded-xl bg-primary hover:bg-primary/90 cursor-pointer transition-all duration-300 flex items-center justify-center gap-2">
+            <Button type="submit" className="w-full mt-7 py-6 text-base font-bold rounded-lg bg-primary hover:bg-primary/90 cursor-pointer transition-all duration-300 flex items-center justify-center gap-2">
               <LogIn className="w-5 h-5" />
               Sign In
             </Button>

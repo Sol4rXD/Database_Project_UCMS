@@ -49,7 +49,7 @@ export function LoginModal() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-2.5 h-auto font-bold rounded-full cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 border-none">
+        <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-2.5 h-auto font-bold rounded-lg cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 border-none">
           <LogIn className="w-4 h-4" />
           Sign In
         </Button>
@@ -68,7 +68,14 @@ export function LoginModal() {
           <FieldGroup className="mt-6">
             <Field>
               <Label htmlFor="username" className="text-primary">StudentID</Label>
-              <Input id="name-1" name="name" placeholder="StudentID" value={student_id} onChange={(e) => setStudent_id(e.target.value)} />
+              <Input
+                id="name-1"
+                name="name"
+                placeholder="StudentID"
+                inputMode="numeric"
+                value={student_id}
+                onChange={(e) => setStudent_id(e.target.value.replace(/\D/g, ""))}
+              />
             </Field>
             <Field>
               <Label htmlFor="password" className="text-primary">Password</Label>
@@ -76,7 +83,7 @@ export function LoginModal() {
             </Field>
           </FieldGroup>
           <DialogFooter>
-            <Button type="submit" className="w-full mt-7 py-6 text-base font-bold rounded-xl bg-primary hover:bg-primary/90 cursor-pointer transition-all duration-300 flex items-center justify-center gap-2">
+            <Button type="submit" className="w-full mt-7 py-6 text-base font-bold rounded-lg bg-primary hover:bg-primary/90 cursor-pointer transition-all duration-300 flex items-center justify-center gap-2">
               <LogIn className="w-5 h-5" />
               Sign In
             </Button>

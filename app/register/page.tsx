@@ -25,7 +25,9 @@ import {
 } from "@/components/ui/select"
 
 import {
-  ArrowLeftIcon
+  ArrowLeftIcon,
+  UserPlus,
+  GraduationCap
 } from "lucide-react"
 
 const FACULTIES_DATA: Record<string, string[]> = {
@@ -158,72 +160,83 @@ export default function FieldDemo() {
   }
 
   return (
-    <main className="flex justify-center">
-      <div className="w-full max-w-md">
-        <form onSubmit={handleRegister}>
-          <FieldGroup>
-            <FieldSet>
-              <div className="flex justify-between items-center">
-                <div className="text-primary font-extrabold text-2xl mt-10">Register</div>
-                <Link href="/" className="-mb-17">
-                  <Button variant="outline" size="icon" aria-label="Go Back" className="cursor-pointer">
-                    <ArrowLeftIcon className="cursor-pointer" />
+    <main className="min-h-screen flex items-center justify-center bg-[#f8fafc] py-12 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-xl">
+        <div className="bg-white rounded-2xl shadow-[0_20px_50px_rgba(8,112,184,0.08)] overflow-hidden border border-slate-100">
+          <div className="p-8 sm:p-12">
+            <form onSubmit={handleRegister} className="space-y-8">
+              <div className="flex justify-between items-start">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-primary/5 p-2 rounded-lg">
+                      <GraduationCap className="w-8 h-8 text-primary" />
+                    </div>
+                    <h1 className="text-3xl font-black tracking-tight text-primary uppercase">Register</h1>
+                  </div>
+                  <div className="flex items-center gap-1.5 pl-1">
+                    <span className="text-sm font-medium text-[#7A7979]">
+                      New User ?
+                    </span>
+                    <LoginLink />
+                  </div>
+                </div>
+                <Link href="/">
+                  <Button variant="outline" size="icon" aria-label="Go Back" className="rounded-lg w-10 h-10 border-slate-200 hover:bg-slate-50 transition-all cursor-pointer">
+                    <ArrowLeftIcon className="w-5 h-5 text-slate-600" />
                   </Button>
                 </Link>
               </div>
-              <div className="flex items-baseline gap-1.5 mb-2 -mt-4">
-                <span className="text-sm text-[#7A7979]">
-                  New User ?
-                </span>
-                <LoginLink />
-              </div>
-              <FieldGroup>
-                <div className="flex justify-between gap-10">
+
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <Field>
-                    <FieldLabel htmlFor="Fullname" className="text-primary">
+                    <FieldLabel htmlFor="Fullname" className="text-primary font-bold text-sm mb-2 block uppercase tracking-wider">
                       Fullname
                     </FieldLabel>
                     <Input
                       id="Fullname"
-                      placeholder="Fullname"
+                      placeholder="First Name"
                       value={fullname}
                       onChange={(e) => setFullname(e.target.value)}
                       required
+                      className="h-12 border-slate-200 rounded-lg focus:ring-primary focus:border-primary transition-all text-base px-4 font-medium"
                     />
                   </Field>
                   <Field>
-                    <FieldLabel htmlFor="Surname" className="text-primary">
+                    <FieldLabel htmlFor="Surname" className="text-primary font-bold text-sm mb-2 block uppercase tracking-wider">
                       Surname
                     </FieldLabel>
                     <Input
                       id="Surname"
-                      placeholder="Surname"
+                      placeholder="Last Name"
                       value={surname}
                       onChange={(e) => setSurname(e.target.value)}
                       required
+                      className="h-12 border-slate-200 rounded-lg focus:ring-primary focus:border-primary transition-all text-base px-4 font-medium"
                     />
                   </Field>
                 </div>
-                <div className="flex justify-between gap-10">
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <Field>
-                    <FieldLabel htmlFor="Faculty" className="text-primary">
+                    <FieldLabel htmlFor="Faculty" className="text-primary font-bold text-sm mb-2 block uppercase tracking-wider">
                       Faculty
                     </FieldLabel>
                     <Select defaultValue="" onValueChange={handleFacultyChange} value={faculty}>
-                      <SelectTrigger id="Faculty">
+                      <SelectTrigger id="Faculty" className="h-12 border-slate-200 rounded-lg focus:ring-primary focus:border-primary transition-all text-base px-4 font-medium">
                         <SelectValue placeholder="Faculty" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="rounded-lg border-slate-200 shadow-xl max-h-[300px]">
                         <SelectGroup>
                           {Object.keys(FACULTIES_DATA).map((fac) => (
-                            <SelectItem key={fac} value={fac}>{fac}</SelectItem>
+                            <SelectItem key={fac} value={fac} className="rounded-md my-1 cursor-pointer">{fac}</SelectItem>
                           ))}
                         </SelectGroup>
                       </SelectContent>
                     </Select>
                   </Field>
                   <Field>
-                    <FieldLabel htmlFor="Department" className="text-primary">
+                    <FieldLabel htmlFor="Department" className="text-primary font-bold text-sm mb-2 block uppercase tracking-wider">
                       Department
                     </FieldLabel>
                     <Select
@@ -232,57 +245,61 @@ export default function FieldDemo() {
                       value={department}
                       disabled={!faculty}
                     >
-                      <SelectTrigger id="Department">
-                        <SelectValue placeholder={faculty ? "Department" : "Select Faculty First"} />
+                      <SelectTrigger id="Department" className="h-12 border-slate-200 rounded-lg focus:ring-primary focus:border-primary transition-all text-base px-4 font-medium">
+                        <SelectValue placeholder={faculty ? "Department" : "Select FacultyFirst"} />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="rounded-lg border-slate-200 shadow-xl max-h-[300px]">
                         <SelectGroup>
                           {faculty && FACULTIES_DATA[faculty]?.map((dept) => (
-                            <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+                            <SelectItem key={dept} value={dept} className="rounded-md my-1 cursor-pointer">{dept}</SelectItem>
                           ))}
                         </SelectGroup>
                       </SelectContent>
                     </Select>
                   </Field>
                 </div>
-                <div>
-                  <Field>
-                    <FieldLabel htmlFor="StudentID" className="text-primary">
-                      StudentID
-                    </FieldLabel>
-                    <Input
-                      id="StudentID"
-                      placeholder="StudentID"
-                      type="Number"
-                      value={student_id}
-                      onChange={(e) => setStudentID(e.target.value)}
-                      required
-                    />
-                  </Field>
-                </div>
-                <div className="flex justify-between gap-10">
-                  <Field>
-                    <FieldLabel htmlFor="Password" className="text-primary">
-                      Password
-                    </FieldLabel>
-                    <Input
-                      id="Password"
-                      placeholder="Password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </Field>
-                </div>
-              </FieldGroup>
-            </FieldSet>
-            <FieldSeparator />
-            <Field orientation="horizontal">
-              <Button type="submit" className="w-full cursor-pointer -mt-3">Register</Button>
-            </Field>
-          </FieldGroup>
-        </form>
+
+                <Field>
+                  <FieldLabel htmlFor="StudentID" className="text-primary font-bold text-sm mb-2 block uppercase tracking-wider">
+                    Student ID
+                  </FieldLabel>
+                  <Input
+                    id="StudentID"
+                    placeholder="Enter your Student ID"
+                    type="text"
+                    inputMode="numeric"
+                    value={student_id}
+                    onChange={(e) => setStudentID(e.target.value.replace(/\D/g, ""))}
+                    required
+                    className="h-12 border-slate-200 rounded-lg focus:ring-primary focus:border-primary transition-all text-base px-4 font-medium"
+                  />
+                </Field>
+
+                <Field>
+                  <FieldLabel htmlFor="Password" className="text-primary font-bold text-sm mb-2 block uppercase tracking-wider">
+                    Password
+                  </FieldLabel>
+                  <Input
+                    id="Password"
+                    placeholder="••••••••"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="h-12 border-slate-200 rounded-lg focus:ring-primary focus:border-primary transition-all text-base px-4 font-medium"
+                  />
+                </Field>
+              </div>
+
+              <div className="pt-4">
+                <Button type="submit" className="w-full py-7 text-lg font-bold rounded-lg bg-primary hover:bg-primary/90 cursor-pointer transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(7,9,116,0.15)] hover:shadow-[0_15px_30px_rgba(7,9,116,0.25)] hover:-translate-y-1 active:translate-y-0 border-none">
+                  <UserPlus className="w-6 h-6" />
+                  CREATE ACCOUNT
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </main>
   )
