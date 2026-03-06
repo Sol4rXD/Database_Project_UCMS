@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { comparePassword } from "@/lib/password";
 
 export async function POST(request: Request) {
   try {
@@ -16,13 +17,15 @@ export async function POST(request: Request) {
     const user = await prisma.users.findUnique({
       where: { student_id: student_id },
     })
-    if (!user) {
+    if (!user || !user.password) {
       return NextResponse.json(
-        { message: "User not found." },
-        { status: 404 }
+        { message: "Password incorrect." },
+        { status: 401 }
       )
     }
-    if (user.password !== password) {
+
+    const isMatch = await comparePassword(password, user.password);
+    if (!isMatch) {
       return NextResponse.json(
         { message: "Password incorrect." },
         { status: 401 }

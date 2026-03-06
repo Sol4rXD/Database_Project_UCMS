@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { hashPassword } from "@/lib/password";
 
 export async function POST(req: Request) {
   try {
@@ -16,9 +17,11 @@ export async function POST(req: Request) {
       return Response.json({ message: "student_id already exists" }, { status: 400 });
     }
 
+    const hashedPassword = await hashPassword(password);
+
     const user = await prisma.users.create({
       data: {
-        password,    
+        password: hashedPassword,
         fullname,
         surname,
         student_id,
@@ -26,7 +29,7 @@ export async function POST(req: Request) {
         department
       }
     })
-    return Response.json(user, { status: 201});
+    return Response.json(user, { status: 201 });
   } catch (error) {
     return new Response(error as BodyInit, {
       status: 500
