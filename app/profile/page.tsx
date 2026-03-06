@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Card from "@/components/Card";
 import {
   GraduationCap,
@@ -273,6 +274,8 @@ export default function ProfilePage() {
 
 // Sub-components for better organization
 function ClubCard({ club, index }: { club: any, index: number }) {
+  const clubSlug = club.slug || club._id;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -332,10 +335,13 @@ function ClubCard({ club, index }: { club: any, index: number }) {
         </div>
 
         <div className="mt-auto relative z-10">
-          <button className="text-sm font-bold text-slate-500 dark:text-slate-400 bg-slate-50 hover:bg-indigo-50 dark:bg-slate-800/80 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-indigo-200 dark:hover:border-indigo-600 hover:text-indigo-600 dark:hover:text-indigo-300 px-4 py-2.5 rounded-xl flex items-center justify-center gap-1.5 w-full transition-all duration-300 group/btn2">
+          <Link
+            href={`/club/${clubSlug}`}
+            className="text-sm font-bold text-slate-500 dark:text-slate-400 bg-slate-50 hover:bg-indigo-50 dark:bg-slate-800/80 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-indigo-200 dark:hover:border-indigo-600 hover:text-indigo-600 dark:hover:text-indigo-300 px-4 py-2.5 rounded-xl flex items-center justify-center gap-1.5 w-full transition-all duration-300 group/btn2"
+          >
             รายละเอียดกิจกรรม
             <ChevronRight size={16} className="transform transition-transform group-hover/btn2:translate-x-1" />
-          </button>
+          </Link>
         </div>
       </div>
     </motion.div>
