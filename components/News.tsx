@@ -75,10 +75,12 @@ export function News() {
                 </h1>
 
                 <p className="mt-1 text-gray-300 text-lg max-w-lg">
-                    Register now จะเปิดรับสมัครเร็ว ๆ นี้
+                    จะเปิดรับสมัครเร็ว ๆ นี้
                 </p>
 
-                <button className="mt-6 bg-primary px-8 py-4 rounded-full
+                <button
+                    onClick={() => document.getElementById('clublist')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="mt-6 bg-primary px-8 py-4 rounded-full
                                    text-white font-semibold
                                    hover:scale-105 transition">
                     Register Now →
