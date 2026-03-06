@@ -185,7 +185,7 @@ export default function ProfilePage() {
                 <InfoRow delay={0.1} icon={<Building2 />} label="Faculty" value={userProfile.faculty} />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-4">
                   <InfoRow delay={0.2} icon={<GraduationCap />} label="Department" value={userProfile.department} />
-                  <InfoRow delay={0.3} icon={<CalendarDays />} label="Joined" value={userProfile.joinDate} />
+                  <InfoRow delay={0.3} icon={<ShieldCheck />} label="Role" value={userProfile.role} />
                 </div>
               </div>
             </div>
