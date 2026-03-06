@@ -6,6 +6,7 @@ import axios from "axios"
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { LogIn } from "lucide-react"
 import {
   Dialog,
   DialogContent,
@@ -22,7 +23,7 @@ import { Label } from "@/components/ui/label"
 export function LoginModal() {
   const [open, setOpen] = useState(false);
 
-  const [student_id , setStudent_id] = useState("")
+  const [student_id, setStudent_id] = useState("")
   const [password, setPassword] = useState("")
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -44,14 +45,17 @@ export function LoginModal() {
       alert("username or password incorrect");
     }
   }
-  
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button className="bg-primary hover:bg-blue-500 text-white px-6 py-2 h-10 font-bold cursor-pointer transition duration-300">Sign In</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-sm">
-          <form onSubmit={handleLogin}>
+      <DialogTrigger asChild>
+        <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-2.5 h-auto font-bold rounded-full cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 border-none">
+          <LogIn className="w-4 h-4" />
+          Sign In
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-sm">
+        <form onSubmit={handleLogin}>
           <DialogHeader>
             <DialogTitle className="text-primary font-extrabold text-2xl">Log in</DialogTitle>
             <div className="flex">
@@ -64,18 +68,21 @@ export function LoginModal() {
           <FieldGroup className="mt-6">
             <Field>
               <Label htmlFor="username" className="text-primary">StudentID</Label>
-              <Input id="name-1" name="name" placeholder="StudentID" value={student_id} onChange={(e) => setStudent_id(e.target.value)}/>
+              <Input id="name-1" name="name" placeholder="StudentID" value={student_id} onChange={(e) => setStudent_id(e.target.value)} />
             </Field>
             <Field>
               <Label htmlFor="password" className="text-primary">Password</Label>
-              <Input id="username-1" name="username"  placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+              <Input id="username-1" name="username" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </Field>
           </FieldGroup>
           <DialogFooter>
-            <Button type="submit" className="w-full mt-7 cursor-pointer">Sign In</Button>
+            <Button type="submit" className="w-full mt-7 py-6 text-base font-bold rounded-xl bg-primary hover:bg-primary/90 cursor-pointer transition-all duration-300 flex items-center justify-center gap-2">
+              <LogIn className="w-5 h-5" />
+              Sign In
+            </Button>
           </DialogFooter>
-          </form>
-        </DialogContent>
+        </form>
+      </DialogContent>
     </Dialog>
   )
 }

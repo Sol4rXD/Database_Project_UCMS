@@ -15,6 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { LogIn } from "lucide-react"
 import { Field, FieldGroup } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -77,7 +78,10 @@ export function LoginLink() {
             </Field>
           </FieldGroup>
           <DialogFooter>
-            <Button type="submit" className="w-full mt-7 cursor-pointer">Sign In</Button>
+            <Button type="submit" className="w-full mt-7 py-6 text-base font-bold rounded-xl bg-primary hover:bg-primary/90 cursor-pointer transition-all duration-300 flex items-center justify-center gap-2">
+              <LogIn className="w-5 h-5" />
+              Sign In
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
