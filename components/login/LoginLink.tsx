@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import axios from "axios"
+import { useAuth } from "@/components/AuthProvider"
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -21,6 +22,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 export function LoginLink() {
+  const { login } = useAuth();
   const [open, setOpen] = useState(false);
 
   const [student_id, setStudent_id] = useState("")
@@ -36,10 +38,9 @@ export function LoginLink() {
       });
 
       if (res.status === 200) {
-        localStorage.setItem("user", JSON.stringify(res.data.user));
-        // alert("Login Success");
+        login(res.data.user);
         setOpen(false);
-        window.location.reload();
+        router.refresh();
       }
     } catch (error) {
       console.log("Error: ", error);

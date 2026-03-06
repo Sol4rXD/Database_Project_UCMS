@@ -6,7 +6,10 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
+import { useAuth } from "./AuthProvider";
+
 export default function ReviewForm({ slug, clubId, existingReviews = [] }: { slug: string, clubId: string, existingReviews?: any[] }) {
+    const { user, loading: authLoading } = useAuth();
     const [star, setStar] = useState(5);
     const [hover, setHover] = useState(0);
     const [name, setName] = useState("");
@@ -25,15 +28,15 @@ export default function ReviewForm({ slug, clubId, existingReviews = [] }: { slu
 
     useEffect(() => {
         const checkMembership = async () => {
-            const savedUser = localStorage.getItem("user");
-            if (!savedUser) {
+            if (authLoading) return;
+            if (!user) {
                 setLoadingMember(false);
                 return;
             }
-            const userData = JSON.parse(savedUser);
-            const uId = userData.id.toString();
+
+            const uId = user.id.toString();
             setUserId(uId);
-            setName(userData.fullname || "");
+            setName(user.fullname || "");
 
             // Find my review if exists
             const mine = existingReviews.find(r => r.user_id === uId);
@@ -42,7 +45,7 @@ export default function ReviewForm({ slug, clubId, existingReviews = [] }: { slu
             }
 
             try {
-                const res = await axios.get(`/api/usersclub?user_id=${userData.id}&club_id=${clubId}`);
+                const res = await axios.get(`/api/usersclub?user_id=${user.id}&club_id=${clubId}`);
                 if (res.data) {
                     setIsMember(true);
                 }
@@ -54,7 +57,7 @@ export default function ReviewForm({ slug, clubId, existingReviews = [] }: { slu
         };
 
         checkMembership();
-    }, [clubId, existingReviews]);
+    }, [clubId, existingReviews, user, authLoading]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

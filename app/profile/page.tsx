@@ -18,8 +18,10 @@ import {
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+import { useAuth } from "@/components/AuthProvider";
+
 export default function ProfilePage() {
-  const [mounted, setMounted] = useState(false);
+  const { user } = useAuth();
 
   // Parallax Setup
   const { scrollY } = useScroll();
@@ -27,28 +29,15 @@ export default function ProfilePage() {
   const scale = useTransform(scrollY, [0, 300], [1, 1.1]);
   const y = useTransform(scrollY, [0, 300], [0, 100]);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const [userProfile, setUserProfile] = useState<any>(null);
   const [memberships, setMemberships] = useState<any[]>([]);
   const [applications, setApplications] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setMounted(true);
-
     const fetchProfile = async () => {
       try {
-        const savedUser = localStorage.getItem("user");
-        if (!savedUser) {
-          setLoading(false);
-          return;
-        }
-
-        const { id } = JSON.parse(savedUser);
-        const response = await fetch(`/api/profile/${id}`);
+        const response = await fetch(`/api/profile/me`);
         if (response.ok) {
           const data = await response.json();
           setUserProfile(data.user);
@@ -65,7 +54,6 @@ export default function ProfilePage() {
     fetchProfile();
   }, []);
 
-  if (!mounted) return null;
 
   if (loading) {
     return (

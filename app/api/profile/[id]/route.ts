@@ -3,18 +3,19 @@ import { prisma } from "@/lib/prisma";
 import { connectDB } from "@/lib/mongodb";
 import { Club } from "@/models/Club";
 import mongoose from "mongoose";
+import { getSession } from "@/lib/auth";
 
 export async function GET(
     req: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
     try {
-        const { id } = await params;
-        const userId = parseInt(id);
-
-        if (isNaN(userId)) {
-            return NextResponse.json({ message: "Invalid user ID" }, { status: 400 });
+        const session = await getSession();
+        if (!session) {
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
+
+        const userId = session.id;
 
         const user = await prisma.users.findUnique({
             where: { id: userId },

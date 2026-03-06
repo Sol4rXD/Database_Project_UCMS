@@ -13,19 +13,12 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
 
+import { useAuth } from "./AuthProvider"
+
 export default function AdminFab() {
-    const [user, setUser] = React.useState<any>(null)
-    const [mounted, setMounted] = React.useState(false)
+    const { user } = useAuth()
 
-    React.useEffect(() => {
-        setMounted(true)
-        const savedUser = localStorage.getItem("user")
-        if (savedUser) {
-            setUser(JSON.parse(savedUser))
-        }
-    }, [])
-
-    if (!mounted || !user || user.role !== "ADMIN") {
+    if (!user || user.role !== "ADMIN") {
         return null
     }
 

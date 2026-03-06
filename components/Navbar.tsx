@@ -14,23 +14,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import { useAuth } from "./AuthProvider";
+
 export default function Navbar() {
-  const [user, setUser] = useState<any>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    window.location.reload();
-  };
-
+  const { user, logout } = useAuth();
   const pathname = usePathname();
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -82,9 +69,7 @@ export default function Navbar() {
           </li>
         </ul>
 
-        {!mounted ? (
-          <div className="w-[100px] h-9"></div>
-        ) : user ? (
+        {user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <div className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition duration-200">
@@ -110,7 +95,7 @@ export default function Navbar() {
               )}
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                onClick={handleLogout}
+                onClick={() => logout()}
                 className="text-red-500 focus:text-red-500 cursor-pointer"
               >
                 <LogOutIcon className="mr-2 h-4 w-4" />

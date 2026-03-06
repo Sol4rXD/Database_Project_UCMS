@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, IBM_Plex_Sans_Thai } from "next/font/google"
 import { Toaster } from "@/components/ui/sonner"
 import Navbar from "@/components/Navbar"
+import { AuthProvider } from "@/components/AuthProvider"
 import "./globals.css";
 
 const inter = Inter({
@@ -28,11 +29,13 @@ export default function RootLayout({
   return (
     <html lang="th">
       <body className={`${inter.variable} ${ibmPlexThai.variable} font-sans antialiased`}>
-          <Navbar/>
-            <main className="pt-16">
-              {children}
-              <Toaster richColors position="top-center" />
-            </main>
+        <AuthProvider>
+          <Navbar />
+          <main className="pt-16">
+            {children}
+            <Toaster richColors position="top-center" />
+          </main>
+        </AuthProvider>
       </body>
     </html>
   );

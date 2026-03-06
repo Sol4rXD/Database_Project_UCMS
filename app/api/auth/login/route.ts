@@ -31,7 +31,18 @@ export async function POST(request: Request) {
         { status: 401 }
       )
     }
-    return NextResponse.json({
+
+    // Generate token
+    const { encrypt } = await import("@/lib/auth");
+    const expires = new Date(Date.now() + 2 * 60 * 60 * 1000); // 2 hours
+    const session = await encrypt({
+      id: user.id,
+      student_id: user.student_id,
+      role: user.role,
+      expires
+    });
+
+    const response = NextResponse.json({
       message: "Login Success",
       user: {
         id: user.id,
@@ -39,8 +50,17 @@ export async function POST(request: Request) {
         fullname: user.fullname,
         role: user.role
       }
-    }, { status: 200 }
-    )
+    }, { status: 200 });
+
+    // Set cookie
+    response.cookies.set("session", session, {
+      expires,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+    });
+
+    return response;
   } catch (error) {
     console.error("Login error: ", error);
     return NextResponse.json(

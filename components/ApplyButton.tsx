@@ -10,25 +10,25 @@ interface ApplyButtonProps {
     isOpen: boolean;
 }
 
+import { useAuth } from "./AuthProvider";
+
 export default function ApplyButton({ clubId, isOpen }: ApplyButtonProps) {
-    const [user, setUser] = useState<any>(null);
+    const { user, loading: authLoading } = useAuth();
     const [status, setStatus] = useState<"none" | "pending" | "approved" | "rejected" | "member">("none");
     const [loading, setLoading] = useState(true);
     const [submitting, setSubmitting] = useState(false);
 
     useEffect(() => {
         const checkStatus = async () => {
-            const savedUser = localStorage.getItem("user");
-            if (!savedUser) {
+            if (authLoading) return;
+            if (!user) {
                 setLoading(false);
                 return;
             }
-            const userData = JSON.parse(savedUser);
-            setUser(userData);
 
             try {
                 // Check if already a member
-                const memberRes = await axios.get(`/api/usersclub?user_id=${userData.id}&club_id=${clubId}`);
+                const memberRes = await axios.get(`/api/usersclub?user_id=${user.id}&club_id=${clubId}`);
                 if (memberRes.data) {
                     setStatus("member");
                     setLoading(false);
@@ -36,7 +36,7 @@ export default function ApplyButton({ clubId, isOpen }: ApplyButtonProps) {
                 }
 
                 // Check if already applied
-                const applyRes = await axios.get(`/api/clubapply?user_id=${userData.id}&club_id=${clubId}`);
+                const applyRes = await axios.get(`/api/clubapply?user_id=${user.id}&club_id=${clubId}`);
                 if (applyRes.data) {
                     if (applyRes.data.status === "PENDING") setStatus("pending");
                     else if (applyRes.data.status === "APPROVE") setStatus("approved");
@@ -50,7 +50,7 @@ export default function ApplyButton({ clubId, isOpen }: ApplyButtonProps) {
         };
 
         checkStatus();
-    }, [clubId]);
+    }, [clubId, user, authLoading]);
 
     const handleApply = async () => {
         if (!user) {
