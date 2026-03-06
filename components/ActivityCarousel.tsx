@@ -140,9 +140,9 @@ export default function ActivityCarousel({ whatWeDo, logoUrl }: { whatWeDo: any[
                     {items.map((img: any, i: number) => (
                         <div
                             key={i}
-                            className="flex-shrink-0 w-[290px] snap-start group cursor-pointer"
+                            className="flex-shrink-0 w-[290px] snap-start group cursor-pointer flex"
                         >
-                            <div className="bg-white rounded-[28px] p-2 border border-slate-50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 group-hover:shadow-[0_15px_45px_rgb(0,0,0,0.08)] group-hover:-translate-y-2">
+                            <div className="bg-white rounded-[28px] p-2 border border-slate-50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] h-full w-full flex flex-col transition-all duration-500 group-hover:shadow-[0_15px_45px_rgb(0,0,0,0.08)] group-hover:-translate-y-2">
                                 {/* IMAGE */}
                                 <div className="relative w-full h-[190px] rounded-[22px] overflow-hidden bg-slate-100">
                                     <Image
@@ -157,7 +157,7 @@ export default function ActivityCarousel({ whatWeDo, logoUrl }: { whatWeDo: any[
                                 </div>
 
                                 {/* CONTENT */}
-                                <div className="p-4 pt-5">
+                                <div className="p-4 pt-5 flex-1 flex flex-col">
                                     <div className="flex items-center gap-2.5 mb-2">
                                         <div className="h-px w-5 bg-[#10B981]" />
                                         <span className="text-[9px] font-bold text-[#10B981] uppercase tracking-widest">Activity</span>
@@ -165,7 +165,7 @@ export default function ActivityCarousel({ whatWeDo, logoUrl }: { whatWeDo: any[
                                     <h4 className="text-[18px] font-bold text-[#0B2C4D] group-hover:text-[#10B981] transition-colors duration-300 tracking-tight">
                                         {img.activity_name || `Activity Name`}
                                     </h4>
-                                    <p className="text-[13px] text-slate-500 mt-2.5 leading-relaxed line-clamp-2 font-medium">
+                                    <p className="text-[13px] text-slate-500 mt-2.5 leading-relaxed font-medium">
                                         {img.description || "Description of the activity goes here. It explains what happened during this event."}
                                     </p>
                                 </div>

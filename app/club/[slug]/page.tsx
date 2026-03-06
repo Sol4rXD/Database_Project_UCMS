@@ -241,13 +241,13 @@ export default async function Page(
                     <div className="flex-1 space-y-4">
                         {faqs.map((faq: any, i: number) => (
                             <details key={i} className="group border-b border-gray-200 pb-4">
-                                <summary className="flex justify-between items-center cursor-pointer list-none py-2">
-                                    <h4 className="text-[18px] font-semibold text-[#0B2C4D]">
+                                <summary className="flex items-center cursor-pointer list-none py-2 w-full !text-left">
+                                    <h4 className="flex-1 text-[18px] font-semibold text-[#0B2C4D] !text-left">
                                         {faq.question}
                                     </h4>
-                                    <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180 text-gray-400" />
+                                    <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180 text-gray-400 shrink-0" />
                                 </summary>
-                                <div className="mt-5 text-[15px] text-gray-500 leading-relaxed px-1">
+                                <div className="mt-5 text-[15px] text-gray-500 leading-relaxed px-1 text-left">
                                     {faq.answer}
                                 </div>
                             </details>
