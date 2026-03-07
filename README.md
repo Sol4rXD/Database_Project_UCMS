@@ -20,9 +20,9 @@ npm install
 เนื่องจากไฟล์ `.env` ไม่ถูก Push ขึ้นระบบ คุณต้องสร้างมันขึ้นมาใหม่ที่ Root Directory:
 
 1. สร้างไฟล์ชื่อ `.env` โดยสามารถคัดลอกไฟล์ตัวอย่างได้จากคำสั่ง:
-   ```bash
-   cp .env.example .env
-   ```
+```bash
+cp .env.example .env
+```
 2. หรือคัดลอกข้อความด้านล่างนี้ไปใส่ในไฟล์ `.env` โดยตรง:
 
 ```env
@@ -92,9 +92,9 @@ npm run dev
 
 ## 📚 Stack ที่ใช้ในโปรเจกต์
 - **Framework**: [Next.js 15 (App Router)](https://nextjs.org/)
-- **Database ORM**: [Prisma](https://www.prisma.io/)
+- **Database ORM/ODM**: [Prisma](https://www.prisma.io/) (MySQL) & [Mongoose](https://mongoosejs.com/) (MongoDB)
 - **Primary DB**: MySQL (MariaDB)
 - **Secondary DB**: MongoDB (Mongoose)
-- **Authentication**: Next-Auth / JWT
+- **Authentication**: Custom Auth (JWT + Cookies) 
 - **Styling**: Tailwind CSS + Shadcn UI
 - **Runtime**: [Bun](https://bun.sh/) (แนะนำ)
