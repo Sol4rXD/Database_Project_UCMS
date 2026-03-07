@@ -93,8 +93,8 @@ npm run dev
 ## 📚 Stack ที่ใช้ในโปรเจกต์
 - **Framework**: [Next.js 15 (App Router)](https://nextjs.org/)
 - **Database ORM/ODM**: [Prisma](https://www.prisma.io/) (MySQL) & [Mongoose](https://mongoosejs.com/) (MongoDB)
-- **Primary DB**: MySQL (MariaDB)
-- **Secondary DB**: MongoDB (Mongoose)
+- **Primary DB**: MySQL / MariaDB (จัดการผ่าน **Prisma**)
+- **Secondary DB**: MongoDB (จัดการผ่าน **Mongoose**)
 - **Authentication**: Custom Auth (JWT + Cookies) 
 - **Styling**: Tailwind CSS + Shadcn UI
 - **Runtime**: [Bun](https://bun.sh/) (แนะนำ)
