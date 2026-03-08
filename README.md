@@ -47,11 +47,13 @@ JWT_SECRET="YOUR_SECRET_KEY"
 docker-compose up -d
 ```
 
-หลังจากฐานข้อมูลพร้อมแล้ว ให้ทำการ Sync Schema ของ Prisma:
+หลังจากฐานข้อมูลพร้อมแล้ว ให้ทำการ Sync Schema ของ Prisma และสร้าง Client:
 ```bash
 bun prisma db push
+bun prisma generate
 # หรือ
 npx prisma db push
+npx prisma generate
 ```
 
 ---
