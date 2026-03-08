@@ -58,7 +58,7 @@ npx prisma generate
 
 ---
 
-## 🏃 วิธีการรันโปรเจกต์ (Running Project)
+## วิธีการรันโปรเจกต์ (Running Project)
 
 เมื่อติดตั้งทุกอย่างเรียบร้อยแล้ว ให้รันคำสั่ง:
 
@@ -72,7 +72,7 @@ npm run dev
 
 ---
 
-## 📂 การเพิ่มข้อมูลชมรม (Adding Club Data)
+## การเพิ่มข้อมูลชมรม (Adding Club Data)
 
 หากต้องการเพิ่มข้อมูลชมรมลงในระบบ (MongoDB) คุณสามารถใช้ไฟล์ JSON ที่เตรียมไว้ให้ในโฟลเดอร์ `public/JSON/` ได้เลย:
 
@@ -81,7 +81,7 @@ npm run dev
 
 ---
 
-## 🧪 ขั้นตอนการเทส (Simple Testing)
+## ขั้นตอนการเทส (Simple Testing)
 
 เพื่อให้มั่นใจว่าระบบทำงานได้ถูกต้อง ให้ตรวจสอบดังนี้:
 
@@ -92,7 +92,7 @@ npm run dev
 
 ---
 
-## 📚 Stack ที่ใช้ในโปรเจกต์
+## Stack ที่ใช้ในโปรเจกต์
 - **Framework**: [Next.js 15 (App Router)](https://nextjs.org/)
 - **Database ORM/ODM**: [Prisma](https://www.prisma.io/) (MySQL) & [Mongoose](https://mongoosejs.com/) (MongoDB)
 - **Primary DB**: MySQL (Prisma)
