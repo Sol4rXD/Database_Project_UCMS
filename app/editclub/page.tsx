@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { X, SlidersHorizontal, Check, ChevronsUpDown, Trophy, Phone, FileText, MapPin, User, Globe, ArrowLeft, Save, Calendar, Activity, Search, Loader2, Plus } from "lucide-react"
+import { X, Check, ChevronsUpDown, Trophy, Phone, FileText, MapPin, User, Globe, ArrowLeft, Save, Calendar, Activity, Search, Loader2, Plus } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import axios from "axios"
@@ -284,9 +284,7 @@ export default function EditClubPage() {
                             </PopoverContent>
                         </Popover>
                     </div>
-                    <Button variant="outline" size="icon" className="h-12 w-12 shrink-0 rounded-xl border-gray-200 text-gray-400 hover:text-primary transition-colors">
-                        <SlidersHorizontal className="h-5 w-5" />
-                    </Button>
+
                 </div>
 
                 {!value ? (
