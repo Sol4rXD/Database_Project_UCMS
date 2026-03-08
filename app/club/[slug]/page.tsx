@@ -102,7 +102,11 @@ export default async function Page(
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {club.position?.length ? (
+                                {!club.is_open ? (
+                                    <div className="col-span-full py-10 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200 text-center text-slate-400 font-medium">
+                                        ยังไม่เปิดรับสมัคร
+                                    </div>
+                                ) : club.position?.length ? (
                                     club.position.map((pos: any, i: number) => (
                                         <div
                                             key={pos._id || i}
@@ -121,7 +125,7 @@ export default async function Page(
                                     ))
                                 ) : (
                                     <div className="col-span-full py-10 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200 text-center text-slate-400 font-medium">
-                                        No specific positions listed at the moment.
+                                        ไม่มีตำแหน่งที่เปิดรับในขณะนี้
                                     </div>
                                 )}
                             </div>
