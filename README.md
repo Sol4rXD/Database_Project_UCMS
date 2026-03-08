@@ -27,18 +27,18 @@ cp .env.example .env
 
 ```env
 # MySQL 
-DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DATABASE_NAME"
-DATABASE_USER="USER"
-DATABASE_PASSWORD="PASSWORD"
-DATABASE_NAME="DATABASE_NAME"
+DATABASE_URL="mysql://root:12345@127.0.0.1:3306/club_registration"
+DATABASE_USER="root"
+DATABASE_PASSWORD="12345"
+DATABASE_NAME="club_registration"
 DATABASE_HOST="127.0.0.1"
 DATABASE_PORT=3306
 
 # MongoDB
-MONGODB_URI="mongodb://localhost:27017/DATABASE_NAME"
+MONGODB_URI="mongodb://localhost:27017/clubsystem"
 
-# ความลับสำหรับการเข้ารหัส JWT (สุ่มขึ้นมาเองได้เลย)
-JWT_SECRET="YOUR_SECRET_KEY"
+# JWT Secret สำหรับการ Auth (สามารถใช้ค่านี้ได้เลยหรือจะเปลี่ยนใหม่ก็ได้)
+JWT_SECRET="your-secret-key-12345"
 ```
 
 ### 3. เตรียมฐานข้อมูล (Database Setup)
