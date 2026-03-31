@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(
     req: Request,
-    { params }: { params: { slug: string } }
+    { params }: { params: Promise<{ slug: string }> }
 ) {
     try {
         await connectDB();
@@ -63,7 +63,7 @@ export async function POST(
 
 export async function PUT(
     req: Request,
-    { params }: { params: { slug: string } }
+    { params }: { params: Promise<{ slug: string }> }
 ) {
     try {
         await connectDB();
@@ -101,7 +101,7 @@ export async function PUT(
 
 export async function DELETE(
     req: Request,
-    { params }: { params: { slug: string } }
+    { params }: { params: Promise<{ slug: string }> }
 ) {
     try {
         await connectDB();
