@@ -21,7 +21,7 @@ model Users {
   student_id String  @unique
   faculty    String
   department String
-  role       Role    @default(ADMIN)
+  role       Role    @default(USER)
 
   club_apply Club_Apply[]
   user_club  User_Clubs[]

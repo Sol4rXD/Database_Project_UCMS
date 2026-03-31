@@ -27,8 +27,8 @@ export async function POST(req: Request) {
         student_id,
         faculty,
         department,
-        // For test
-        role: "ADMIN"
+        // Default role for new users
+        role: "USER"
       }
     })
     return Response.json(user, { status: 201 });
