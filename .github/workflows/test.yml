@@ -20,6 +20,8 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        env:
+          DATABASE_URL: "mysql://root:root@localhost:3306/db"
 
       - name: Generate Prisma Client
         run: npx prisma generate
