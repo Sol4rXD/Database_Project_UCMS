@@ -5,15 +5,14 @@ import ActivityCarousel from "@/components/ActivityCarousel"
 import ReviewForm from "@/components/ReviewForm"
 import ContactBanner from "@/components/ContactBanner"
 import ApplyButton from "@/components/ApplyButton"
+import { connectDB } from "@/lib/mongodb";
+import { Club } from "@/models/Club";
 
 async function getClub(slug: string) {
-    const res = await fetch(
-        `http://localhost:3000/api/club/${slug}`,
-        { cache: "no-store" }
-    )
-
-    if (!res.ok) return null
-    return res.json()
+    await connectDB();
+    const club = await Club.findOne({ slug });
+    if (!club) return null;
+    return JSON.parse(JSON.stringify(club));
 }
 
 export default async function Page(
